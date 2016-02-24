@@ -1,11 +1,11 @@
-/*@import url(https://fonts.googleapis.com/css?family=Press+Start+2P&subset=latin,cyrillic);*/
-/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic);*/
+@import url(https://fonts.googleapis.com/css?family=Bangers);
 
 html, body {
     padding: 0;
     margin: 0;
 }
 * {
+    font-family: Bangers;
     box-sizing: border-box;
 }
 
@@ -16,20 +16,19 @@ html, body {
 .wrap {
     width: 100%;
     height: 100%;
-    background-color: #d5f2e8;
     position: absolute;
     display: -webkit-flex;
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
+    /*-webkit-justify-content: center;*/
+    /*justify-content: center;*/
 }
 .wrap__layout {
-    /*margin-left: 200px;*/
+    margin-left: 200px;
     width: 450px;
     background: #ffffff;
-    border-radius: 60px;
+    border-radius: 10px;
     overflow: hidden;
 }
 /*
@@ -65,14 +64,15 @@ html, body {
     line-height: 80px;
 }
 .menu__btn {
-    width: 80%;
-    height: 40px;
-    background-color: #14B9D5;
+    width: 50%;
+    height: 60px;
+
+    background-color: #039BE5;
     border: 0;
-    margin: 10px 10% 10px 10%;
+    margin: 10px 10% 10px 26%;
     border-radius: 5px;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 32px;
     line-height: 40px;
     transition: all 0.3s;
 
@@ -81,19 +81,27 @@ html, body {
     -ms-user-select: none;
     user-select: none;
 }
+
 .menu__btn:focus {
     outline: none;
 }
 .menu__btn:hover {
-    background: #8a5465;
+    background: #0277BD;
 }
 
 .menu__btn--back {
-    background: #f01510;
+    margin-top: 5px;
+    background: #D32F2F;
     color: #fdf5fd;
 }
 .menu__btn--back:hover {
-    background-color: #8a5465;
+    background-color: #B71C1C;
+}
+.menu_btn--primary {
+    background-color:#FF9800
+}
+.menu_btn--primary:hover{
+    background-color: #EF6C00;
 }
 
 /*
@@ -128,9 +136,9 @@ html, body {
 текстовые поля
 */
 .text_input {
-    width: 80%;
+    width: 65%;
     height: 40px;
-    margin: 10px 10% 10px 10%;
+    margin: 10px 10% 10px 18%;
     border: 0;
     border-radius: 5px;
     line-height: 40px;
@@ -153,15 +161,14 @@ html, body {
 кнопка отправить
 */
 .submit_input {
-    width: 80%;
-    height: 40px;
-    margin: 10px 10% 10px 10%;
+    width: 50%;
+    height: 60px;
+    margin: 5px 10% 10px 26%;
     border: 0;
     border-radius: 5px;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 32px;
     transition: all 0.3s;
-    cursor : pointer;
 
     background: #14B9D5;
     color: #FFFFFF;
@@ -192,31 +199,4 @@ html, body {
 }
 .scoreboard__title {
     font-weight: bold;
-}
-
-/*
-=========================================================
-мусор
-*/
-.gameArea {
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-.gameArea__canvas {
-    border: 1px dashed;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-#staticLayer {
-    z-index: 1;
-}
-#dynamicLayer {
-    z-index: 3;
-    cursor: crosshair;
-}
-#score {
-    height: 20px;
 }

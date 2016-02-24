@@ -16,7 +16,6 @@ define(
                 this.$el.find('button').click(function (e) {
                     e.preventDefault();
                     event.trigger('navigate', $(this).attr('id'));
-                    console.log('navigate');
                 });
                 this.$el.show();
             },

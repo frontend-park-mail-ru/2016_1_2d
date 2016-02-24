@@ -5,7 +5,10 @@
                 <img src="/media/bomb_logo.png"></img>
             </div>
             <div class = "menu">
-                <button class="menu__btn menu__btn--primary" id="login">
+                <button class="menu__btn menu_btn--primary" id="start-game">
+                    Start
+                </button>
+                <button class="menu__btn" id="login">
                     Login
                 </button>
                 <button class="menu__btn" id="register">
