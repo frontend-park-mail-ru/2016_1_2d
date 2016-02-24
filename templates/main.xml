@@ -2,17 +2,17 @@
     <div id="main" class = "wrap">
         <div class="wrap__layout">
             <div class="logo">
-                BomberMan
+                <img src="/media/bomb_logo.png"></img>
             </div>
             <div class = "menu">
                 <button class="menu__btn menu__btn--primary" id="login">
-                    Логин
+                    Login
                 </button>
                 <button class="menu__btn" id="register">
-                    Регистрация
+                    Register
                 </button>
                 <button class="menu__btn" id="scoreboard">
-                    Рейтинг
+                    Scoreboard
                 </button>
             </div>
         </div>

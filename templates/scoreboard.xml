@@ -3,25 +3,24 @@
         <div id="scoreboard" class = "wrap">
             <div class="wrap__layout">
                 <div class="logo">
-                    BomberMan
+                    <img src="/media/bomb_logo.png"></img>
                 </div>
                 <div class = "menu">
                     <div class = "menu__title">
-                        Рейтинг игроков
+                        Scoreboard
                     </div>
                     <table class="scoreboard">
                         <tr>
-                            <td class="scoreboard__name scoreboard__title" >Логин</td>
-                            <td class="scoreboard__rating scoreboard__title" >Рейтинг</td>
+                            <td class="scoreboard__name scoreboard__title" >Name</td>
+                            <td class="scoreboard__rating scoreboard__title" >Rating</td>
                         </tr>
                         <tr>
-                            <td class="scoreboard__name">Alex</td>
-                            <td class="scoreboard__rating">3945</td>
+                            <td class="scoreboard__name">Pasha</td>
+                            <td class="scoreboard__rating">2945</td>
                         </tr>
-
                     </table>
                     <button class="menu__btn  menu__btn--back" id="main">
-                        Назад
+                        Back
                     </button>
                 </div>
             </div>

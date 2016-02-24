@@ -33,4 +33,4 @@ define(
 
         return new Router();
     }
-)
+);

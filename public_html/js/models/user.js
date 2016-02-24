@@ -19,7 +19,7 @@ define(
                     this.set('password','');
                 }
             },
-            registerNew: function(login, password1, password2) {
+            registerNew: function(login, password) {
 
             },
             sendLoginData: function () {
@@ -43,4 +43,4 @@ define(
 
         return new User();
     }
-)
+);
