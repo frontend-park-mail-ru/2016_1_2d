@@ -1,11 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="main" class = "wrap">
+    <div id="main" class="wrap">
         <div class="wrap__layout">
             <div class="logo">
                 <img src="/media/bomb_logo.png"></img>
             </div>
-            <div class = "menu">
-                <button class="menu__btn menu_btn--primary" id="start-game">
+            <div class="menu">
+                <button class="menu__btn menu_btn--primary" id="room">
                     Start
                 </button>
                 <button class="menu__btn" id="login">
@@ -20,4 +20,5 @@
             </div>
         </div>
     </div>
+
 </fest:template>

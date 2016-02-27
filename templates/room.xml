@@ -1,0 +1,16 @@
+<fest:template xmlns:fest="http://fest.mail.ru">
+    <div id="room" class="wrap">
+        <div class="wrap__layout">
+            <button class="menu__btn  menu__btn--back" id="main">
+                Back
+            </button>
+        </div>
+    </div>
+    <div class="chat-wrapper">
+        <form class="chat__form" action="#">
+            <input id="m" class="chat__form--input" autocomplete="off" /><button>Send</button>
+        </form>
+    </div>
+</fest:template>
+
+

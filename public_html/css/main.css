@@ -1,5 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Bangers);
-
+@font-face {
+    font-family: Bangers;
+    src: url(bangers.ttf);
+}
 html, body {
     padding: 0;
     margin: 0;
@@ -21,21 +23,16 @@ html, body {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    /*-webkit-justify-content: center;*/
-    /*justify-content: center;*/
+    -webkit-justify-content: center;
+    justify-content: center;
 }
 .wrap__layout {
-    margin-left: 200px;
     width: 450px;
     background: #ffffff;
     border-radius: 10px;
     overflow: hidden;
 }
-/*
-========================================================
-логотип
-========================================================
-*/
+/*Bomberman logo*/
 .logo {
     margin: 0 auto;
     width: 100%;
@@ -47,11 +44,7 @@ html, body {
     -ms-user-select: none;
     user-select: none;
 }
-/*
-========================================================
-меню
-========================================================
-*/
+/*Menu*/
 .menu {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -75,6 +68,8 @@ html, body {
     font-size: 32px;
     line-height: 40px;
     transition: all 0.3s;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.9);
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -104,18 +99,10 @@ html, body {
     background-color: #EF6C00;
 }
 
-/*
-========================================================
-форма
-========================================================
-*/
 .form {
 
 }
-/*
-========================================================
-ошибка
-*/
+
 #alert {
     width: 80%;
     margin: 10px 10% 10px 10%;
@@ -131,10 +118,7 @@ html, body {
 .open {
     display: inline-block;
 }
-/*
-========================================================
-текстовые поля
-*/
+/*login and register input */
 .text_input {
     width: 65%;
     height: 40px;
@@ -149,17 +133,14 @@ html, body {
     color: #5E6D82;
     padding-left: 2%;
     padding-right: 2%;
-
 }
 
 .text_input:focus {
     outline: none;
     background-color: #F3F3F3;
 }
-/*
-========================================================
-кнопка отправить
-*/
+
+/*Submit*/
 .submit_input {
     width: 50%;
     height: 60px;
@@ -180,11 +161,8 @@ html, body {
 .submit_input:hover {
     background: #0E778A;
 }
-/*
-========================================================
-рейтинг
-========================================================
-*/
+
+/*Rating*/
 .scoreboard {
     width: 100%;
     padding-left: 10%;
@@ -199,4 +177,23 @@ html, body {
 }
 .scoreboard__title {
     font-weight: bold;
+}
+/*Chat*/
+.chat-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 450px;
+    background-color: #ecfff8;
+    right:0;
+}
+.chat__form {
+    background: #000;
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.chat__form--input {
+    /*width: 900%;*/
+    width: 25%;
 }
