@@ -1,7 +1,7 @@
 {
-  "name": "pewpew",
+  "name": "bomberman",
   "version": "0.1.0",
-  "description": "Duel shooter",
+  "description": "bomberman frontend",
   "main": "index.js",
   "author": "",
   "license": "MIT",
