@@ -21,14 +21,18 @@ define(
                 }
             },
             registerNew: function(login, password) {
+                if(login.length === 0 && password.length == 0) {
+                    event.trigger('invalidForm');
+                } else {
+
+                }
 
             },
             sendLoginData: function () {
                 $.ajax({
                     method: 'POST',
                     url: '/login',
-                    data: {'login': this.get('username'),
-                        'password': this.get('password')},
+                    data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
                         if (msg['AuthToken']) {
                             this.set('token', msg['AuthToken']);
