@@ -26,10 +26,7 @@ app.use(function (req, res, done) {
 app.post('/login', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
-	// Hardcoded for dev
-	if (username === 'username' && password === 'userpass') {
-		res.send('{\'token\': \'authTokenExample\'}');
-	}
+	console.log(username, password);
 	res.send();
 });
 
