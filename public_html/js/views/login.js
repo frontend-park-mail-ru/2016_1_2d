@@ -16,7 +16,8 @@ define(
                 this.listenTo(event,'invalidLoginPassword', this.showErrorMessage);
             },
             showErrorMessage: function () {
-                // TODO
+                $('#err-message').html('Error: Invalid Login or Password').fadeIn(400).fadeOut(2200);
+
             }
         });
 

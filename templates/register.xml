@@ -4,8 +4,8 @@
             <div class="logo">
                 <img src="/media/bomb_logo.png"></img>
             </div>
-            <div class = "menu">
-                <div class = "menu__title">
+            <div class="menu">
+                <div class="menu__title">
                     Register
                 </div>
                 <div class="form">
