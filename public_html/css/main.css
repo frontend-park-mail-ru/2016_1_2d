@@ -176,6 +176,9 @@ html, body {
     padding-left: 10%;
     padding-right: 10%;
 }
+.scoreboard__pole{
+    height: 35px;
+}
 .scoreboard__name {
     width: 80%;
 }
@@ -185,6 +188,7 @@ html, body {
 }
 .scoreboard__title {
     font-weight: bold;
+   font-size: x-large;
 }
 
 /*Chat*/
@@ -250,6 +254,12 @@ html, body {
     float:left;
 }
 
+.chat__message-contactInfo {
+    width:50px;
+    padding-top:7px;
+    font-size: large;
+ }
+
 .chat__message-right
 {
     float:right;
@@ -307,15 +317,13 @@ html, body {
   padding:5px;
   border-radius:5px;
   border:2px solid #9F6905;
-  margin-left:-70px;
+  margin-left:-40px;
   margin-top:-70px;
   display:none;
   color:#545454;
 }
 .chat__message-right .tooltip:before
 {
-/*    content: '';
-    position: absolute;*/
     width: 1px;
     height: 1px;
     border: 5px solid transparent;
@@ -336,15 +344,12 @@ html, body {
   padding:5px;
   border-radius:5px;
   border:2px solid #9F6905;
-  /*margin-left:70px;*/
   margin-top:-70px;
   display:none;  
   color:#545454;
 }
 .chat__message-left .tooltip:before
 {
-/*    content: '';
-    position: absolute;*/
     width: 1px;
     height: 1px;
     border: 5px solid transparent;
@@ -360,7 +365,6 @@ html, body {
 {
   text-decoration:none;
 }
-
 
 .chat__message input[type=button]
 {
@@ -383,27 +387,17 @@ html, body {
     transition: all 1.5s;
   background-color:#9F6905;
 } 
-.validation
-{
-  float:left;
-  background-color:#ccc;
-  border-radius:5px;
-  padding:5px;
-  font-size:12px;
-  line-height:14px;
-  height:0px;
-  margin-left:5px;
-  display:none;
-}
+
 .chat-wrapper br
 {
   clear:both;
   height:20px;
 }
 .chat__form--input {
-    /*width: 900%;*/
-    width: 35%;
+    width: 25%;
     height: 80%;
 }
-
+.chat__form--button{
+    height: 7px;
+}
 

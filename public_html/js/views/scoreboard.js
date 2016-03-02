@@ -1,10 +1,13 @@
 define(
-    ['views/baseView','tmpl/scoreboard'],
-    function (baseView, tmpl) {
-        var View = baseView.extend({
-            template: tmpl
-        });
+    ['models/scoreboard', 'views/baseView', 'tmpl/scoreboard'],
+    function (scoreboard, baseView, tmpl) {
 
-        return new View();
-    }
-);
+    var View = baseView.extend({
+        template: tmpl,
+        render: function () {
+            this.$el.html(this.template(this.model.getScores()));
+        }
+    });
+
+    return new View({model: scoreboard});
+});
