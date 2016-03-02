@@ -12,57 +12,49 @@
 
         <div class="chat__container">
   
-          <div class="chat__message">
-            <div class="chat__message-left">
-              <a href="https://twitter.com/SamiMassadeh">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL"/>
-                <div class="tooltip">Sami Massadeh - 28 Years<br/>Doctor <br/>Jordan</div></a>
+            <div class="chat__message">
+                <div class="chat__message-left">
+                    <div>
+                        <div class="chat__message-contactInfo">user1</div>
+                        <div class="tooltip">vasia - 69 score<br/>boss<br/>"oscara mne"</div>
+                    </div>
+                </div>
+                <div class="chat__text chat__message-right">Hi Mariam, How Are You?</div>
             </div>
-            <div class="chat__text chat__message-right">Hi Mariam, How Are You?
-            </div>
-          </div>
           
             <div class="chat__message"> 
-            <div class="chat__message-right">
-              <a href="https://twitter.com/MariamMassadeh">
-            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSxU35znsBhAWQd5BouLIVtH1P4WNa0JZ_XXpyViHOIARbM2igbNgC6_kp5"/>
-                <div class="tooltip">Mariam Massadeh - 23 Years<br/>Computer Engineer<br/>Jordan</div></a>
-            </div>    
-            <div class="chat__text chat__message-left">Hi Sami, Fine, Thank You, How Are You?
-            </div>    
-          </div>
-          
-           <div class="chat__message">
-            <div class="chat__message-left">
-              <a href="https://twitter.com/SamiMassadeh">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL"/>
-                <div class="tooltip">Sami Massadeh - 28 Years<br/>Doctor <br/>Jordan</div></a>
+                <div class="chat__message-right">
+                    <div>
+                        <div class="chat__message-contactInfo">user2</div>
+                        <div class="tooltip">vasia - 69 score<br/>boss<br/>"oscara mne"</div>
+                    </div>
+                </div>    
+                <div class="chat__text chat__message-left">Hi Sami, Fine, Thank You, How Are You?</div>    
             </div>
-            <div class="chat__text chat__message-right">Fine, Can I see you tomorrow?
-            </div>
-          </div>
-          
-            <div class="chat__message"> 
-            <div class="chat__message-right">
-              <a href="https://twitter.com/MariamMassadeh">
-            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSxU35znsBhAWQd5BouLIVtH1P4WNa0JZ_XXpyViHOIARbM2igbNgC6_kp5"/>
-                <div class="tooltip">Mariam Massadeh - 23 Years<br/>Computer Engineer<br/>Jordan</div></a>
-            </div>    
-            <div class="chat__text chat__message-left">sure, Yes I can,
-              t.c
-            </div>    
-          </div>
-
           
             <div class="chat__message">
-            <textarea placeholder="Participate in coversation"></textarea>
-              <br/><br/>
-              <input type="button" value="SEND"/>
-              <div class="validation">You Are Not Registered</div>
-              <br/>
-            <p class="note">* for any help return to adminstrator..</p>
-          </div>
+                <div class="chat__message-left">
+                    <div>
+                        <div class="chat__message-contactInfo">user1</div>
+                        <div class="tooltip">vasia - 69 score<br/>boss<br/>"oscara mne"</div>
+                    </div>
+                </div>
+                <div class="chat__text chat__message-right">Fine, Can I see you tomorrow?</div>
+            </div>
+          
+            <div class="chat__message"> 
+                <div class="chat__message-right">
+                    <div>
+                        <div class="chat__message-contactInfo">user2</div>
+                        <div class="tooltip">vasia - 69 score<br/>boss<br/>"oscara mne"</div>
+                    </div>
+                </div>    
+                <div class="chat__text chat__message-left">sure, Yes I can, t.c</div>    
+            </div>
         </div>
+        <form class="chat__form" action="#">
+            <input id="m" class="chat__form--input" autocomplete="off" /><button>Send</button>
+        </form>
     </div>
 </fest:template>
 
