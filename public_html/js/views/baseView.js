@@ -1,6 +1,6 @@
-define(
-    ['backbone', 'event'],
-    function (Backbone, event) {
+define(function (require) {
+        var Backbone = require('backbone');
+        var event = require('event');
         var View = Backbone.View.extend({
             template: {},
             initialize: function () {

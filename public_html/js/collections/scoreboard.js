@@ -1,7 +1,7 @@
-define(
-    ['backbone','underscore','models/scores'],
-    function(Backbone, underscore, scores) {
-
+define(function(require) {
+        var Backbone = require('backbone');
+        var underscore = require('underscore');
+        var scores = require('models/scores');
         return Backbone.Collection.extend({
             model: scores,
 
@@ -20,7 +20,7 @@ define(
                     {name: 'Ed', score: 100},
                     {name: 'Dima', score: 10011111111},
                     {name: 'Lex', score: 300},
-                    {name: 'max', score: 1000500},
+                    {name: 'max', score: 100500},
                     {name: 'player', score: 100}
                 ]);
             }

@@ -1,6 +1,7 @@
-define(
-    ['backbone','jquery', 'event'],
-    function(Backbone, $, event) {
+define( function(require) {
+        var Backbone = require('backbone');
+        var $ = require('jquery');
+        var event = require('event');
         var User = Backbone.Model.extend({
             default: {
                 'token' : '',

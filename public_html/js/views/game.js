@@ -1,7 +1,6 @@
-define([
-    'views/baseView',
-    'tmpl/game',
-], function (baseView, tmpl) {
+define(function (require) {
+        var baseView = require('views/baseView');
+        var tmpl =require('tmpl/game');
         var View = baseView.extend({
             template: tmpl
         });

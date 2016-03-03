@@ -1,6 +1,8 @@
-define(
-    ['tmpl/register', 'views/baseView', 'models/user', 'event'],
-    function (tmpl, baseView, user, event) {
+define(function (require) {
+        var tmpl = require('tmpl/register');
+        var baseView = require('views/baseView');
+        var user = require('models/user');
+        var event = require('event');
         var View = baseView.extend({
             template: tmpl,
             events: {

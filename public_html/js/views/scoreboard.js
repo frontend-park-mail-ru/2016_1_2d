@@ -1,7 +1,7 @@
-define(
-    ['collections/scoreboard', 'views/baseView', 'tmpl/scoreboard'],
-    function (Scoreboards, baseView, tmpl) {
-
+define(function (require) {
+    var Scoreboards = require('collections/scoreboard');
+    var baseView = require('views/baseView');
+    var tmpl = require('tmpl/scoreboard');
     var View = baseView.extend({
         template: tmpl,
         collection: new Scoreboards(),
