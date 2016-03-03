@@ -13,7 +13,7 @@
                             <td class="scoreboard__name scoreboard__title" >Name</td>
                             <td class="scoreboard__rating scoreboard__title" >Rating</td>
                         </tr>
-                        <fest:for iterate="json.scores" index="i" value="v">
+                        <fest:for iterate="json" index="i" value="v">
                             <tr>
                                 <td class="scoreboard__name">
                                     <fest:value>v.name</fest:value>

@@ -1,13 +1,15 @@
 define(
-    ['models/scoreboard', 'views/baseView', 'tmpl/scoreboard'],
-    function (scoreboard, baseView, tmpl) {
+    ['collections/scoreboard', 'views/baseView', 'tmpl/scoreboard'],
+    function (Scoreboards, baseView, tmpl) {
 
     var View = baseView.extend({
         template: tmpl,
+        collection: new Scoreboards(),
+
         render: function () {
-            this.$el.html(this.template(this.model.getScores()));
+            this.$el.html(this.template(this.collection.toJSON()));
         }
     });
 
-    return new View({model: scoreboard});
+    return new View();
 });

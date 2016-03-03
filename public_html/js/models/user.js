@@ -6,7 +6,6 @@ define(
                 'token' : '',
                 'username' : 'Guest',
                 'password': '',
-                'score': 0,
                 'endPoint': 'localhost',
                 'port': 8080
             },
@@ -26,7 +25,6 @@ define(
                 } else {
 
                 }
-
             },
             sendLoginData: function () {
                 $.ajax({
