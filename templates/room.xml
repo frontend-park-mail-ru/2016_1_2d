@@ -53,7 +53,8 @@
             </div>
         </div>
         <form class="chat__form" action="#">
-            <input id="m" class="chat__form--input" autocomplete="off" /><button class="chat__form-button">Send</button>
+            <input id="m" class="chat__form--input" autocomplete="off" />
+            <button type="submit" class="chat__form-button">Send</button>
         </form>
     </div>
 </fest:template>

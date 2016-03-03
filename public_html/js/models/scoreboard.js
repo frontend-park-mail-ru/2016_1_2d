@@ -7,14 +7,14 @@ define(
             this.order();
             return {scores: this.get('scores')};
         },
-        sync : function () {
+        sync: function () {
             this.set('scores',
-                [{name: 'Alex', score: 200},
+                [
+                    {name: 'Pasha', score: 200},
                     {name: 'Sasha', score: 100},
                     {name: 'Ed', score: 100},
                     {name: 'Dima', score: 100},
                     {name: 'Lex', score: 300},
-                    {name: 'Unknown', score: 100},
                     {name: 'max', score: 1000500},
                     {name: 'player', score: 100}
                 ]
@@ -28,4 +28,4 @@ define(
         }
     });
     return new ScoreboardModel();
-})
+});
