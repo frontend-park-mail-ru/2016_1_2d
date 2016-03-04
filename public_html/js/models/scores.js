@@ -2,7 +2,7 @@ define(function(require) {
         var Backbone = require('backbone');
         var Score = Backbone.Model.extend({
             default: {
-                'username' : 'Test',
+                'username' : '',
                 'score': 0
             }
         });

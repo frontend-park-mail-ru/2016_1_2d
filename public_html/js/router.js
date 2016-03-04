@@ -1,6 +1,11 @@
-define(
-    ['backbone', 'require', 'views/main', 'views/game', 'views/login', 'views/scoreboard', 'views/register','views/room', 'event'],
-    function (Backbone, require) {
+define(function (require) {
+        var Backbone = require('backbone');
+        var login = require('views/login');
+        var register = require('views/register');
+        var game = require('views/game');
+        var scoreboard = require('views/scoreboard');
+        var room = require('views/room');
+
         var Router = Backbone.Router.extend({
             routes: {
                 'main': 'displayView',

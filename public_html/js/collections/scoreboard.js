@@ -18,7 +18,7 @@ define(function(require) {
                     {name: 'Pasha', score: 200},
                     {name: 'Sasha', score: 100},
                     {name: 'Ed', score: 100},
-                    {name: 'Dima', score: 10011111111},
+                    {name: 'Dima', score: 900},
                     {name: 'Lex', score: 300},
                     {name: 'max', score: 100500},
                     {name: 'player', score: 100}

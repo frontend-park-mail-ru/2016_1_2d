@@ -380,6 +380,7 @@ html, body {
     height: 95%;
 }
 .chat__form-button {
+    font-size: 14px;
     width: 90px;
     height: 98%;
 }
