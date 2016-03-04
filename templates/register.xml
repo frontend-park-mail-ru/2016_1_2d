@@ -6,13 +6,13 @@
             </div>
             <div class="menu">
                 <div class="menu__title">
-                    Login
+                    Register
                 </div>
                 <div class="form">
-                    <form name="authentication">
+                    <form name="registration">
                         <input name="login"  class="text_input" placeholder="Login" id="login-input"></input>
-                        <input name="password" type="password" placeholder="Password" class="text_input" id="password-input"></input>
-                        <input type="submit" class="submit_input" value="Login" id='sign-in'></input>
+                        <input name="password" type="password"  placeholder="Password" class="text_input" id="password-input"></input>
+                        <input type="submit" class="submit_input" value="Register" id='sign-up'></input>
                     </form>
                 </div>
                 <button class="menu__btn  menu__btn--back" id="main">
