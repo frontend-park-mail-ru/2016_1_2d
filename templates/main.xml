@@ -5,18 +5,18 @@
                 <img src="/media/bomb_logo.png"></img>
             </div>
             <div class="menu">
-                <button class="menu__btn menu_btn--primary" id="room">
+                <a href="#room"><button class="menu__btn menu_btn--primary">
                     Start
-                </button>
-                <button class="menu__btn" id="login">
+                </button></a>
+                <a href="#login"><button class="menu__btn">
                     Login
-                </button>
-                <button class="menu__btn" id="register">
+                </button></a>
+                <a href="#register"><button class="menu__btn">
                     Register
-                </button>
-                <button class="menu__btn" id="scoreboard">
+                </button></a>
+                <a href="#scoreboard"><button class="menu__btn">
                     Scoreboard
-                </button>
+                </button></a>
             </div>
         </div>
     </div>

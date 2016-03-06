@@ -10,17 +10,17 @@
                 </div>
                 <div class="form">
                     <form name="registration">
-                        <input name="login"  class="text_input" placeholder="Login" id="login-input"></input>
-                        <input name="password" type="password"  placeholder="Password" class="text_input" id="password-input"></input>
+                        <input name="login"  class="text_input" placeholder="Login" id="reg-login-input"></input>
+                        <input name="password" type="password"  placeholder="Password" class="text_input" id="reg-password-input"></input>
                         <input type="submit" class="submit_input" value="Register" id='sign-up'></input>
                     </form>
                 </div>
-                <button class="menu__btn  menu__btn--back" id="main">
+                <a href="#main"><button class="menu__btn  menu__btn--back">
                     Back
-                </button>
+                </button></a>
             </div>
         </div>
-        <div class="alert-box error" id="err-message" style="display: none">
+        <div class="alert-box error" style="display: none">
         </div>
     </div>
 </fest:template>

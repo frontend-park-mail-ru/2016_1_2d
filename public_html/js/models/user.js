@@ -1,7 +1,6 @@
 define( function(require) {
         var Backbone = require('backbone');
         var $ = require('jquery');
-        var event = require('event');
         var User = Backbone.Model.extend({
             default: {
                 'token' : '',
@@ -11,8 +10,8 @@ define( function(require) {
                 'port': 8080
             },
             authorize: function(login, password) {
-                if(login.length === 0 && password.length == 0) {
-                    event.trigger('invalidLoginPassword');
+                if(login.length === 0 || password.length === 0) {
+                    this.trigger('invalidLoginPassword');
                 } else {
                     this.set('username', login);
                     this.set('password', password);
@@ -21,10 +20,13 @@ define( function(require) {
                 }
             },
             registerNew: function(login, password) {
-                if(login.length === 0 && password.length == 0) {
-                    event.trigger('invalidForm');
+                if(login.length === 0 || password.length === 0) {
+                    this.trigger('invalidForm');
                 } else {
-
+                    this.set('username', login);
+                    this.set('password', password);
+                    this.sendLoginData();
+                    this.set('password','');
                 }
             },
             sendLoginData: function () {
