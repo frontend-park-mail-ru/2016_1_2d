@@ -29,6 +29,16 @@ define( function(require) {
                     this.set('password','');
                 }
             },
+            userLogout: function() {
+                var self = this;
+                $.ajax({
+                    method: 'DELETE',
+                    url: '/logout',
+                    success: function (msg) {
+                        self.trigger('userLogout');
+                    }
+                });
+            },
             sendLoginData: function (url) {
                 var self = this;
                 $.ajax({
@@ -36,7 +46,7 @@ define( function(require) {
                     url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        //this.trigger('UserAUTHED');
+                        self.trigger('userAuthed');
                         console.log(msg);
                     },
                     error: function (msg) {

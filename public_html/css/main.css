@@ -99,10 +99,6 @@ html, body {
     background-color: #EF6C00;
 }
 
-.form {
-
-}
-
 .alert-box {
     position: absolute;
     right: 0;
@@ -138,6 +134,7 @@ html, body {
     color: #5E6D82;
     padding-left: 2%;
     padding-right: 2%;
+    font-family: "Helvetica";
 }
 
 .text_input:focus {

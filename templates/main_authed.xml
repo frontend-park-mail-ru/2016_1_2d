@@ -1,0 +1,21 @@
+<fest:template xmlns:fest="http://fest.mail.ru">
+    <div id="main" class="wrap">
+        <div class="wrap__layout">
+            <div class="logo">
+                <img src="/media/bomb_logo.png"></img>
+            </div>
+            <div class="menu">
+                <a href="#room"><button class="menu__btn menu_btn--primary">
+                    Start
+                </button></a>
+                <a href="#scoreboard"><button class="menu__btn">
+                    Scoreboard
+                </button></a>
+                <a href="#logout" id="logout"><button class="menu__btn  menu__btn--back">
+                    Logout
+                </button></a>
+            </div>
+        </div>
+    </div>
+
+</fest:template>

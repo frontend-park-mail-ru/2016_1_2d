@@ -37,6 +37,11 @@ app.put('/register', function(req, res) {
 	request({ url: newurl, method: 'PUT', json: {login: login, password: password}}).pipe(res);
 });
 
+app.delete('/logout', function(req, res) {
+	var newurl = 'http://localhost:8081/api/session';
+	request({ url: newurl, method: 'DELETE'}).pipe(res);
+});
+
 
 app.listen(PORT, function () {
 	console.log("listening at http://%s:%s", HOSTNAME, PORT);

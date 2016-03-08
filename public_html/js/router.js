@@ -6,6 +6,9 @@ define(
         var game = require('views/game');
         var scoreboard = require('views/scoreboard');
         var room = require('views/room');
+        var user = require('models/user');
+        var main = require('views/main');
+
         var Router = Backbone.Router.extend({
             routes: {
                 'main': 'displayView',
@@ -17,17 +20,24 @@ define(
                 '*default': 'defaultAction'
             },
             initialize: function () {
-                this.currentView = require('views/main');
+                this.currentView = main;
+                this.listenTo(user, "userAuthed", this.displayMainView);
+            },
+            displayMainView: function() {
+                this.currentView.hide();
+                main.show();
+                this.currentView = main;
+                this.navigate("#main", {trigger: true});
             },
             displayView: function () {
                 var fragmentName = Backbone.history.getFragment();
-                var view = require('views/'+fragmentName);
+                var view = require('views/'+ fragmentName);
                 this.currentView.hide();
                 view.show();
                 this.currentView = view;
             },
             defaultAction: function () {
-                var mainView = require('views/main');
+                var mainView = main;
                 mainView.show();
                 this.currentView = mainView;
             }

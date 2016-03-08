@@ -7,7 +7,10 @@ module.exports = function (grunt) {
                 stderr: true
             },
             server: {
-                command: 'node server.js'
+                command: 'node server.js '
+            },
+            backend : {
+                command : 'java -cp Bomberman-server-1.0.jar main.Main 8081'
             }
 
         },
@@ -50,7 +53,7 @@ module.exports = function (grunt) {
         },
 
         concurrent: {
-            target: ['watch', 'shell'],
+            target: ['watch', 'shell','shell:backend'],
             options: {
                 logConcurrentOutput: true
             }
