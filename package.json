@@ -5,8 +5,9 @@
   "main": "index.js",
   "author": "",
   "license": "MIT",
-  "repository" : { "type" : "git"
-  , "url" : "https://github.com/VitalyNikolaev/2016_1_2d"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VitalyNikolaev/2016_1_2d"
   },
   "devDependencies": {
     "backbone": "^1.2.3",
@@ -23,5 +24,8 @@
   },
   "scripts": {
     "start": "node server"
+  },
+  "dependencies": {
+    "request": "^2.69.0"
   }
 }

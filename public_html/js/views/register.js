@@ -18,8 +18,8 @@ define(function (require) {
                 this.render();
                 this.listenTo(user, "invalidForm", this.showErrorMessage);
             },
-            showErrorMessage: function () {
-                $('.alert-box.error').html('Error: Empty Login or Password').fadeIn(400,function(){
+            showErrorMessage: function (msg) {
+                $('.alert-box.error').html('Error: ' + msg.message).fadeIn(400,function(){
                     $('#sign-in').prop("disabled", false)}).fadeOut(2200);
             }
 

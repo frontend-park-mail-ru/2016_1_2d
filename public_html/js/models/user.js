@@ -15,7 +15,7 @@ define( function(require) {
                 } else {
                     this.set('username', login);
                     this.set('password', password);
-                    this.sendLoginData();
+                    this.sendLoginData('/login');
                     this.set('password','');
                 }
             },
@@ -25,23 +25,22 @@ define( function(require) {
                 } else {
                     this.set('username', login);
                     this.set('password', password);
-                    this.sendLoginData();
+                    this.sendLoginData('/register');
                     this.set('password','');
                 }
             },
-            sendLoginData: function () {
+            sendLoginData: function (url) {
+                var self = this;
                 $.ajax({
-                    method: 'POST',
-                    url: '/login',
+                    method: 'PUT',
+                    url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        if (msg['AuthToken']) {
-                            this.set('token', msg['AuthToken']);
-                            event.trigger('startGame');
-                        }
+                        //this.trigger('UserAUTHED');
+                        console.log(msg);
                     },
-                    error: function () {
-                        event.trigger('invalidLoginPassword');
+                    error: function (msg) {
+                        self.trigger('invalidLoginPassword',msg.responseJSON);
                     }
                 });
             }

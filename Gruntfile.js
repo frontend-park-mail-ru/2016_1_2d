@@ -9,6 +9,7 @@ module.exports = function (grunt) {
             server: {
                 command: 'node server.js'
             }
+
         },
         fest: {
             templates: {
@@ -47,6 +48,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         concurrent: {
             target: ['watch', 'shell'],
             options: {
