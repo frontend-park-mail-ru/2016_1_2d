@@ -45,6 +45,19 @@ html, body {
     user-select: none;
 }
 /*Menu*/
+.logo--bomberman {
+    float: left; /* Обтекание справа */
+    width: 200px;
+    /* padding: 5px; */
+    margin: 10px 10px 20px 5px; /* Значения отступов */
+}
+.score{
+    padding-top: 100px;
+    text-align: center;
+    font-size: 32px;
+    margin: 0px 0px 0px 190px; /* Значения отступов */
+}
+
 .menu {
     margin-top: 20px;
     margin-bottom: 20px;
