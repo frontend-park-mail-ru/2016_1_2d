@@ -3,7 +3,7 @@
         <div class="wrap__layout">
             <div >
                 <div>
-                    <img src="/media/bomberman.png" style = "width : 200px" class="logo--bomberman"></img>
+                    <img src="/media/bomberman.png" style = "width : 200px" class ="logo--bomberman"></img>
                 </div>
                 <div class="score">
                     <p>name : Bomb</p>
