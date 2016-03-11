@@ -21,7 +21,8 @@ define(
             },
             initialize: function () {
                 this.currentView = main;
-                this.listenTo(user, "userAuthed", this.displayMainView);
+                this.listenTo(user, 'userAuthed', this.displayMainView);
+                this.listenTo(user, 'userRegistered',this.displayMainView);
             },
             displayMainView: function() {
                 this.currentView.hide();

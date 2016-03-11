@@ -17,12 +17,12 @@ define(function (require) {
             initialize: function () {
                 this.render();
                 this.listenTo(user, "invalidForm", this.showErrorMessage);
-                this.listenTo(user, 'userAuthed', this.reloadAll);
+                this.listenTo(user, 'userRegistered', this.reloadAll);
             },
             reloadAll: function() {
                 $('#sign-in').prop("disabled", false);
-                document.getElementById('login-input').value = "";
-                document.getElementById('password-input').value = "";
+                document.getElementById('reg-login-input').value = "";
+                document.getElementById('reg-password-input').value = "";
             },
             showErrorMessage: function (msg) {
                 $('.alert-box.error').html('Error: ' + msg.message).fadeIn(400,function(){
