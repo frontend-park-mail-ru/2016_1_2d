@@ -46,7 +46,10 @@ define(function(require) {
                     url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        self.trigger('userRegistered');
+                        console.log(msg.message);
+                        //self.set('id', msg.id);
+                        //self.checkAuth();
+                        //self.trigger('userRegistered');
                     },
                     error: function (msg) {
                         self.trigger('invalidLoginPassword',msg.responseJSON);

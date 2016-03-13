@@ -29,7 +29,7 @@ define(function (require) {
                 scene.add( mesh );
 
                 renderer = new THREE.WebGLRenderer();
-                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setSize( window.innerWidth / 1.2, window.innerHeight / 1.2 );
                 var elem = self.$el;
                 elem.append( renderer.domElement );
             }
