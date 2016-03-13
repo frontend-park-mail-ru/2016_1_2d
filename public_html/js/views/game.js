@@ -3,6 +3,7 @@ define(function (require) {
     var baseView = require('views/baseView');
     var tmpl = require('tmpl/game');
     var THREE = require('three');
+    var OBJLoader = require('OBJLoader');
 
     var View = baseView.extend({
         template: tmpl,
