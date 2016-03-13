@@ -5,7 +5,9 @@ var require = {
         underscore: 'lib/underscore',
         jquery: 'lib/jquery',
         backbone: 'lib/backbone',
-        three : 'lib/three.min'
+        three : 'lib/three.min',
+        stats: 'lib/stats.min',
+        OBJLoader: 'lib/OBJLoader',
     },
     shim: {
         'backbone': {
@@ -18,9 +20,15 @@ var require = {
         'underscore': {
             exports: '_'
         },
-
         'three':{
+            deps:['OBJLoader'],
             exports: 'three'
+        },
+        'OBJLoader':{
+            exports: 'OBJLoader'
+        },
+        'stats':{
+            exports: 'stats.min'
         }
     }
 
