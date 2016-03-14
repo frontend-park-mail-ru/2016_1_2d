@@ -1,2 +1,8 @@
-# 2016_1_2d
-Frontend of Bomberman game
+# Frontend of Bomberman game
+Multiplayer single-page app using require, backbone, WS and three js.
+
+Install:
+
+1. npm i
+
+2. grunt

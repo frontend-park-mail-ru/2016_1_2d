@@ -4,15 +4,31 @@ var require = {
     paths: {
         underscore: 'lib/underscore',
         jquery: 'lib/jquery',
-        backbone: 'lib/backbone'
+        backbone: 'lib/backbone',
+        three : 'lib/three.min',
+        stats: 'lib/stats.min',
+        OBJLoader: 'lib/OBJLoader',
     },
     shim: {
         'backbone': {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
+        'jquery': {
+          exports: 'jquery'
+        },
         'underscore': {
             exports: '_'
+        },
+        'three':{
+            exports: 'three'
+        },
+        'OBJLoader':{
+            exports: 'OBJLoader'
+        },
+        'stats':{
+            exports: 'stats.min'
         }
     }
+
 };

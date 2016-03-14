@@ -1,0 +1,29 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
+    <div id="main" class="wrap">
+        <div class="wrap__layout">
+            <div >
+                <div>
+                    <img src="/media/bomberman.png" style = "width : 200px" class ="logo--bomberman"></img>
+                </div>
+
+                <div class="score">
+                    <p>Username : <fest:space/><fest:value>user.username</fest:value></p>
+                    <p>Score : <fest:space/><fest:value> user.score</fest:value></p>
+                </div>
+            </div>
+            <div class="menu">
+                <a href="#room"><button class="menu__btn menu_btn--primary">
+                    Start
+                </button></a>
+                <a href="#scoreboard"><button class="menu__btn">
+                    Scoreboard
+                </button></a>
+                <a href="#logout" id="logout"><button class="menu__btn menu__btn--back">
+                    Logout
+                </button></a>
+            </div>
+        </div>
+    </div>
+
+</fest:template>
+

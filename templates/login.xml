@@ -15,12 +15,11 @@
                         <input type="submit" class="submit_input" value="Login" id='sign-in'></input>
                     </form>
                 </div>
-                <button class="menu__btn  menu__btn--back" id="main">
+                <a href="#main"><button class="menu__btn  menu__btn--back">
                     Back
-                </button>
+                </button></a>
             </div>
         </div>
-        <div class="alert-box error" id="err-message" style="display: none">
-        </div>
+        <div class="alert-box error" style="display: none"></div>
     </div>
 </fest:template>

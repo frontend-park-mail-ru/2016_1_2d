@@ -45,6 +45,20 @@ html, body {
     user-select: none;
 }
 /*Menu*/
+.logo--bomberman {
+    float: left; /* Обтекание справа */
+    width: 200px;
+    /* padding: 5px; */
+    margin: 10px 10px 20px 5px; /* Значения отступов */
+}
+.score{
+    position: absolute;
+    padding-top: 100px;
+    text-align: center;
+    font-size: 32px;
+    margin: 0px 0px 0px 220px; /* Значения отступов */
+}
+
 .menu {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -98,11 +112,15 @@ html, body {
 .menu_btn--primary:hover{
     background-color: #EF6C00;
 }
-
-.form {
-
+/*Canvas*/
+canvas {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
-
 .alert-box {
     position: absolute;
     right: 0;
@@ -138,6 +156,7 @@ html, body {
     color: #5E6D82;
     padding-left: 2%;
     padding-right: 2%;
+    font-family: "Helvetica";
 }
 
 .text_input:focus {

@@ -1,6 +1,5 @@
 define(function (require) {
         var Backbone = require('backbone');
-        var event = require('event');
         var View = Backbone.View.extend({
             template: {},
             initialize: function () {
@@ -10,19 +9,11 @@ define(function (require) {
                 this.$el.html(this.template());
             },
             show: function () {
-                $('#page').html(this.el);
-                // Добавляет всем кнопкам вызов события 'navigate'
-                // Внутри события передается id кнопки
-                this.$el.find('button').click(function (e) {
-                    e.preventDefault();
-                    event.trigger('navigate', $(this).attr('id'));
-                });
-                this.$el.show();
+                $('#page').append(this.el);
+                $(this.el).show();
             },
             hide: function () {
-                this.$el.hide();
-                // Отключаем прослушку событий
-                this.$el.off();
+                $(this.el).hide();
             }
         });
 

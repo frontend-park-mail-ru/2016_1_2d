@@ -1,9 +1,9 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
     <div id="room" class="wrap">
         <div class="wrap__layout">
-            <button class="menu__btn  menu__btn--back" id="main">
+            <a href="#main"><button class="menu__btn  menu__btn--back">
                 Back
-            </button>
+            </button></a>
         </div>
     </div>
     <div class="chat-wrapper">
