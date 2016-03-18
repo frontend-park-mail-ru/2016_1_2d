@@ -28,10 +28,10 @@ define(function (require) {
             function init() {
                 //var stats = initStats();
                 var scene = new THREE.Scene();
-                var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                var camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
                 var renderer = new THREE.WebGLRenderer();
                 renderer.setClearColor(0xEEEEEE, 1.0);
-                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setSize(window.innerWidth/1.5, window.innerHeight/1.35);
                 renderer.shadowMap.Enabled = true;
 
                 /*	var axes = new THREE.AxisHelper( 20 );
@@ -44,10 +44,10 @@ define(function (require) {
                 var planeMaterial = new THREE.MeshPhongMaterial({map: texture_floor});
                 var plane = new THREE.Mesh(planeGeometry, planeMaterial);
                 plane.rotation.x = -0.5 * Math.PI;
-                plane.rotation.z = -0.155 * Math.PI;
-                plane.position.x = 15;
+                plane.rotation.z = -0.159 * Math.PI;
+                plane.position.x = 3;
                 plane.position.y = 0;
-                plane.position.z = 0;
+                plane.position.z = -5;
                 plane.receiveShadow = true;
                 scene.add(plane);
 
@@ -90,7 +90,7 @@ define(function (require) {
 
 
                 camera.position.x = -30;
-                camera.position.y = 40;
+                camera.position.y = 90;
                 camera.position.z = 55;
                 camera.lookAt(scene.position);
 
