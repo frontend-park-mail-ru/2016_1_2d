@@ -28,7 +28,7 @@ define(function (require) {
             function init() {
                 //var stats = initStats();
                 var scene = new THREE.Scene();
-                var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                var camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
                 var renderer = new THREE.WebGLRenderer();
                 renderer.setClearColor(0xEEEEEE, 1.0);
                 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -37,15 +37,16 @@ define(function (require) {
                 /*	var axes = new THREE.AxisHelper( 20 );
                  scene.add(axes);*/
 
-                var planeGeometry = new THREE.PlaneGeometry(80, 60);
+                var planeGeometry = new THREE.PlaneGeometry(80, 60,1 ,1);
                 var texture_floor = THREE.ImageUtils.loadTexture('../media/game/textures/grass.jpg', {}, function () {
                     renderer.render(scene, camera);
                 });
                 var planeMaterial = new THREE.MeshPhongMaterial({map: texture_floor});
                 var plane = new THREE.Mesh(planeGeometry, planeMaterial);
                 plane.rotation.x = -0.5 * Math.PI;
-                plane.rotation.z = -0.155 * Math.PI;
-                plane.position.x = 15;
+                plane.rotation.z = -0.155555 * Math.PI;
+                //plane.rotation.y = -0.5 * Math.PI;
+                plane.position.x = 0;
                 plane.position.y = 0;
                 plane.position.z = 0;
                 plane.receiveShadow = true;
@@ -90,7 +91,7 @@ define(function (require) {
 
 
                 camera.position.x = -30;
-                camera.position.y = 40;
+                camera.position.y = 20;
                 camera.position.z = 55;
                 camera.lookAt(scene.position);
 
@@ -101,12 +102,14 @@ define(function (require) {
                 spotLight.castShadow = true;
                 scene.add(spotLight);
 
+
                 $("#WebGL-output").append(renderer.domElement);
                 renderer.render(scene, camera);
 
                 self.$el.append( renderer.domElement ); // прикрепляем во вьюху
 
             }
+
 
         }
     });
