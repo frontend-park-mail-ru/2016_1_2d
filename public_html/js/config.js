@@ -8,6 +8,9 @@ var require = {
         three : 'lib/three.min',
         stats: 'lib/stats.min',
         OBJLoader: 'lib/OBJLoader',
+        Key: 'lib/KeyboardBoomber',
+        OrbitControls: 'lib/OrbitControls',
+        Detector: 'lib/Detector'
     },
     shim: {
         'backbone': {
@@ -15,21 +18,31 @@ var require = {
             exports: 'Backbone'
         },
         'jquery': {
-          exports: 'jquery'
+            exports: 'jquery'
         },
         'underscore': {
             exports: '_'
         },
-        'three':{
+        'three': {
             exports: 'three'
         },
-        'OBJLoader':{
+        'OBJLoader': {
             deps: ['three'],
             exports: 'OBJLoader'
         },
-        'stats':{
+        'stats': {
             exports: 'stats.min'
+        },
+
+        'Key': {
+            exports: 'KeyboardBoomber'
+        },
+        'Detector': {
+            exports: 'Detector'
+        },
+        'OrbitControls': {
+            deps: ['three'],
+            exports: 'OrbitControls'
         }
     }
-
 };
