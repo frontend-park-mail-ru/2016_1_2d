@@ -8,10 +8,9 @@ define(function(require) {
                 'password': '',
                 'score': ''
             },
-            //urlRoot : '/api/user/',
             authorize: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
-                    this.trigger('invalidLoginPassword');
+                    this.trigger('invalidLoginPassword', 'Please enter valid data');
                 } else {
                     this.set('username', login);
                     this.set('password', password);
@@ -21,7 +20,7 @@ define(function(require) {
             },
             registerNew: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
-                    this.trigger('invalidForm');
+                    this.trigger('invalidForm','Please enter valid data');
                 } else {
                     this.set('username', login);
                     this.set('password', password);
@@ -46,13 +45,12 @@ define(function(require) {
                     url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        //console.log(msg.message);
                         self.set('id', msg.id);
                         self.getUserInfo();
                         self.trigger('userRegistered');
                     },
                     error: function (msg) {
-                        self.trigger('invalidLoginPassword',msg.responseJSON);
+                        self.trigger('invalidLoginPassword',msg.responseJSON.message);
                     }
                 });
             },
@@ -68,7 +66,7 @@ define(function(require) {
                         self.getUserInfo();
                     },
                     error: function (msg) {
-                        self.trigger('invalidLoginPassword', msg.responseJSON);
+                        self.trigger('invalidLoginPassword', msg.responseJSON.message);
                     }
                 });
             },

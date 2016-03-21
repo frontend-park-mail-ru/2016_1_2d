@@ -25,7 +25,7 @@ define(function (require) {
                 document.getElementById('reg-password-input').value = "";
             },
             showErrorMessage: function (msg) {
-                $('.alert-box.error').html('Error: ' + msg.message).fadeIn(400,function(){
+                $('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
                     $('#sign-in').prop("disabled", false)}).fadeOut(2200);
             }
 
