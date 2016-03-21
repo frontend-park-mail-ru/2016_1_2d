@@ -4,6 +4,9 @@ define(function (require) {
     var tmpl = require('tmpl/game');
     var THREE = require('three');
     var OBJLoader = require('OBJLoader');
+    var Detector = require('Detector');
+    var OrbitControls = require('OrbitControls');
+    var Key = require('Key');
 
     var View = baseView.extend({
         template: tmpl,
@@ -11,8 +14,8 @@ define(function (require) {
         initialize: function () {
             this.render();
 
-            var scene, camera, renderer;
-            var geometry, material, mesh;
+            //var scene, camera, renderer;
+            //var geometry, material, mesh;
         },
         show: function () {
             $('#page').append(this.el);
@@ -24,16 +27,34 @@ define(function (require) {
         },
         startGame: function () {
             var self = this;
+
+            var container, scene, camera, renderer, controls, stats, keyboard;
+// custom global variables
+            var android;
+
             init();
+            animate();
+
             function init() {
                 //var stats = initStats();
-                var scene = new THREE.Scene();
-                var camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
-                var renderer = new THREE.WebGLRenderer();
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
+                renderer = new THREE.WebGLRenderer();
                 renderer.setClearColor(0xEEEEEE, 1.0);
                 renderer.setSize(window.innerWidth/1.5, window.innerHeight/1.35);
                 renderer.shadowMap.Enabled = true;
-
+                container = document.getElementById( 'game' );
+                keyboard = new Key.THREEx.KeyboardState();
+                container.appendChild( renderer.domElement );
+                // EVENTS
+                //THREEx.WindowResize(renderer, camera);
+                //THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+                // CONTROLS
+                controls = new THREE.OrbitControls( camera, renderer.domElement );
+                // LIGHT
+                var light = new THREE.PointLight(0xffffff);
+                light.position.set(-100,200,100);
+                scene.add(light);
                 /*	var axes = new THREE.AxisHelper( 20 );
                  scene.add(axes);*/
 
@@ -71,22 +92,23 @@ define(function (require) {
 
 
                 var loader = new THREE.OBJLoader();
-                loader.load('../media/game/models/Bomberman/Bomberman.obj', function (object) {
-
-                    //if you want to add your custom material
-                    var texture = THREE.ImageUtils.loadTexture('../media/game/models/Bomberman/AltBombers/blue_body.png', {}, function () {
-                        renderer.render(scene, camera);
-                    });
-                    var materialObj = new THREE.MeshBasicMaterial({map: texture});
-                    object.traverse(function (child) {
-                        if (child instanceof THREE.Mesh) {
-                            child.material = materialObj;
-                            child.scale.set(0.2, 0.2, 0.2)
-                        }
-                    });
-                    //then directly add the object
-                    scene.add(object);
-                });
+                loader.load('../media/game/models/Bomberman/Bomberman.obj', addModelToScene);
+                //{
+                //
+                //    //if you want to add your custom material
+                //    var texture = THREE.ImageUtils.loadTexture('../media/game/models/Bomberman/AltBombers/blue_body.png', {}, function () {
+                //        renderer.render(scene, camera);
+                //    });
+                //    var materialObj = new THREE.MeshBasicMaterial({map: texture});
+                //    object.traverse(function (child) {
+                //        if (child instanceof THREE.Mesh) {
+                //            child.material = materialObj;
+                //            child.scale.set(0.2, 0.2, 0.2)
+                //        }
+                //    });
+                //    //then directly add the object
+                //    scene.add(object);
+                //});
 
 
                 camera.position.x = -30;
@@ -108,7 +130,57 @@ define(function (require) {
                 self.$el.append( renderer.domElement ); // прикрепляем во вьюху
 
             }
+            function addModelToScene( geometry, materials )
+            {
+                // for preparing animation
+                for (var i = 0; i < materials.length; i++)
+                    materials[i].morphTargets = true;
 
+                var material = new THREE.MeshFaceMaterial( materials );
+                android = new THREE.Mesh( geometry, material );
+                android.scale.set(10,10,10);
+                scene.add( android );
+            }
+            function animate()
+            {
+                requestAnimationFrame( animate );
+                render();
+                update();
+            }
+
+            function update()
+            {
+                if ( keyboard.pressed("z") )
+                {
+                    // do something
+                }
+                controls.update();
+                stats.update();
+            }
+
+            function render()
+            {
+                if ( android ) // exists / is loaded
+                {
+                    // Alternate morph targets
+                    time = new Date().getTime() % duration;
+                    keyframe = Math.floor( time / interpolation ) + animOffset;
+                    if ( keyframe != currentKeyframe )
+                    {
+                        android.morphTargetInfluences[ lastKeyframe ] = 0;
+                        android.morphTargetInfluences[ currentKeyframe ] = 1;
+                        android.morphTargetInfluences[ keyframe ] = 0;
+                        lastKeyframe = currentKeyframe;
+                        currentKeyframe = keyframe;
+                    }
+                    android.morphTargetInfluences[ keyframe ] =
+                        ( time % interpolation ) / interpolation;
+                    android.morphTargetInfluences[ lastKeyframe ] =
+                        1 - android.morphTargetInfluences[ keyframe ];
+                }
+
+                renderer.render( scene, camera );
+            }
 
         }
     });
