@@ -7,7 +7,7 @@ define(function (require) {
             events: {
                 'click #sign-in': function(e) {
                     e.preventDefault();
-                    $('.alert-box.error').finish();
+                    this.$('.alert-box.error').finish();
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
                     $('#sign-in').prop("disabled", true);
@@ -27,7 +27,8 @@ define(function (require) {
                 }
             },
             showErrorMessage: function (msg) {
-                $('.alert-box.error').html('Error: ' + msg.message).fadeIn(400,function(){
+              
+                $('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
                     $('#sign-in').prop("disabled", false);
                 }).fadeOut(2200);
 

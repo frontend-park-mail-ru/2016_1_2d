@@ -24,6 +24,7 @@ var require = {
             exports: 'three'
         },
         'OBJLoader':{
+            deps: ['three'],
             exports: 'OBJLoader'
         },
         'stats':{
