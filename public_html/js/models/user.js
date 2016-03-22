@@ -50,7 +50,7 @@ define(function(require) {
                         self.trigger('userRegistered');
                     },
                     error: function (msg) {
-                        self.trigger('invalidLoginPassword',msg.responseJSON.message);
+                        self.trigger('invalidForm',msg.responseJSON.message);
                     }
                 });
             },

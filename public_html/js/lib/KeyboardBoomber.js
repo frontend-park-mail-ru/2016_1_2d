@@ -27,6 +27,7 @@
 
 /** @namespace */
 var THREEx	= THREEx 		|| {};
+var Key = THREEx;
 
 /**
  * - NOTE: it would be quite easy to push event-driven too

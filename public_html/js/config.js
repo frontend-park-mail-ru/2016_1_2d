@@ -33,9 +33,8 @@ var require = {
         'stats': {
             exports: 'stats.min'
         },
-
         'Key': {
-            exports: 'KeyboardBoomber'
+            exports: 'Key'
         },
         'Detector': {
             exports: 'Detector'

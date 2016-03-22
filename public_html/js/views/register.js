@@ -7,10 +7,10 @@ define(function (require) {
             events: {
                 'click #sign-up': function(e) {
                     e.preventDefault();
-                    $('.alert-box.error').finish();
+                    this.$('.alert-box.error').finish();
                     var login = document.getElementById('reg-login-input').value;
                     var password = document.getElementById('reg-password-input').value;
-                    $('#sign-in').prop("disabled", true);
+                    this.$('#sign-in').prop("disabled", true);
                     user.registerNew(login, password);
                 }
             },
@@ -20,12 +20,12 @@ define(function (require) {
                 this.listenTo(user, 'userRegistered', this.reloadAll);
             },
             reloadAll: function() {
-                $('#sign-in').prop("disabled", false);
+                this.$('#sign-in').prop("disabled", false);
                 document.getElementById('reg-login-input').value = "";
                 document.getElementById('reg-password-input').value = "";
             },
             showErrorMessage: function (msg) {
-                $('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
+                this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
                     $('#sign-in').prop("disabled", false)}).fadeOut(2200);
             }
 

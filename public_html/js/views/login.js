@@ -10,7 +10,7 @@ define(function (require) {
                     this.$('.alert-box.error').finish();
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
-                    $('#sign-in').prop("disabled", true);
+                    this.$('#sign-in').prop("disabled", true);
                     user.authorize(login, password);
                 }
             },
@@ -20,7 +20,7 @@ define(function (require) {
                 this.listenTo(user, 'userAuthed', this.reloadAll);
             },
             reloadAll: function() {
-                $('#sign-in').prop("disabled", false);
+                this.$('#sign-in').prop("disabled", false);
                 if(document.getElementById('login-input')) {
                     document.getElementById('login-input').value = "";
                     document.getElementById('password-input').value = "";
@@ -28,7 +28,7 @@ define(function (require) {
             },
             showErrorMessage: function (msg) {
               
-                $('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
+                this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
                     $('#sign-in').prop("disabled", false);
                 }).fadeOut(2200);
 
