@@ -56,7 +56,7 @@ html, body {
     padding-top: 100px;
     text-align: center;
     font-size: 32px;
-    margin: 0px 0px 0px 220px; /* Значения отступов */
+    margin: 0 0 0 220px; /* Значения отступов */
 }
 
 .menu {

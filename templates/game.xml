@@ -1,5 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
     <div id="game">
-
+        <a href="#main"><button class="menu__btn  menu__btn--back">
+            Back
+        </button></a>
     </div>
 </fest:template>

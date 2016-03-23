@@ -9,6 +9,7 @@ define(function (require) {
                 this.$el.html(this.template());
             },
             show: function () {
+              
                 $('#page').append(this.el);
                 $(this.el).show();
             },
