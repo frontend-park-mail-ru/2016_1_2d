@@ -17,12 +17,13 @@ define(function (require) {
             $(this.el).show();
         },
         hide: function () {
+            // WorldBuilder.deinit();
             $('canvas').remove();
             $(this.el).hide();
+
         },
         startGame: function () { // Выносим в функции все что можно(желательно в другие файлы)
-            WorldBuilder();
-
+             WorldBuilder.init();
         }
         
     });

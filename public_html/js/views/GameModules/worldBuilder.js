@@ -1,33 +1,33 @@
 define(function (require) {
         var $ = require('jquery');
         var THREE = require('three');
-        var OBJLoader = require('OBJLoader');
-        var Detector = require('Detector');
-        var OrbitControls = require('OrbitControls');
-        var Key = require('Key');
+        var utils = require('views/GameModules/gameUtils');
+
+        var scene = utils.returnScene();
+        var camera = utils.returnCamera();
+        var renderer = utils.returnRenderer();
+        var controls = utils.returnControls();
+        var light = utils.returnLights();
         
-        var container, light, scene, camera, renderer, controls, keyboard, spotLight;
+        var module = {
+            deinit: function () {
+                scene = null;
+            },
+            init : function () {
+                renderer.setClearColor(0xEEEEEE, 1.0);
+                renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
 
-        function init() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
-            renderer = new THREE.WebGLRenderer();
-            renderer.setClearColor(0xEEEEEE, 1.0);
-            renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
-            container = $('#game');
+                setWorldView();
+                initGameWorld();
 
-            setWorldView();
-            initGameWorld();
-
-            renderer.render(scene, camera);
-            $('#game').append(renderer.domElement); // прикрепляем во вьюху
-
-        }
-
+                renderer.render(scene, camera);
+                $('#game').append(renderer.domElement); // прикрепляем во вьюху
+            }
+        };
+    
+        
         function setWorldView() {
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
             // LIGHT
-            light = new THREE.PointLight(0xffffff);
             light.position.set(-100, 200, 100);
             scene.add(light);
             camera.position.x = -30;
@@ -35,8 +35,7 @@ define(function (require) {
             camera.position.z = 55;
             camera.lookAt(scene.position);
 
-            // add spotlight for the shadows
-            spotLight = new THREE.SpotLight(0xffffff);
+            var spotLight = new THREE.SpotLight(0xffffff);
             spotLight.position.set(-40, 60, -10);
             spotLight.castShadow = true;
             spotLight.castShadow = true;
@@ -44,7 +43,7 @@ define(function (require) {
 
         }
 
-        function initGameWorld() { // make world
+        function initGameWorld() {  // make world
             var planeGeometry = new THREE.PlaneGeometry(80, 60, 1, 1);
             var texture_floor = THREE.ImageUtils.loadTexture('../media/game/textures/grass.jpg', {}, function () {
                 renderer.render(scene, camera);
@@ -77,5 +76,6 @@ define(function (require) {
             }
 
         }
-    return init;
+    
+    return module
 });
