@@ -2,30 +2,35 @@ define(function (require) {
         var $ = require('jquery');
         var THREE = require('three');
         var utils = require('views/GameModules/gameUtils');
+        var OrbitControls = require('OrbitControls');
+        var Key = require('Key');
 
-        var scene = utils.returnScene();
-        var camera = utils.returnCamera();
-        var renderer = utils.returnRenderer();
-        var controls = utils.returnControls();
-        var light = utils.returnLights();
-        
-        var module = {
-            deinit: function () {
-                scene = null;
-            },
-            init : function () {
-                renderer.setClearColor(0xEEEEEE, 1.0);
-                renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
 
-                setWorldView();
-                initGameWorld();
+        var scene = utils.scene;
+        var camera = utils.camera;
+        var renderer = utils.renderer;
+        var controls = utils.controls;
+        var light = utils.lights;
 
-                renderer.render(scene, camera);
-                $('#game').append(renderer.domElement); // прикрепляем во вьюху
-            }
-        };
-    
-        
+        function init() {
+            scene = new THREE.Scene();
+            console.log(utils.scene);
+            // utils.scene = scene;
+            console.log(utils.scene);
+            camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer();
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            light = new THREE.PointLight(0xffffff);
+
+            renderer.setClearColor(0xEEEEEE, 1.0);
+            renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
+
+            setWorldView();
+            initGameWorld();
+
+            renderer.render(scene, camera);
+            $('#game').append(renderer.domElement); // прикрепляем во вьюху
+        }
         function setWorldView() {
             // LIGHT
             light.position.set(-100, 200, 100);
@@ -76,6 +81,8 @@ define(function (require) {
             }
 
         }
-    
-    return module
+
+    return {
+        init: init
+    };
 });

@@ -8,6 +8,7 @@ define(function (require) {
     var OrbitControls = require('OrbitControls');
     var Key = require('Key');
     var WorldBuilder = require('views/GameModules/worldBuilder');
+    var utils = require('views/GameModules/gameUtils');
 
     var View = baseView.extend({
         template: tmpl,
@@ -17,13 +18,14 @@ define(function (require) {
             $(this.el).show();
         },
         hide: function () {
-            // WorldBuilder.deinit();
             $('canvas').remove();
             $(this.el).hide();
 
         },
         startGame: function () { // Выносим в функции все что можно(желательно в другие файлы)
              WorldBuilder.init();
+            var x = utils.scene;
+            console.log(x); // Здесь null! Хотя мы установили в worldBuildere ему значение ?
         }
         
     });
