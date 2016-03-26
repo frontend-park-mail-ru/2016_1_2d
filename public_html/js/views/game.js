@@ -13,6 +13,7 @@ define(function (require) {
 
     var View = baseView.extend({
         template: tmpl,
+        requireAuth: true,
         show: function () {
             baseView.prototype.show.call(this);
             this.startGame();

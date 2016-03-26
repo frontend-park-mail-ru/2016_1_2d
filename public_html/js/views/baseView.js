@@ -3,6 +3,7 @@ define(function (require) {
         var viewManager = require('views/viewManager');
         var View = Backbone.View.extend({
             template: {},
+            requireAuth: false,
             initialize: function () {
                 this.render();
                 $('#page').append(this.el);
@@ -22,7 +23,6 @@ define(function (require) {
                 this.$el.detach();
             }
         });
-
         return View;
     }
 );

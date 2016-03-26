@@ -26,9 +26,13 @@ define(
                 this.navigate("#main", {trigger: true});
             },
             displayView: function () {
-                var fragmentName = Backbone.history.getFragment();
-                var view = views[fragmentName];
-                view.show();
+                var view = views[Backbone.history.getFragment()];
+                if (view.requireAuth && !views.user.authed ) {
+                    this.navigate('#login', {trigger: true});
+                    views.login.trigger('error','Need login to perform this action');
+                } else {
+                    view.show();
+                }
             }
 
         });

@@ -1,15 +1,15 @@
 define(function(require){
-    var Backbone = require('backbone'),
-        _ = require('underscore');
-    var ViewManager = Backbone.Model.extend({
+    var Backbone = require('backbone');
+    var currentView = null;
+    var ViewManager = Backbone.View.extend({
         initialize: function() {
-            this.on('show', this.showView.bind(this));
+            this.on('show', this.showView);
         },
         showView: function(view) {
-            if (this.has('_thisView')) {
-                this.get('_thisView').hide();
+            if (currentView != null ) {
+                currentView.hide();
             }
-            this.set('_thisView', view);
+            currentView = view;
         }
     });
     return new ViewManager();

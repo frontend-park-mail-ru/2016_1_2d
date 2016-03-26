@@ -30,8 +30,6 @@ define(function (require) {
                 this.$el.html(this.template(user.toJSON()));
             }
         });
-
-
         return new View();
     }
 );
