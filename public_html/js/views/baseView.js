@@ -1,20 +1,25 @@
 define(function (require) {
         var Backbone = require('backbone');
+        var viewManager = require('views/viewManager');
         var View = Backbone.View.extend({
             template: {},
             initialize: function () {
                 this.render();
+                $('#page').append(this.el);
+                this.hide();
             },
             render: function () {
                 this.$el.html(this.template());
             },
             show: function () {
-              
-                $('#page').append(this.el);
-                $(this.el).show();
+                viewManager.trigger('show', this);
+                this.$el.appendTo("#page");
+                this.$el.show();
+
             },
             hide: function () {
-                $(this.el).hide();
+                this.$el.hide();
+                this.$el.detach();
             }
         });
 

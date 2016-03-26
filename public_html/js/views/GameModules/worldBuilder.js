@@ -5,7 +5,6 @@ define(function (require) {
         var OrbitControls = require('OrbitControls');
         var Key = require('Key');
 
-
         var scene = utils.scene;
         var camera = utils.camera;
         var renderer = utils.renderer;
@@ -14,9 +13,6 @@ define(function (require) {
 
         function init() {
             scene = new THREE.Scene();
-            console.log(utils.scene);
-            // utils.scene = scene;
-            console.log(utils.scene);
             camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
             renderer = new THREE.WebGLRenderer();
             controls = new THREE.OrbitControls(camera, renderer.domElement);

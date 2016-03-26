@@ -9,13 +9,13 @@ define(function (require) {
     var Key = require('Key');
     var WorldBuilder = require('views/GameModules/worldBuilder');
     var utils = require('views/GameModules/gameUtils');
+    var viewManager = require('views/viewManager');
 
     var View = baseView.extend({
         template: tmpl,
         show: function () {
-            $('#page').append(this.el);
+            baseView.prototype.show.call(this);
             this.startGame();
-            $(this.el).show();
         },
         hide: function () {
             $('canvas').remove();
@@ -23,7 +23,8 @@ define(function (require) {
 
         },
         startGame: function () { // Выносим в функции все что можно(желательно в другие файлы)
-             WorldBuilder.init();
+            WorldBuilder.init();
+            
             var x = utils.scene;
             console.log(x); // Здесь null! Хотя мы установили в worldBuildere ему значение ?
         }
