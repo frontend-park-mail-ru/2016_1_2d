@@ -1,22 +1,18 @@
 define(function (require) {
         var $ = require('jquery');
         var THREE = require('three');
-        var utils = require('views/GameModules/gameUtils');
         var OrbitControls = require('OrbitControls');
         var Key = require('Key');
+        var OBJLoader = require('OBJLoader');
 
-        var scene = utils.scene;
-        var camera = utils.camera;
-        var renderer = utils.renderer;
-        var controls = utils.controls;
-        var light = utils.lights;
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        var light = new THREE.PointLight(0xffffff);
+        var loader = new THREE.OBJLoader();
 
         function init() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
-            renderer = new THREE.WebGLRenderer();
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            light = new THREE.PointLight(0xffffff);
 
             renderer.setClearColor(0xEEEEEE, 1.0);
             renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
@@ -75,10 +71,16 @@ define(function (require) {
             for (i = 0; i < 10; i++) {
                 arrKub[i] = new cub((Math.random() - 0.5) * 40, 2, (Math.random() - 0.5) * 40)
             }
-
         }
-
     return {
+        objects: {
+            scene: scene,
+            camera : camera,
+            renderer: renderer,
+            controls: controls,
+            lights: light,
+            loader: loader
+        },
         init: init
     };
 });
