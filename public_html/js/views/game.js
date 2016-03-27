@@ -13,13 +13,17 @@ define(function (require) {
             this.startGame();
         },
         hide: function () {
-            $('canvas').remove();
-            $(this.el).hide();
+            this.endGame();
+            $(this.el).remove();
 
         },
-        startGame: function () { // Выносим в функции все что можно(желательно в другие файлы)
+        startGame: function () {
             WorldBuilder.init();
             Bomberman.init();
+        },
+        endGame: function () {
+            $('canvas').remove();
+            WorldBuilder.dealloc()
         }
         
     });
