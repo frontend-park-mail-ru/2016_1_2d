@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VitalyNikolaev/2016_1_2d"
+    "url": "git+https://github.com/VitalyNikolaev/2016_1_2d.git"
   },
   "devDependencies": {
     "backbone": "^1.2.3",
@@ -27,5 +27,9 @@
   },
   "dependencies": {
     "request": "^2.69.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/VitalyNikolaev/2016_1_2d/issues"
+  },
+  "homepage": "https://github.com/VitalyNikolaev/2016_1_2d#readme"
 }

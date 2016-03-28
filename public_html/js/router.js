@@ -1,47 +1,40 @@
 define(
     function (require) {
         var Backbone = require('backbone');
-        var login = require('views/login');
-        var register = require('views/register');
-        var game = require('views/game');
-        var scoreboard = require('views/scoreboard');
-        var room = require('views/room');
-        var user = require('models/user');
-        var main = require('views/main');
+        var viewManager = require('views/viewManager');
 
+        var views = {
+            login: require('views/login'),
+            register:  require('views/register'),
+            game: require('views/game'),
+            scoreboard: require('views/scoreboard'),
+            room: require('views/room'),
+            user: require('models/user'),
+            main: require('views/main')
+        };
         var Router = Backbone.Router.extend({
             routes: {
-                'main': 'displayView',
-                'login': 'displayView',
-                'register': 'displayView',
-                'scoreboard': 'displayView',
-                'game': 'displayView',
-                'room':'displayView',
-                '*default': 'defaultAction'
+                ':url': 'displayView',
+                '*default': 'displayMainView'
             },
             initialize: function () {
-                this.currentView = main;
-                this.listenTo(user, 'userAuthed', this.displayMainView);
-                this.listenTo(user, 'userRegistered',this.displayMainView);
+                this.listenTo(views.user, 'userAuthed', this.displayMainView);
+                this.listenTo(views.user, 'userRegistered',this.displayMainView);
             },
             displayMainView: function() {
-                this.currentView.hide();
-                main.show();
-                this.currentView = main;
+                views.main.show();
                 this.navigate("#main", {trigger: true});
             },
             displayView: function () {
-                var fragmentName = Backbone.history.getFragment();
-                var view = require('views/'+ fragmentName);
-                this.currentView.hide();
-                view.show();
-                this.currentView = view;
-            },
-            defaultAction: function () {
-                var mainView = main;
-                mainView.show();
-                this.currentView = mainView;
+                var view = views[Backbone.history.getFragment()];
+                if (view.requireAuth && !views.user.authed ) {
+                    this.navigate('#login', {trigger: true});
+                    views.login.trigger('error','Need login to perform this action');
+                } else {
+                    view.show();
+                }
             }
+
         });
 
         return new Router();

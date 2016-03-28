@@ -5,8 +5,8 @@ define(function (require) {
         var Detector = require('Detector');
         var OrbitControls = require('OrbitControls');
         var Key = require('Key');
-        
-        var container, light, scene, camera, renderer, congirt trols, keyboard, spotLight;
+
+        var container, light, scene, camera, renderer, controls, keyboard, spotLight;
         keyboard = new Key.KeyboardState();
         var bomberMan;
         //animate();

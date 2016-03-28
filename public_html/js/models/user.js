@@ -6,7 +6,8 @@ define(function(require) {
                 'id': '',
                 'username' : '',
                 'password': '',
-                'score': ''
+                'score': '',
+                'authed': false
             },
             authorize: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
@@ -76,6 +77,7 @@ define(function(require) {
                     method: 'GET',
                     url: '/api/session/',
                     success: function (msg) {
+                        self.set('authed', true);
                         self.set('id', msg.id);
                         self.getUserInfo();
                     },

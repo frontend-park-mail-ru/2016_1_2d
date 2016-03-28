@@ -16,6 +16,7 @@ define(function (require) {
             },
             initialize: function () {
                 this.render();
+                this.on('error',this.showErrorMessage);
                 this.listenTo(user, "invalidLoginPassword", this.showErrorMessage);
                 this.listenTo(user, 'userAuthed', this.reloadAll);
             },
