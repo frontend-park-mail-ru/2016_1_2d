@@ -70,7 +70,11 @@ define(function (require) {
         initializeObjects: function () {
             if (this.scene == null) {
                 this.scene = new THREE.Scene();
-                this.camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
+                //this.camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
+                this.camera = new THREE.OrthographicCamera(
+                    window.innerWidth / - 30, window.innerWidth / 30,
+                    window.innerHeight / 30, window.innerHeight / - 30,
+                    -200, 500 );
                 this.renderer = new THREE.WebGLRenderer();
                 this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
                 this.light = new THREE.PointLight(0xffffff);
