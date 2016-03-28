@@ -6,15 +6,17 @@ define(function (require) {
         var OrbitControls = require('OrbitControls');
         var Key = require('Key');
         
-        var container, light, scene, camera, renderer, controls, keyboard, spotLight;
-
+        var container, light, scene, camera, renderer, congirt trols, keyboard, spotLight;
+        keyboard = new Key.KeyboardState();
+        var bomberMan;
+        //animate();
         function init() {
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(26, window.innerWidth / window.innerHeight, 0.1, 1000);
             renderer = new THREE.WebGLRenderer();
             renderer.setClearColor(0xEEEEEE, 1.0);
             renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
-            container = $('#game');
+            container = $('#game').getElementById( 'game' );
 
             setWorldView();
             initGameWorld();
