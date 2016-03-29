@@ -29,7 +29,7 @@ define(function (require) {
         var renderer = instance.renderer;
         var camera = instance.camera;
 
-        var planeGeometry = new THREE.PlaneGeometry(80, 60, 1, 1);
+        var planeGeometry = new THREE.PlaneGeometry(100, 60, 1, 1);
         var texture_floor = THREE.ImageUtils.loadTexture('../media/game/textures/grass.jpg', {}, function () {
             renderer.render(scene, camera);
         });
@@ -38,7 +38,7 @@ define(function (require) {
         plane.rotation.x = -0.5 * Math.PI;
         plane.rotation.z = -0.159 * Math.PI;
         plane.position.x = 3;
-        plane.position.y = 0;
+        plane.position.y = -2;
         plane.position.z = -5;
         plane.receiveShadow = true;
         scene.add(plane);
@@ -88,7 +88,7 @@ define(function (require) {
             var camera = this.camera;
 
             renderer.setClearColor(0xEEEEEE, 1.0);
-            renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.35);
+            renderer.setSize(window.innerWidth/1.15 , window.innerHeight);
 
             setWorldView();
             initGameWorld();
