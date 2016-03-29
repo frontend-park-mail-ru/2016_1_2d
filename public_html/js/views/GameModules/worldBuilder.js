@@ -29,7 +29,7 @@ define(function (require) {
         var renderer = instance.renderer;
         var camera = instance.camera;
 
-        var planeGeometry = new THREE.PlaneGeometry(100, 60, 1, 1);
+        var planeGeometry = new THREE.PlaneGeometry(84, 50, 1, 1);
         var texture_floor = THREE.ImageUtils.loadTexture('../media/game/textures/grass.jpg', {}, function () {
             renderer.render(scene, camera);
         });
@@ -38,26 +38,26 @@ define(function (require) {
         plane.rotation.x = -0.5 * Math.PI;
         plane.rotation.z = -0.159 * Math.PI;
         plane.position.x = 3;
-        plane.position.y = -2;
+        plane.position.y = -9;
         plane.position.z = -5;
         plane.receiveShadow = true;
         scene.add(plane);
-         
+
         function cub(posX, posY, posZ) {
             var texture = THREE.ImageUtils.loadTexture('../media/game/textures/41.gif', {}, function () {
                 renderer.render(scene, camera);
             });
             var material = new THREE.MeshPhongMaterial({map: texture});
             var cube = new THREE.Mesh(new THREE.CubeGeometry(4, 4, 4), material);
-            cube.position.set(posX, posY, posZ);
+            cube.position.set(posX+3, posY-9, posZ-5);
             cube.rotation.x = -0.5 * Math.PI;
             cube.rotation.z = -0.155 * Math.PI;
             scene.add(cube);
         }
 
         var arrKub = [];
-        for (i = 0; i < 10; i++) {
-            arrKub[i] = new cub((Math.random() - 0.5) * 40, 2, (Math.random() - 0.5) * 40)
+        for (i = 0; i < 26; i++) {
+            arrKub[i] = new cub(-28, 2, -32 )
         }
     }
     var instance = {
