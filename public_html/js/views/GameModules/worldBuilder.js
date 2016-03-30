@@ -36,13 +36,8 @@ define(function (require) {
         var planeMaterial = new THREE.MeshPhongMaterial({map: texture_floor});
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
         plane.rotation.x = -0.5 * Math.PI;
-/*        plane.rotation.z = -0.159 * Math.PI;
-        plane.position.x = 3;
-        plane.position.y = -9;
-        plane.position.z = -5;*/
         plane.receiveShadow = true;
         scene.add(plane);
-         ///////
 
         function cub(posX, posY, posZ) {
             var texture = THREE.ImageUtils.loadTexture('../media/game/textures/41.gif', {}, function () {
