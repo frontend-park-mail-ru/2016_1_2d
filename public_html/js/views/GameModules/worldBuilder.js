@@ -42,7 +42,6 @@ define(function (require) {
         plane.position.z = -5;*/
         plane.receiveShadow = true;
         scene.add(plane);
-         ///////
 
         function cub(posX, posY, posZ) {
             var texture = THREE.ImageUtils.loadTexture('../media/game/textures/41.gif', {}, function () {
