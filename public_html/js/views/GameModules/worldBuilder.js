@@ -72,6 +72,7 @@ define(function (require) {
         loader: null,
         keyboard: null,
         container: null,
+        player: null,
         initializeObjects: function () {
             if (this.scene == null) {
                 this.scene = new THREE.Scene();
@@ -84,7 +85,8 @@ define(function (require) {
                 this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
                 this.light = new THREE.PointLight(0xffffff);
                 this.loader = new THREE.OBJLoader();
-                this.keyboard = new Key.KeyboardState();
+                this.keyboard = new KeyboardState();
+                
             }
         },
         init:                                                                                                                                                          function () {
