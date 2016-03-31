@@ -4,6 +4,7 @@ define(function (require) {
     var OrbitControls = require('OrbitControls');
     var Key = require('Key');
     var OBJLoader = require('OBJLoader');
+    var Stats = require('stats');
 
     function setWorldView() {
         var scene = instance.scene;
@@ -28,6 +29,13 @@ define(function (require) {
         var scene = instance.scene;
         var renderer = instance.renderer;
         var camera = instance.camera;
+        //var stats = instance.stats;
+        var container = instance.container;
+
+        //stats.domElement.style.position = 'absolute';
+        //stats.domElement.style.bottom = '0px';
+        //stats.domElement.style.zIndex = 100;
+        //container.appendChild( stats.domElement );
 
         var planeGeometry = new THREE.PlaneGeometry(80, 48, 1, 1);
         var texture_floor = THREE.ImageUtils.loadTexture('../media/game/textures/grass.jpg', {}, function () {
@@ -68,6 +76,9 @@ define(function (require) {
         controls: null,
         light: null,
         loader: null,
+        keyboard: null,
+        stats: null,
+        container: null,
         initializeObjects: function () {
             if (this.scene == null) {
                 this.scene = new THREE.Scene();
@@ -80,9 +91,12 @@ define(function (require) {
                 this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
                 this.light = new THREE.PointLight(0xffffff);
                 this.loader = new THREE.OBJLoader();
+                this.keyboard = new Key.KeyboardState();
+                //this.stats = Stats.Stats();
+                console.log(Stats);
             }
         },
-        init: function () {
+        init:                                                                                                                                                          function () {
             this.initializeObjects();
             var scene = this.scene;
             var renderer = this.renderer;
@@ -105,6 +119,9 @@ define(function (require) {
                 this.controls = null;
                 this.light = null;
                 this.loader = null;
+                this.keyboard = null;
+                this.stats = null;
+                this.container = null;
             }
         }
     };

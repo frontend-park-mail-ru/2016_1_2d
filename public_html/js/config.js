@@ -31,7 +31,7 @@ var require = {
             exports: 'OBJLoader'
         },
         'stats': {
-            exports: 'stats.min'
+            exports: 'stats'
         },
         'Key': {
             exports: 'Key'

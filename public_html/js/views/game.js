@@ -20,6 +20,7 @@ define(function (require) {
         startGame: function () {
             WorldBuilder.init();
             Bomberman.init();
+            //Bomberman.animate();
         },
         endGame: function () {
             $('canvas').remove();
