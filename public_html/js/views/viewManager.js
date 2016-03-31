@@ -10,6 +10,9 @@ define(function(require){
                 currentView.hide();
             }
             currentView = view;
+        },
+        returnCurrentVIew: function () {
+            return currentView;
         }
     });
     return new ViewManager();
