@@ -45,9 +45,6 @@ define(function (require) {
             });
             var material = new THREE.MeshPhongMaterial({map: texture});
             var cube = new THREE.Mesh(new THREE.CubeGeometry(4, 4, 4), material);
-/*            cube.position.set(posX+3, posY-9, posZ-5);
-            cube.rotation.x = -0.5 * Math.PI;
-            cube.rotation.z = -0.155 * Math.PI;*/
             cube.position.set(posX, posY, posZ);
             scene.add(cube);
         }
