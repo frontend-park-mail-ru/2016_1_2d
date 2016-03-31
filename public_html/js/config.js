@@ -6,7 +6,6 @@ var require = {
         jquery: 'lib/jquery',
         backbone: 'lib/backbone',
         three : 'lib/three.min',
-        stats: 'lib/stats.min',
         OBJLoader: 'lib/OBJLoader',
         Key: 'lib/KeyboardBoomber',
         OrbitControls: 'lib/OrbitControls',
@@ -29,9 +28,6 @@ var require = {
         'OBJLoader': {
             deps: ['three'],
             exports: 'OBJLoader'
-        },
-        'stats': {
-            exports: 'stats'
         },
         'Key': {
             exports: 'Key'
