@@ -32,6 +32,7 @@ define(function (require) {
             hide: function () {
                 if (this.$('.snapshot').css('display') != 'none') {
                     this.$('.snapshot').fadeOut(0);
+                    this.$('#webcam-monitor').height(0);
                     this.removeCamera();
                 }
                 baseView.prototype.hide.call(this);
