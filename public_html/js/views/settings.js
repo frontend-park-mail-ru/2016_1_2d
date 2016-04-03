@@ -16,7 +16,7 @@ define(function (require) {
                     this.takeSnapshot();
                 },
                 'click .snapshot__button_finish': function (e) {
-                    this.$('.snapshot').remove();
+                    this.$('.snapshot').fadeOut(0);
                     this.removeCamera();
                 },
 
@@ -27,6 +27,11 @@ define(function (require) {
             },
             render: function () {
                 this.$el.html(this.template(user.toJSON()));
+            },
+            hide: function () {
+                this.$('.snapshot').fadeOut(0);
+                this.removeCamera();
+                baseView.prototype.hide.call(this);
             },
             addCamera: function () {
                 camera.set({
