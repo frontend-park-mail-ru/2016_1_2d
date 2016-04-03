@@ -11,7 +11,7 @@ define(function(require){
             }
             currentView = view;
         },
-        returnCurrentVIew: function () {
+        returnCurrentView: function () {
             return currentView;
         }
     });

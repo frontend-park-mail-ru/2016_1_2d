@@ -35,6 +35,7 @@ define(function(require) {
                     method: 'DELETE',
                     url: '/api/session',
                     success: function (msg) {
+                        self.set('authed', false);
                         self.trigger('userLogout');
                     }
                 });
@@ -62,7 +63,6 @@ define(function(require) {
                     url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        console.log(msg);
                         self.set('id', msg.id);
                         self.getUserInfo();
                     },
@@ -90,8 +90,9 @@ define(function(require) {
                 var self = this;
                 $.ajax({
                     method: 'GET',
-                    url: '/api/user/'+ self.get('id'),
+                    url: '/api/user/' + self.get('id'),
                     success: function (msg) {
+                        self.set('authed', true);
                         self.set('score', msg.score);
                         self.set('username', msg.login);
                         self.trigger('userAuthed');

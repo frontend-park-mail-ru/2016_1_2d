@@ -13,11 +13,10 @@ define(function (require) {
                 }
             },
             initialize: function () {
-                user.checkAuth();
                 this.listenTo(user, "userAuthed", this.reloadViewWithAuthTemplate);
                 this.listenTo(user, "userLogout",this.reloadView);
             },
-
+            
             reloadViewWithAuthTemplate: function() {
                 this.template = authedTmpl;
                 this.render();
@@ -27,9 +26,12 @@ define(function (require) {
                 this.render();
             },
             render: function () {
+                console.log(user.toJSON());
                 this.$el.html(this.template(user.toJSON()));
             }
         });
+
         return new View();
     }
+
 );

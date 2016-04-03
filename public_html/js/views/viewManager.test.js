@@ -8,19 +8,12 @@ define(function (require) {
     QUnit.test("ViewManager works correctly", function () {
         mainView.initialize();
         mainView.show();
-        var firstView = viewManager.returnCurrentVIew();
+        var firstView = viewManager.returnCurrentView();
         loginView.show();
-        var secondView = viewManager.returnCurrentVIew();
+        var secondView = viewManager.returnCurrentView();
         QUnit.ok(firstView != secondView);
     });
-
-    QUnit.test("View manager shows exact view ", function () {
-        mainView.initialize();
-        mainView.show();
-        QUnit.ok(viewManager.returnCurrentVIew().cid === 'view3' );
-    });
     
-
 
 });
 

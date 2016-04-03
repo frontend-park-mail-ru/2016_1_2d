@@ -8,7 +8,7 @@ html, body {
 }
 * {
     font-family: Bangers;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 #page {
@@ -47,18 +47,19 @@ html, body {
 /*Menu*/
 .logo--bomberman {
     float: left; /* Обтекание справа */
-    width: 200px;
+    width : 200px;
     /* padding: 5px; */
     margin: 10px 10px 20px 5px; /* Значения отступов */
 }
-.score{
+.score {
     position: absolute;
-    padding-top: 100px;
     text-align: center;
-    font-size: 32px;
+    font-size: 30px;
     margin: 0 0 0 220px; /* Значения отступов */
 }
-
+.score_text {
+    margin-top: -30px;
+}
 .menu {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -124,9 +125,9 @@ canvas {
 .alert-box {
     position: absolute;
     right: 0;
-    height: 50px;
+    height: 30px;
     color:#555;
-    border-radius:10px;
+    border-radius:15px;
     font-family:Tahoma,Geneva,Arial,sans-serif;
     font-size:22px;
     padding:10px 10px 10px 10px;
@@ -403,4 +404,26 @@ canvas {
     width: 90px;
     height: 98%;
 }
+/* webcam */
 
+.cam-monitor {
+    position: absolute;
+    margin-left: 40%;
+    top: 10%;
+}
+.cam-result {
+    position: absolute;
+    margin-left: 40%;
+    top: 25%;
+}
+/* avatar */
+.score_avatar {
+    position: relative;
+    right: 80px;
+    bottom: 70px;
+    width: 130px;
+    height: 130px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}

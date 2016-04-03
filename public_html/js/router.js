@@ -10,14 +10,17 @@ define(
             scoreboard: require('views/scoreboard'),
             room: require('views/room'),
             user: require('models/user'),
-            main: require('views/main')
+            main: require('views/main'),
+            settings: require('views/settings')
         };
+
         var Router = Backbone.Router.extend({
             routes: {
                 ':url': 'displayView',
                 '*default': 'displayMainView'
             },
             initialize: function () {
+                views.user.checkAuth();
                 this.listenTo(views.user, 'userAuthed', this.displayMainView);
                 this.listenTo(views.user, 'userRegistered',this.displayMainView);
             },
@@ -27,14 +30,13 @@ define(
             },
             displayView: function () {
                 var view = views[Backbone.history.getFragment()];
-                if (view.requireAuth && !views.user.authed ) {
+                if (view.requireAuth && !views.user.get('authed') ) {
                     this.navigate('#login', {trigger: true});
                     views.login.trigger('error','Need login to perform this action');
                 } else {
                     view.show();
                 }
             }
-
         });
 
         return new Router();

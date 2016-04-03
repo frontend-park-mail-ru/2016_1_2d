@@ -9,7 +9,8 @@ var require = {
         OBJLoader: 'lib/OBJLoader',
         Key: 'lib/KeyboardBoomber',
         OrbitControls: 'lib/OrbitControls',
-        Detector: 'lib/Detector'
+        Detector: 'lib/Detector',
+        webcam : 'lib/webcam.min'
     },
     shim: {
         'backbone': {
@@ -38,6 +39,9 @@ var require = {
         'OrbitControls': {
             deps: ['three'],
             exports: 'OrbitControls'
+        },
+        'webcam': {
+            exports: 'webcam'
         }
     }
 };
