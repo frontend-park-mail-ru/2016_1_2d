@@ -17,6 +17,7 @@ define(function (require) {
                 },
                 'click .snapshot__button_finish': function (e) {
                     this.$('.snapshot').fadeOut(0);
+                    this.$('#webcam-monitor').height(0);
                     this.removeCamera();
                 },
 
@@ -29,15 +30,17 @@ define(function (require) {
                 this.$el.html(this.template(user.toJSON()));
             },
             hide: function () {
-                this.$('.snapshot').fadeOut(0);
-                this.removeCamera();
+                if (this.$('.snapshot').css('display') != 'none') {
+                    this.$('.snapshot').fadeOut(0);
+                    this.removeCamera();
+                }
                 baseView.prototype.hide.call(this);
             },
             addCamera: function () {
                 camera.set({
                     width: 240,
                     height: 240,
-                    dest_width: 150,
+                    dest_width: 160,
                     dest_height: 140,
                     image_format: 'jpeg',
                     jpeg_quality: 100,

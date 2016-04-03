@@ -60,7 +60,7 @@ html, body {
     float: left;
     right: 80px;
     bottom: 70px;
-    width: 130px;
+    width: 160px;
     /*height: 130px;*/
 
 }
@@ -412,33 +412,23 @@ canvas {
     width: 90px;
     height: 98%;
 }
-/* webcam */
 
-.cam-monitor {
-    position: absolute;
-    margin-left: 35%;
-    top: 30%;
-}
-.cam-result {
-    position: absolute;
-    margin-left: 35%;
-    top: 30%;
+/* webcam */
+.webcam_monitor {
+    margin-left: 110px;
 }
 .snapshot {
     display: none;
-    right: 250px;
-    top: 500px;
-    position: absolute;
+    /*margin-left: 150px;*/
 }
 .snapshot__button {
-    display: block;
-    font-size: 26px;
-    background: #009688;
-
+    /*display: block;*/
+    /*font-size: 26px;*/
+    /*background: #009688;*/
 }
 .snapshot__button_finish {
-    display: block;
-    margin:5px 0 0 45px;
-    font-size: 26px;
-    background: #59ff48;
+    /*display: block;*/
+    /*margin:5px 0 0 45px;*/
+    /*font-size: 26px;*/
+    /*background: #59ff48;*/
 }
