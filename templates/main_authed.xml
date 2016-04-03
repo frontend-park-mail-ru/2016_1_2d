@@ -1,14 +1,15 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
     <div id="main" class="wrap">
         <div class="wrap__layout">
-                <img src="/media/bomberman.png"  class="logo--bomberman"></img>
-                <div class="score">
-                    <img src="https://api.adorable.io/avatars/130/test" class="score_avatar"></img>
-                    <div class="score_text">
-                        <p>Username : <fest:space/><fest:value>user.username</fest:value></p>
-                        <p>Score : <fest:space/><fest:value> user.score</fest:value></p>
-                    </div>
+            <div class="score">
+                <div class="score__avatar" id="user_avatar">
+                    <img src="https://api.adorable.io/avatars/130/test" class="logo--avatar"></img>
                 </div>
+                <div class="score_text">
+                    <p>Username : <fest:space/><fest:value>user.username</fest:value></p>
+                    <p>Score : <fest:space/><fest:value> user.score</fest:value></p>
+                </div>
+            </div>
             <div class="menu">
                 <a href="#room"><button class="menu__btn menu_btn--primary">
                     Start

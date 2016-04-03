@@ -9,9 +9,17 @@ define(function (require) {
             requireAuth: true,
             events: {
                 'click .change-avatar': function(e) {
-                    e.preventDefault();
+                    this.$('.snapshot').fadeIn(600);
                     this.addCamera();
-                }
+                },
+                'click .snapshot__button': function (e) {
+                    this.takeSnapshot();
+                },
+                'click .snapshot__button_finish': function (e) {
+                    this.$('.snapshot').remove();
+                    this.removeCamera();
+                },
+
             },
             initialize: function () {
                 this.listenTo(user, "userAuthed", this.render);
@@ -22,10 +30,10 @@ define(function (require) {
             },
             addCamera: function () {
                 camera.set({
-                    width: 380,
+                    width: 240,
                     height: 240,
-                    dest_width: 380,
-                    dest_height: 240,
+                    dest_width: 150,
+                    dest_height: 140,
                     image_format: 'jpeg',
                     jpeg_quality: 100,
                     force_flash: false,
@@ -34,6 +42,14 @@ define(function (require) {
                 });
                 camera.attach( this.$('#webcam-monitor')[0]);
             },
+            takeSnapshot: function () {
+                camera.snap( function(data_uri) {
+                    document.getElementById('user_avatar').innerHTML = '<img src="'+data_uri+'"/>';
+                } );
+            },
+            removeCamera : function () {
+                camera.reset();
+            }
 
         });
 
