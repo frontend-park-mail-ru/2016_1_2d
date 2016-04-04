@@ -26,7 +26,6 @@ define(function (require) {
                 this.render();
             },
             render: function () {
-                console.log(user.toJSON());
                 this.$el.html(this.template(user.toJSON()));
             }
         });

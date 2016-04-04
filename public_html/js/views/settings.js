@@ -19,8 +19,7 @@ define(function (require) {
                     this.$('.snapshot').fadeOut(0);
                     this.$('#webcam-monitor').height(0);
                     this.removeCamera();
-                },
-
+                }
             },
             initialize: function () {
                 this.listenTo(user, "userAuthed", this.render);

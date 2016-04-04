@@ -2,15 +2,14 @@ define(function (require) {
 
     var baseView = require('views/baseView');
     var tmpl = require('tmpl/game');
-    var WorldBuilder = require('views/GameModules/worldBuilder');
-    var Bomberman = require('views/GameModules/bombermanModel');
+    var app = require('views/GameModules/app');
 
     var View = baseView.extend({
         template: tmpl,
         requireAuth: false,
         show: function () {
-            baseView.prototype.show.call(this);
             this.startGame();
+            baseView.prototype.show.call(this);
         },
         hide: function () {
             this.endGame();
@@ -18,12 +17,16 @@ define(function (require) {
 
         },
         startGame: function () {
-            WorldBuilder.init();
-            Bomberman.init();
+            app.init();
+            function animate() {
+                requestAnimationFrame(animate);
+                app.frame();
+            }
+            animate();
         },
         endGame: function () {
             $('canvas').remove();
-            WorldBuilder.dealloc()
+            // WorldBuilder.dealloc()
         }
         
     });
