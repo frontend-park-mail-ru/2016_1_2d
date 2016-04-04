@@ -1,12 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
     <div id="main" class="wrap">
         <div class="wrap__layout">
-            <div >
-                <div>
-                    <img src="/media/bomberman.png" style = "width : 200px" class ="logo--bomberman"></img>
+            <div class="score">
+                <div class="score__avatar" id="user_avatar">
+                    <img src="https://api.adorable.io/avatars/130/test" class="logo--avatar"></img>
                 </div>
-
-                <div class="score">
+                <div class="score_text">
                     <p>Username : <fest:space/><fest:value>user.username</fest:value></p>
                     <p>Score : <fest:space/><fest:value> user.score</fest:value></p>
                 </div>
@@ -17,6 +16,9 @@
                 </button></a>
                 <a href="#scoreboard"><button class="menu__btn">
                     Scoreboard
+                </button></a>
+                <a href="#settings"><button class="menu__btn">
+                    Settings
                 </button></a>
                 <a href="#logout" id="logout"><button class="menu__btn menu__btn--back">
                     Logout

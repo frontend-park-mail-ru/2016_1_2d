@@ -10,6 +10,9 @@ module.exports = function (grunt) {
                 command: 'node server.js '
             },
             backend : {
+                command : 'java -cp Bomberman-server-1.0.jar main.Main 8081 hash'
+            },
+            real_backend : {
                 command : 'java -cp Bomberman-server-1.0.jar main.Main 8081'
             }
 
@@ -57,6 +60,9 @@ module.exports = function (grunt) {
             options: {
                 logConcurrentOutput: true
             }
+        },
+        qunit: {
+            all: ['./public_html/tests/index.html']
         }
     });
 
@@ -64,7 +70,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
 
+
+    grunt.registerTask('test', ['qunit:all']);
     grunt.registerTask('default', ['concurrent']);
 
 };

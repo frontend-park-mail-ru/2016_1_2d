@@ -6,12 +6,12 @@ define(function(require) {
                 'id': '',
                 'username' : '',
                 'password': '',
-                'score': ''
+                'score': '',
+                'authed': false
             },
-            //urlRoot : '/api/user/',
             authorize: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
-                    this.trigger('invalidLoginPassword');
+                    this.trigger('invalidLoginPassword', 'Please enter valid data');
                 } else {
                     this.set('username', login);
                     this.set('password', password);
@@ -21,7 +21,7 @@ define(function(require) {
             },
             registerNew: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
-                    this.trigger('invalidForm');
+                    this.trigger('invalidForm','Please enter valid data');
                 } else {
                     this.set('username', login);
                     this.set('password', password);
@@ -35,6 +35,7 @@ define(function(require) {
                     method: 'DELETE',
                     url: '/api/session',
                     success: function (msg) {
+                        self.set('authed', false);
                         self.trigger('userLogout');
                     }
                 });
@@ -46,13 +47,12 @@ define(function(require) {
                     url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        //console.log(msg.message);
                         self.set('id', msg.id);
                         self.getUserInfo();
                         self.trigger('userRegistered');
                     },
                     error: function (msg) {
-                        self.trigger('invalidLoginPassword',msg.responseJSON);
+                        self.trigger('invalidForm',msg.responseJSON.message);
                     }
                 });
             },
@@ -63,12 +63,11 @@ define(function(require) {
                     url: url,
                     data: {'login': this.get('username'), 'password': this.get('password')},
                     success: function (msg) {
-                        console.log(msg);
                         self.set('id', msg.id);
                         self.getUserInfo();
                     },
                     error: function (msg) {
-                        self.trigger('invalidLoginPassword', msg.responseJSON);
+                        self.trigger('invalidLoginPassword', msg.responseJSON.message);
                     }
                 });
             },
@@ -78,6 +77,7 @@ define(function(require) {
                     method: 'GET',
                     url: '/api/session/',
                     success: function (msg) {
+                        self.set('authed', true);
                         self.set('id', msg.id);
                         self.getUserInfo();
                     },
@@ -90,8 +90,9 @@ define(function(require) {
                 var self = this;
                 $.ajax({
                     method: 'GET',
-                    url: '/api/user/'+ self.get('id'),
+                    url: '/api/user/' + self.get('id'),
                     success: function (msg) {
+                        self.set('authed', true);
                         self.set('score', msg.score);
                         self.set('username', msg.login);
                         self.trigger('userAuthed');

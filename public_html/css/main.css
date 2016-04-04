@@ -8,7 +8,7 @@ html, body {
 }
 * {
     font-family: Bangers;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 #page {
@@ -45,20 +45,29 @@ html, body {
     user-select: none;
 }
 /*Menu*/
-.logo--bomberman {
-    float: left; /* Обтекание справа */
-    width: 200px;
+.logo_header {
+    width : 150px;
+    height: auto;
     /* padding: 5px; */
     margin: 10px 10px 20px 5px; /* Значения отступов */
 }
-.score{
-    position: absolute;
-    padding-top: 100px;
+.score {
     text-align: center;
-    font-size: 32px;
-    margin: 0px 0px 0px 220px; /* Значения отступов */
+    font-size: 30px;
+    margin: 0 0 0 60px; /* Значения отступов */
+}
+.score__avatar {
+    float: left;
+    right: 80px;
+    bottom: 70px;
+    width: 160px;
+    /*height: 130px;*/
+
 }
 
+.score_text {
+    margin-top: -30px;
+}
 .menu {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -124,9 +133,9 @@ canvas {
 .alert-box {
     position: absolute;
     right: 0;
-    height: 50px;
+    height: 30px;
     color:#555;
-    border-radius:10px;
+    border-radius:15px;
     font-family:Tahoma,Geneva,Arial,sans-serif;
     font-size:22px;
     padding:10px 10px 10px 10px;
@@ -404,3 +413,22 @@ canvas {
     height: 98%;
 }
 
+/* webcam */
+.webcam_monitor {
+    margin-left: 110px;
+}
+.snapshot {
+    display: none;
+    /*margin-left: 150px;*/
+}
+.snapshot__button {
+    /*display: block;*/
+    /*font-size: 26px;*/
+    /*background: #009688;*/
+}
+.snapshot__button_finish {
+    /*display: block;*/
+    /*margin:5px 0 0 45px;*/
+    /*font-size: 26px;*/
+    /*background: #59ff48;*/
+}

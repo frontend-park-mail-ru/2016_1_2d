@@ -5,10 +5,11 @@
                 Back
             </button></a>
         </div>
+
     </div>
     <div class="chat-wrapper">
 
-        <div class="chat__header">Conversation</div>
+        <div class="chat__header">Game Chat</div>
 
         <div class="chat__container">
   

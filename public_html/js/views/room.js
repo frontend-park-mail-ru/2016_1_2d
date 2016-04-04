@@ -4,7 +4,8 @@ define(
         var baseView = require('views/baseView');
         var tmpl = require('tmpl/room');
         var View = baseView.extend({
-            template: tmpl
+            template: tmpl,
+            requireAuth: true,
         });
         return new View();
     }

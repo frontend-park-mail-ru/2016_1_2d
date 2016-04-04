@@ -1,0 +1,34 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
+<div id="main" class="wrap">
+    <div class="wrap__layout">
+            <div class="score">
+                <div class="score__avatar" id="user_avatar">
+                    <img src="https://api.adorable.io/avatars/130/test" class="logo--avatar"></img>
+                </div>
+                <div class="score_text">
+                <p>Username : <fest:space/><fest:value>user.username</fest:value></p>
+                <p>Score : <fest:space/><fest:value> user.score</fest:value></p>
+                 </div>
+            </div>
+            <div class="menu">
+                <button class="menu__btn change-avatar">
+                    Change avatar
+                </button>
+
+                <div class="webcam">
+
+                <div id='webcam-monitor' class="webcam_monitor">
+                </div>
+                <div class="snapshot">
+                    <button class="menu__btn snapshot__button">Take Snapshot</button>
+                    <button class="menu__btn snapshot__button_finish">Finish</button>
+                </div>
+
+                </div>
+                <a href="#main"><button class="menu__btn  menu__btn--back">
+                    Back
+                </button></a>
+        </div>
+    </div>
+</div>
+</fest:template>
