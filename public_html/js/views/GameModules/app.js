@@ -93,10 +93,10 @@ define(function (require) {
                 user.setDirection(controls);
             });
             // On resize
-            // jQuery(window).resize(function () {
-            //     // Redefine the size of the renderer
-            //     basicScene.setAspect();
-            // });
+            jQuery(window).resize(function () {
+                // Redefine the size of the renderer
+                BasicScene.setAspect();
+            });
         },
         // Defining the renderer's size
         setAspect: function () {
@@ -132,7 +132,6 @@ define(function (require) {
                     new THREE.PlaneGeometry(2048, 256),
                     new THREE.PlaneGeometry(2048, 256)
                 ];
-                console.log(walls[0]);
                 var obstacles = [
                     new THREE.CubeGeometry(64, 64, 64),
                     new THREE.CubeGeometry(64, 64, 64),
@@ -141,6 +140,9 @@ define(function (require) {
                 var texture_floor = new THREE.TextureLoader().load('media/game/textures/grass.jpg');
                 var texture_wall = new THREE.TextureLoader().load('media/game/textures/wall.jpg');
                 var texture_cub = new THREE.TextureLoader().load('media/game/textures/41.gif');
+                
+                texture_wall.minFilter = THREE.LinearFilter;
+                texture_cub.minFilter = THREE.LinearFilter;
 
             var groundMaterial = new THREE.MeshPhongMaterial({map: texture_floor});
             var wallMaterial = new THREE.MeshPhongMaterial({map: texture_wall});
@@ -169,10 +171,7 @@ define(function (require) {
 
             this.walls[3].position.z = -2048 / 2;
 
-            // var geometry = walls[0];
-            // var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-            // var plane = new THREE.Mesh( geometry, material );
-            // this.mesh.add(plane);
+
 
             this.obstacles = [];
             for (var i = 0; i < obstacles.length; i += 1) {
