@@ -1,15 +1,16 @@
-define(
-    ['views/GameModules/worldBuilder', 'three'],
-    function (world, THREE) {
+define(function (require) {
+    var THREE = require('three');
+    var gameObjects = require('views/GameModules/gameObjects');
+    var world = require('views/GameModules/worldBuilder');
 
     var Character = {
         init: function (args) {
-            'use strict';
             var head = new THREE.SphereGeometry(32, 16, 16),
                 hand = new THREE.SphereGeometry(8, 8, 8),
                 foot = new THREE.SphereGeometry(16, 4, 8, 0, Math.PI * 2, 0, Math.PI / 2),
                 nose = new THREE.SphereGeometry(4, 8, 8),
                 material = new THREE.MeshLambertMaterial(args);
+
             // Set the character modelisation object
             this.mesh = new THREE.Object3D();
             this.mesh.position.y = 48;
@@ -54,36 +55,31 @@ define(
                 new THREE.Vector3(-1, 0, 0),
                 new THREE.Vector3(-1, 0, 1)
             ];
-            // And the "RayCaster", able to test for intersections
             this.caster = new THREE.Raycaster();
         },
         // Update the direction of the current motion
         setDirection: function (controls) {
-            'use strict';
             var x = controls.left ? 1 : controls.right ? -1 : 0,
                 y = 0,
                 z = controls.up ? 1 : controls.down ? -1 : 0;
             this.direction.set(x, y, z);
         },
         motion: function () {
-            'use strict';
             this.collision();
             if (this.direction.x !== 0 || this.direction.z !== 0) {
-                // Rotate the character
                 this.rotate();
-                // Move the character
                 this.move();
                 return true;
             }
         },
-        // Test and avoid collisions
         collision: function () {
-            'use strict';
-            var collisions, i,
+            var collisions;
+            var i;
             // Maximum distance from the origin before we consider collision
-                distance = 32,
+            var distance = 32;
             // Get the obstacles array from our world
-                obstacles = world.getObstacles();
+            var obstacles = world.getObstacles();
+            
             for (i = 0; i < this.rays.length; i += 1) {
                 this.caster.set(this.mesh.position, this.rays[i]);
                 collisions = this.caster.intersectObjects(obstacles);
@@ -101,9 +97,7 @@ define(
                 }
             }
         },
-        // Rotate the character
         rotate: function () {
-            'use strict';
             // Set the direction's angle, and the difference between it and our Object3D's current rotation
             var angle = Math.atan2(this.direction.x, this.direction.z),
                 difference = angle - this.mesh.rotation.y;
@@ -122,7 +116,6 @@ define(
             }
         },
         move: function () {
-            'use strict';
             this.mesh.position.x += this.direction.x * ((this.direction.z === 0) ? 4 : Math.sqrt(8));
             this.mesh.position.z += this.direction.z * ((this.direction.x === 0) ? 4 : Math.sqrt(8));
             // using our "step" property ...
@@ -134,5 +127,6 @@ define(
             this.hands.right.position.setZ(Math.sin(this.step) * 8);
         }
     };
-        return Character
+
+    return Character
 });

@@ -1,5 +1,5 @@
 define(function (require) {
-    var apppl = require('views/GameModules/app');
+    var gameInit = require('views/GameModules/gameInit');
     var baseView = require('views/baseView');
     var tmpl = require('tmpl/game');
 
@@ -16,16 +16,15 @@ define(function (require) {
 
         },
         startGame: function () {
-            apppl.init();
+            gameInit.init();
             function animate() {
                 requestAnimationFrame(animate);
-                apppl.frame();
+                gameInit.frame();
             }
             animate();
         },
         endGame: function () {
             $('canvas').remove();
-            // WorldBuilder.dealloc()
         }
         
     });
