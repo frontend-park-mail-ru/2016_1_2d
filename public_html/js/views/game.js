@@ -1,15 +1,14 @@
 define(function (require) {
-
+    var apppl = require('views/GameModules/app');
     var baseView = require('views/baseView');
     var tmpl = require('tmpl/game');
-    var app = require('views/GameModules/app');
 
     var View = baseView.extend({
         template: tmpl,
         requireAuth: false,
         show: function () {
-            this.startGame();
             baseView.prototype.show.call(this);
+            this.startGame();
         },
         hide: function () {
             this.endGame();
@@ -17,10 +16,10 @@ define(function (require) {
 
         },
         startGame: function () {
-            app.init();
+            apppl.init();
             function animate() {
                 requestAnimationFrame(animate);
-                app.frame();
+                apppl.frame();
             }
             animate();
         },

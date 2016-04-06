@@ -10,7 +10,8 @@ var require = {
         Key: 'lib/KeyboardBoomber',
         OrbitControls: 'lib/OrbitControls',
         Detector: 'lib/Detector',
-        webcam : 'lib/webcam.min'
+        webcam : 'lib/webcam.min',
+        app :'views/GameModules/app'
     },
     shim: {
         'backbone': {
@@ -36,12 +37,11 @@ var require = {
         'Detector': {
             exports: 'Detector'
         },
-        'OrbitControls': {
-            deps: ['three'],
-            exports: 'OrbitControls'
-        },
         'webcam': {
             exports: 'webcam'
+        },
+        'app': {
+            exports: 'app'
         }
     }
 };

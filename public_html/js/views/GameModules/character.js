@@ -1,9 +1,7 @@
-define(function (require) {
-    var $ = require('jquery');
-    var THREE = require('three');
-    var app = require('views/GameModules/app');
-    var world = require('views/GameModules/worldBuilder');
-    
+define(
+    ['views/GameModules/worldBuilder', 'three'],
+    function (world, THREE) {
+
     var Character = {
         init: function (args) {
             'use strict';
@@ -136,4 +134,5 @@ define(function (require) {
             this.hands.right.position.setZ(Math.sin(this.step) * 8);
         }
     };
+        return Character
 });

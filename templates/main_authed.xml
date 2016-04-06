@@ -2,7 +2,7 @@
     <div id="main" class="wrap">
         <div class="wrap__layout">
             <div class="score">
-                <div class="score__avatar" id="user_avatar">
+                <div class="score__avatar" id="user_avatar1">
                     <img src="https://api.adorable.io/avatars/130/test" class="logo--avatar"></img>
                 </div>
                 <div class="score_text">

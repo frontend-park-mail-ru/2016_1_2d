@@ -20,7 +20,6 @@ define(function (require) {
             },
             hide: function () {
                 this.$el.hide();
-                this.$el.detach();
             }
         });
         return View;

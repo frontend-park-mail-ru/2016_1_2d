@@ -1,11 +1,8 @@
 define(function (require) {
-    var jQuery = require('jquery');
     var THREE = require('three');
     var app = require('views/GameModules/app');
     
-    
     var World = {
-        // Class constructor
         init: function (args) {
             'use strict';
             // Set the different geometries composing the room
@@ -22,21 +19,20 @@ define(function (require) {
                     new THREE.CubeGeometry(64, 64, 64),
                     new THREE.CubeGeometry(64, 64, 64)
                 ],
-                texture_floor = THREE.ImageUtils.loadTexture('./media/game/textures/grass.jpg', {}, function () {
+                texture_floor = THREE.ImageUtils.loadTexture('media/game/textures/grass.jpg', {}, function () {
                     app.renderer.render(app.scene, app.camera);
                 }),
-                texture_wall = THREE.ImageUtils.loadTexture('./media/game/textures/wall.JPG', {}, function () {
+                texture_wall = THREE.ImageUtils.loadTexture('media/game/textures/wall.jpg', {}, function () {
                     app.renderer.render(app.scene, app.camera);
                 }),
-                texture_cub = THREE.ImageUtils.loadTexture('./media/game/textures/41.gif', {}, function () {
+                texture_cub = THREE.ImageUtils.loadTexture('media/game/textures/41.gif', {}, function () {
                     app.renderer.render(app.scene, app.camera);
                 }),
                 groundMaterial = new THREE.MeshPhongMaterial({map: texture_floor}),
                 wallMaterial = new THREE.MeshPhongMaterial({map: texture_wall}),
                 cubMaterial = new THREE.MeshPhongMaterial({map: texture_cub}),
 
-                material = new THREE.MeshLambertMaterial(args),
-                i;
+                material = new THREE.MeshLambertMaterial(args), i;
 
             this.mesh = new THREE.Object3D();
             // Set and add the ground
@@ -71,5 +67,6 @@ define(function (require) {
         }
     };
 
+        return World;
 });
 

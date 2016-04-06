@@ -1,7 +1,6 @@
 define(function (require) {
         var baseView = require('views/baseView');
         var tmpl = require('tmpl/main');
-        var authedTmpl = require('tmpl/main_authed');
         var user = require('models/user');
 
         var View = baseView.extend({
@@ -18,7 +17,7 @@ define(function (require) {
             },
             
             reloadViewWithAuthTemplate: function() {
-                this.template = authedTmpl;
+                this.template = require('tmpl/main_authed');
                 this.render();
             },
             reloadView: function() {

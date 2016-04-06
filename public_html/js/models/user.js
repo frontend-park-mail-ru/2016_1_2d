@@ -25,7 +25,7 @@ define(function(require) {
                 } else {
                     this.set('username', login);
                     this.set('password', password);
-                    this.regiserNewUser('/api/user');
+                    this.registerNewUser('/api/user');
                     this.set('password','');
                 }
             },
@@ -40,7 +40,7 @@ define(function(require) {
                     }
                 });
             },
-            regiserNewUser: function (url) {
+            registerNewUser: function (url) {
                 var self = this;
                 $.ajax({
                     method: 'PUT',
