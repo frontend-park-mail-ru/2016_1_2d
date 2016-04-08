@@ -17,8 +17,11 @@ define(function (require) {
                 new THREE.CubeGeometry(64, 64, 64)
             ];
             var texture_floor = new THREE.TextureLoader().load('media/game/textures/grass.jpg');
-            var texture_wall = new THREE.TextureLoader().load('media/game/textures/wall.jpg');
-            var texture_cub = new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif');
+            var texture_wall = new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg');
+            var texture_cub = new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg');
+
+            texture_wall.wrapS = texture_wall.wrapT = THREE.RepeatWrapping;
+            texture_wall.repeat.set( 24, 1 );
 
             texture_wall.minFilter = THREE.LinearFilter;
             texture_cub.minFilter = THREE.LinearFilter;
@@ -28,6 +31,7 @@ define(function (require) {
             var cubMaterial = new THREE.MeshPhongMaterial({map: texture_cub});
 
             this.defMaterial = cubMaterial;
+            
             this.addSkybox();
 
             this.mesh = new THREE.Object3D();
