@@ -17,7 +17,6 @@ define(function (require) {
         },
         startGame: function () {
             gameInit.init();
-            gameInit.addObjectToWorld(null, 3, 3);
             function animate() {
                 requestAnimationFrame(animate);
                 gameInit.frame();
