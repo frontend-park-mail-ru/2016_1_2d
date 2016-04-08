@@ -11,8 +11,17 @@ define(function (require) {
             gameObjects.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 10000);
             gameObjects.scene.add(gameObjects.camera);
             gameObjects.light = new THREE.PointLight();
-            gameObjects.light.position.set(-256, 256, -256);
+            gameObjects.light.position.set(-600, 400, -600);
             gameObjects.scene.add(gameObjects.light);
+            gameObjects.light1 = new THREE.PointLight();
+            gameObjects.light1.position.set(600, 400, 600);
+            gameObjects.scene.add(gameObjects.light1);
+            gameObjects.light2 = new THREE.PointLight();
+            gameObjects.light2.position.set(600, 400, -600);
+            gameObjects.scene.add(gameObjects.light2);
+            gameObjects.light3 = new THREE.PointLight();
+            gameObjects.light3.position.set(-600, 400, 600);
+            gameObjects.scene.add(gameObjects.light3);
             gameObjects.renderer = new THREE.WebGLRenderer();
             this.container = $('#game-canvas');
             Character.init({color: 0xff0000});
