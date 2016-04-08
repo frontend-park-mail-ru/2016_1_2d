@@ -6,10 +6,10 @@ define(function (require) {
         init: function () {
             var ground = new THREE.PlaneGeometry(2048, 2048, 1, 1);
             var walls = [
-                new THREE.PlaneGeometry(2048, 256),
-                new THREE.PlaneGeometry(2048, 256),
-                new THREE.PlaneGeometry(2048, 256),
-                new THREE.PlaneGeometry(2048, 256)
+                new THREE.BoxGeometry(2098, 70, 70),
+                new THREE.BoxGeometry(2098, 70, 70),
+                new THREE.BoxGeometry(2098, 70, 70),
+                new THREE.BoxGeometry(2098, 70, 70)
             ];
             var obstacles = [
                 new THREE.CubeGeometry(64, 64, 64),
@@ -33,10 +33,11 @@ define(function (require) {
             this.ground = new THREE.Mesh(ground, groundMaterial);
             this.ground.rotation.x = -Math.PI / 2;
             this.mesh.add(this.ground);
+            this.addSkybox();
             this.walls = [];
             for (var i = 0; i < walls.length; i += 1) {
                 this.walls.push(new THREE.Mesh(walls[i], wallMaterial));
-                this.walls[i].position.y = 128;
+                this.walls[i].position.y = 35;
                 this.mesh.add(this.walls[i]);
             }
 
@@ -50,8 +51,6 @@ define(function (require) {
 
             this.walls[3].position.z = -2048 / 2;
 
-
-
             this.obstacles = [];
             for (var i = 0; i < obstacles.length; i += 1) {
                 this.obstacles.push(new THREE.Mesh(obstacles[i], cubMaterial));
@@ -63,6 +62,22 @@ define(function (require) {
         },
         getObstacles: function () {
             return this.obstacles.concat(this.walls);
+        },
+        addSkybox: function () {
+            var imagePrefix = "media/game/skybox/dawnmountain-";
+            var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
+            var imageSuffix = ".png";
+            var skyGeometry = new THREE.BoxGeometry( 10000, 10000, 10000 );
+
+            var materialArray = [];
+            for (var i = 0; i < 6; i++)
+                materialArray.push( new THREE.MeshBasicMaterial({
+                    map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+                    side: THREE.BackSide
+                }));
+            var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+            var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+            gameObjects.scene.add( skyBox );
         }
     };
     return World

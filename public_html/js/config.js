@@ -11,7 +11,6 @@ var require = {
         OrbitControls: 'lib/OrbitControls',
         Detector: 'lib/Detector',
         webcam : 'lib/webcam.min',
-        app :'views/GameModules/app'
     },
     shim: {
         'backbone': {
@@ -39,9 +38,7 @@ var require = {
         },
         'webcam': {
             exports: 'webcam'
-        },
-        'app': {
-            exports: 'app'
         }
+      
     }
 };
