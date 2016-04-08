@@ -8,7 +8,7 @@ define(function (require) {
     var BasicScene = {
         init: function () {
             gameObjects.scene = new THREE.Scene();
-            gameObjects.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 10000);
+            gameObjects.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 10000);
             gameObjects.scene.add(gameObjects.camera);
             gameObjects.light = new THREE.PointLight();
             gameObjects.light.position.set(-256, 256, -256);
