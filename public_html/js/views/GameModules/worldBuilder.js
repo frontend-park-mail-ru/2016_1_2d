@@ -6,10 +6,10 @@ define(function (require) {
         init: function () {
             var ground = new THREE.PlaneGeometry(2048, 2048);
             var walls = [
-                new THREE.BoxGeometry(2048, 70, 64),
-                new THREE.BoxGeometry(2176, 70, 64),
-                new THREE.BoxGeometry(2048, 70, 64),
-                new THREE.BoxGeometry(2176, 70, 64)
+                new THREE.BoxGeometry(2048, 64, 64),
+                new THREE.BoxGeometry(2176, 64, 64),
+                new THREE.BoxGeometry(2048, 64, 64),
+                new THREE.BoxGeometry(2176, 64, 64)
             ];
             var obstacles = [
                 new THREE.CubeGeometry(64, 64, 64),
@@ -19,18 +19,21 @@ define(function (require) {
             var texture_floor = new THREE.TextureLoader().load('media/game/textures/grass.jpg');
             var texture_wall = new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg');
             var texture_cub = new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg');
+            var brick_cub = new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif');
+
 
             texture_wall.wrapS = texture_wall.wrapT = THREE.RepeatWrapping;
             texture_wall.repeat.set( 24, 1 );
 
             texture_wall.minFilter = THREE.LinearFilter;
             texture_cub.minFilter = THREE.LinearFilter;
-
+            
             var groundMaterial = new THREE.MeshPhongMaterial({map: texture_floor});
             var wallMaterial = new THREE.MeshPhongMaterial({map: texture_wall});
             var cubMaterial = new THREE.MeshPhongMaterial({map: texture_cub});
+            var brcubMaterial = new THREE.MeshPhongMaterial({map: brick_cub});
 
-            this.defMaterial = cubMaterial;
+            this.defMaterial = brcubMaterial;
             
             this.addSkybox();
 
@@ -43,7 +46,7 @@ define(function (require) {
             this.walls = [];
             for (var i = 0; i < walls.length; i += 1) {
                 this.walls.push(new THREE.Mesh(walls[i], wallMaterial));
-                this.walls[i].position.y = 35;
+                this.walls[i].position.y = 32;
                 this.mesh.add(this.walls[i]);
             }
 
@@ -69,7 +72,7 @@ define(function (require) {
             this.addObjectToWorld(null, 0, 0);
             this.addObjectToWorld(null, 2, 2);
         },
-        addObjectToWorld: function (type, x, z) {
+        addObjectToWorld: function (type, x, z) { // needed to place objects by x,y
             var obj = new THREE.CubeGeometry(64, 64, 64);
 
             var realObj = new THREE.Mesh(obj, this.defMaterial);

@@ -11,7 +11,6 @@ define(function (require) {
                 nose = new THREE.SphereGeometry(4, 8, 8),
                 material = new THREE.MeshLambertMaterial(args);
 
-            // Set the character modelisation object
             this.mesh = new THREE.Object3D();
             this.mesh.position.y = 48;
             this.head = new THREE.Mesh(head, material);
@@ -56,77 +55,82 @@ define(function (require) {
                 new THREE.Vector3(-1, 0, 1)
             ];
             this.caster = new THREE.Raycaster();
-        },
-        // Update the direction of the current motion
-        setDirection: function (controls) {
-            var x = controls.left ? 1 : controls.right ? -1 : 0,
-                y = 0,
-                z = controls.up ? 1 : controls.down ? -1 : 0;
-            this.direction.set(x, y, z);
-        },
-        motion: function () {
-            this.collision();
-            if (this.direction.x !== 0 || this.direction.z !== 0) {
-                this.rotate();
-                this.move();
-                return true;
-            }
-        },
-        collision: function () {
-            var collisions;
-            var i;
-            // Maximum distance from the origin before we consider collision
-            var distance = 32;
-            // Get the obstacles array from our world
-            var obstacles = world.getObstacles();
-            
-            for (i = 0; i < this.rays.length; i += 1) {
-                this.caster.set(this.mesh.position, this.rays[i]);
-                collisions = this.caster.intersectObjects(obstacles);
-                if (collisions.length > 0 && collisions[0].distance <= distance) {
-                    if ((i === 0 || i === 1 || i === 7) && this.direction.z === 1) {
-                        this.direction.setZ(0);
-                    } else if ((i === 3 || i === 4 || i === 5) && this.direction.z === -1) {
-                        this.direction.setZ(0);
-                    }
-                    if ((i === 1 || i === 2 || i === 3) && this.direction.x === 1) {
-                        this.direction.setX(0);
-                    } else if ((i === 5 || i === 6 || i === 7) && this.direction.x === -1) {
-                        this.direction.setX(0);
+
+            // Update the direction of the current motion
+            this.setDirection = function (controls) {
+                var x = controls.left ? 1 : controls.right ? -1 : 0,
+                    y = 0,
+                    z = controls.up ? 1 : controls.down ? -1 : 0;
+                this.direction.set(x, y, z);
+            };
+
+            this.motion = function () {
+                this.collision();
+                if (this.direction.x !== 0 || this.direction.z !== 0) {
+                    this.rotate();
+                    this.move();
+                    return true;
+                }
+            };
+
+            this.collision = function () {
+                var collisions;
+                var i;
+                // Maximum distance from the origin before we consider collision
+                var distance = 32;
+                // Get the obstacles array from our world
+                var obstacles = world.getObstacles();
+
+                for (i = 0; i < this.rays.length; i += 1) {
+                    this.caster.set(this.mesh.position, this.rays[i]);
+                    collisions = this.caster.intersectObjects(obstacles);
+                    if (collisions.length > 0 && collisions[0].distance <= distance) {
+                        if ((i === 0 || i === 1 || i === 7) && this.direction.z === 1) {
+                            this.direction.setZ(0);
+                        } else if ((i === 3 || i === 4 || i === 5) && this.direction.z === -1) {
+                            this.direction.setZ(0);
+                        }
+                        if ((i === 1 || i === 2 || i === 3) && this.direction.x === 1) {
+                            this.direction.setX(0);
+                        } else if ((i === 5 || i === 6 || i === 7) && this.direction.x === -1) {
+                            this.direction.setX(0);
+                        }
                     }
                 }
-            }
-        },
-        rotate: function () {
-            // Set the direction's angle, and the difference between it and our Object3D's current rotation
-            var angle = Math.atan2(this.direction.x, this.direction.z),
-                difference = angle - this.mesh.rotation.y;
-            // If we're doing more than a 180°
-            if (Math.abs(difference) > Math.PI) {
-                // We proceed to a direct 360° rotation in the opposite way
-                if (difference > 0) {
-                    this.mesh.rotation.y += 2 * Math.PI;
-                } else {
-                    this.mesh.rotation.y -= 2 * Math.PI;
+            };
+
+            this.rotate = function () {
+                // Set the direction's angle, and the difference between it and our Object3D's current rotation
+                var angle = Math.atan2(this.direction.x, this.direction.z),
+                    difference = angle - this.mesh.rotation.y;
+                // If we're doing more than a 180°
+                if (Math.abs(difference) > Math.PI) {
+                    // We proceed to a direct 360° rotation in the opposite way
+                    if (difference > 0) {
+                        this.mesh.rotation.y += 2 * Math.PI;
+                    } else {
+                        this.mesh.rotation.y -= 2 * Math.PI;
+                    }
+                    difference = angle - this.mesh.rotation.y;
                 }
-                difference = angle - this.mesh.rotation.y;
-            }
-            if (difference !== 0) {
-                this.mesh.rotation.y += difference / 4;
-            }
-        },
-        move: function () {
-            this.mesh.position.x += this.direction.x * ((this.direction.z === 0) ? 4 : Math.sqrt(8));
-            this.mesh.position.z += this.direction.z * ((this.direction.x === 0) ? 4 : Math.sqrt(8));
-            // using our "step" property ...
-            this.step += 1 / 4;
-            // hands and feet position
-            this.feet.left.position.setZ(Math.sin(this.step) * 16);
-            this.feet.right.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 16);
-            this.hands.left.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 8);
-            this.hands.right.position.setZ(Math.sin(this.step) * 8);
+                if (difference !== 0) {
+                    this.mesh.rotation.y += difference / 4;
+                }
+            };
+
+            this.move = function () {
+                this.mesh.position.x += this.direction.x * ((this.direction.z === 0) ? 4 : Math.sqrt(8));
+                this.mesh.position.z += this.direction.z * ((this.direction.x === 0) ? 4 : Math.sqrt(8));
+                // using our "step" property ...
+                this.step += 1 / 4;
+                // hands and feet position
+                this.feet.left.position.setZ(Math.sin(this.step) * 16);
+                this.feet.right.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 16);
+                this.hands.left.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 8);
+                this.hands.right.position.setZ(Math.sin(this.step) * 8);
+            };
+
         }
     };
-
     return Character
 });

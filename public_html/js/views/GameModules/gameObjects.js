@@ -5,6 +5,7 @@ define(function (require) {
         camera: null,
         light: null,
         renderer: null,
+        firstCharacter: null,
         
     };
     

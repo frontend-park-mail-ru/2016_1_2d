@@ -10,17 +10,24 @@ define(function (require) {
             gameObjects.scene = new THREE.Scene();
             gameObjects.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 10000);
             gameObjects.scene.add(gameObjects.camera);
+
+
             gameObjects.light = new THREE.DirectionalLight( 0xffffff, 1 );
-            gameObjects.light.position.set(-600, 00, -600);
+            gameObjects.light.position.set(-600, 0, -600);
             gameObjects.scene.add(gameObjects.light);
             gameObjects.light1 = new THREE.DirectionalLight( 0xffffff, 1 );
             gameObjects.light1.position.set(600, 1800, 600);
             gameObjects.scene.add(gameObjects.light1);
             gameObjects.light2 = new THREE.DirectionalLight( 0xffffff, 1 );
+
+
             gameObjects.renderer = new THREE.WebGLRenderer();
             this.container = $('#game-canvas');
-            Character.init({color: 0xff0000});
-            gameObjects.scene.add(Character.mesh);
+
+            gameObjects.firstCharacter = new Character.init({color: 0xff0000});
+            var lol = new  Character.init({color: 0xff0000});
+            gameObjects.scene.add(lol.mesh);
+            gameObjects.scene.add(gameObjects.firstCharacter.mesh);
 
             World.init();
             gameObjects.scene.add(World.mesh);
@@ -29,13 +36,13 @@ define(function (require) {
             this.container.prepend(gameObjects.renderer.domElement);
             
             // Set the camera to look at our user's character
-            this.setFocus(Character.mesh);
+            this.setFocus(gameObjects.firstCharacter.mesh);
             this.setControls();
+            
 
         },
         setControls: function () {
-            var user = Character,
-                controls = {
+               var  controls = {
                     left: false,
                     up: false,
                     right: false,
@@ -65,7 +72,7 @@ define(function (require) {
                     return;
                 }
                 // Update the character's direction
-                user.setDirection(controls);
+                gameObjects.firstCharacter.setDirection(controls);
             });
             jQuery(document).keyup(function (e) {
                 var prevent = true;
@@ -91,7 +98,7 @@ define(function (require) {
                     return;
                 }
                 // Update the character's direction
-                user.setDirection(controls);
+                gameObjects.firstCharacter.setDirection(controls);
             });
             // On resize
             jQuery(window).resize(function () {
@@ -110,8 +117,8 @@ define(function (require) {
             gameObjects.camera.lookAt(object.position);
         },
         frame: function () {
-            Character.motion();
-            this.setFocus(Character.mesh);
+            gameObjects.firstCharacter.motion();
+            this.setFocus(gameObjects.firstCharacter.mesh);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         }
 

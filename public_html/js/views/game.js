@@ -6,6 +6,7 @@ define(function (require) {
     var View = baseView.extend({
         template: tmpl,
         requireAuth: false,
+        gameWork: true,
         show: function () {
             baseView.prototype.show.call(this);
             this.startGame();
@@ -17,13 +18,20 @@ define(function (require) {
         },
         startGame: function () {
             gameInit.init();
-            function animate() {
-                requestAnimationFrame(animate);
-                gameInit.frame();
+            if(this.gameWorking()) {
+                function animate() {
+                    requestAnimationFrame(animate);
+                    gameInit.frame();
+                }
+
+                animate();
             }
-            animate();
+        },
+        gameWorking: function( ){
+            return this.gameWork
         },
         endGame: function () {
+
             $('canvas').remove();
         }
         
