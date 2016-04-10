@@ -10,6 +10,13 @@ define(function (require) {
                 foot = new THREE.SphereGeometry(16, 4, 8, 0, Math.PI * 2, 0, Math.PI / 2),
                 nose = new THREE.SphereGeometry(4, 8, 8),
                 material = new THREE.MeshLambertMaterial(args);
+            //control camera while player walkig
+            this.CameraCharaterPosition = {
+                state : 0,
+                x : 0,
+                y : 200,
+                z : -512
+            };
 
             this.mesh = new THREE.Object3D();
             this.mesh.position.y = 48;
@@ -55,12 +62,122 @@ define(function (require) {
                 new THREE.Vector3(-1, 0, 1)
             ];
             this.caster = new THREE.Raycaster();
-
+            //Change camera angel for follow player
+            this.changeCamera = function (position){
+                switch(position){
+                    case 0:
+                        this.CameraCharaterPosition.state = position;
+                        this.CameraCharaterPosition.x = 0;
+                        this.CameraCharaterPosition.y = 200;
+                        this.CameraCharaterPosition.z = -512;
+                        break;
+                    case 1:
+                        this.CameraCharaterPosition.state = position;
+                        this.CameraCharaterPosition.x = 512;
+                        this.CameraCharaterPosition.y = 200;
+                        this.CameraCharaterPosition.z = 0;
+                        break;
+                    case 2:
+                        this.CameraCharaterPosition.state = position;
+                        this.CameraCharaterPosition.x = 0;
+                        this.CameraCharaterPosition.y = 200;
+                        this.CameraCharaterPosition.z = 512;
+                        break;
+                    case 3:
+                        this.CameraCharaterPosition.state = position;
+                        this.CameraCharaterPosition.x = -512;
+                        this.CameraCharaterPosition.y = 200;
+                        this.CameraCharaterPosition.z = 0;
+                        break;
+                }
+            };
             // Update the direction of the current motion
             this.setDirection = function (controls) {
-                var x = controls.left ? 1 : controls.right ? -1 : 0,
-                    y = 0,
-                    z = controls.up ? 1 : controls.down ? -1 : 0;
+                var x, y, z;
+                switch (this.CameraCharaterPosition.state){
+                    case 0:
+                        //x = controls.left ? 1 : controls.right ? -1 : 0;
+                        if(controls.left){
+                            this.changeCamera(3);
+                            x = 1;
+                        }else if(controls.right){
+                            this.changeCamera(1);
+                            x = -1;
+                        }else{
+                            x = 0;
+                        }
+                        y = 0;
+                        //z = controls.up ? 1 : controls.down ? -1 : 0;
+                        if(controls.up){
+                            z = 1;
+                        }else if(controls.down){
+                            this.changeCamera(2);
+                            z = -1;
+                        }else{
+                            z = 0;
+                        }
+                        break;
+                    case 1:
+                        if(controls.down){
+                            this.changeCamera(3);
+                            x = 1;
+                        }else if(controls.up){
+                            x = -1;
+                        }else{
+                            x = 0;
+                        }
+                        y = 0;
+                        if(controls.left){
+                            this.changeCamera(0);
+                            z = 1;
+                        }else if(controls.right){
+                            this.changeCamera(2);
+                            z = -1;
+                        }else{
+                            z = 0;
+                        }
+                        break;
+                    case 2:
+                        if(controls.right){
+                            this.changeCamera(3);
+                            x = 1;
+                        }else if(controls.left){
+                            this.changeCamera(1);
+                            x = -1;
+                        }else{
+                            x = 0;
+                        }
+                        y = 0;
+                        if(controls.down){
+                            this.changeCamera(0);
+                            z = 1;
+                        }else if(controls.up){
+                            z = -1;
+                        }else{
+                            z = 0;
+                        }
+                        break;
+                    case 3:
+                        if(controls.up){
+                            x = 1;
+                        }else if(controls.down){
+                            this.changeCamera(1);
+                            x = -1;
+                        }else{
+                            x = 0;
+                        }
+                        y = 0;
+                        if(controls.right){
+                            this.changeCamera(0);
+                            z = 1;
+                        }else if(controls.left){
+                            this.changeCamera(2);
+                            z = -1;
+                        }else{
+                            z = 0;
+                        }
+                        break;
+                }
                 this.direction.set(x, y, z);
             };
 
@@ -108,8 +225,10 @@ define(function (require) {
                     // We proceed to a direct 360° rotation in the opposite way
                     if (difference > 0) {
                         this.mesh.rotation.y += 2 * Math.PI;
+                        //console.log(this.mesh.rotation.y);
                     } else {
                         this.mesh.rotation.y -= 2 * Math.PI;
+                        //console.log(this.mesh.rotation.y);
                     }
                     difference = angle - this.mesh.rotation.y;
                 }

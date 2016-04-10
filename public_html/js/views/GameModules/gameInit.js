@@ -113,7 +113,7 @@ define(function (require) {
             gameObjects.camera.updateProjectionMatrix();
         },
         setFocus: function (object) {
-            gameObjects.camera.position.set(object.position.x, object.position.y + 200, object.position.z - 512);
+            gameObjects.camera.position.set(object.position.x + gameObjects.firstCharacter.CameraCharaterPosition.x, object.position.y + gameObjects.firstCharacter.CameraCharaterPosition.y, object.position.z + gameObjects.firstCharacter.CameraCharaterPosition.z);
             gameObjects.camera.lookAt(object.position);
         },
         frame: function () {
