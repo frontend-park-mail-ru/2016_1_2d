@@ -2,43 +2,32 @@ define(function (require) {
     var THREE = require('three');
     var gameObjects = require('views/GameModules/gameObjects');
 
+
     var World = {
         init: function () {
             var ground = new THREE.PlaneGeometry(2048, 2048);
+            var groundMaterial = new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grass.jpg')});
             var walls = [
                 new THREE.BoxGeometry(2048, 64, 64),
                 new THREE.BoxGeometry(2176, 64, 64),
                 new THREE.BoxGeometry(2048, 64, 64),
                 new THREE.BoxGeometry(2176, 64, 64)
             ];
-            var obstacles = [
-                new THREE.CubeGeometry(64, 64, 64),
-                new THREE.CubeGeometry(64, 64, 64),
-                new THREE.CubeGeometry(64, 64, 64)
-            ];
-            var texture_floor = new THREE.TextureLoader().load('media/game/textures/grass.jpg');
             var texture_wall = new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg');
-            var texture_cub = new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg');
-            var brick_cub = new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif');
-
-
             texture_wall.wrapS = texture_wall.wrapT = THREE.RepeatWrapping;
-            texture_wall.repeat.set( 24, 1 );
-
+            texture_wall.repeat.set(24, 1);
             texture_wall.minFilter = THREE.LinearFilter;
-            texture_cub.minFilter = THREE.LinearFilter;
-            
-            var groundMaterial = new THREE.MeshPhongMaterial({map: texture_floor});
             var wallMaterial = new THREE.MeshPhongMaterial({map: texture_wall});
-            var cubMaterial = new THREE.MeshPhongMaterial({map: texture_cub});
-            var brcubMaterial = new THREE.MeshPhongMaterial({map: brick_cub});
 
-            this.defMaterial = brcubMaterial;
-            
-            this.addSkybox();
+
+             this.worldObjects = {
+                indestructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg')}),
+                destructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif')})
+            };
+
+            this.addSkybox(); // create a box with panorama
 
             this.mesh = new THREE.Object3D();
-            // Set and add the ground
             this.ground = new THREE.Mesh(ground, groundMaterial);
             this.ground.rotation.x = -Math.PI / 2;
             this.mesh.add(this.ground);
@@ -60,23 +49,16 @@ define(function (require) {
 
             this.walls[3].position.z = -1056;
 
-            this.obstacles = [];
-            for (var i = 0; i < obstacles.length; i += 1) {
-                this.obstacles.push(new THREE.Mesh(obstacles[i], cubMaterial));
-                this.mesh.add(this.obstacles[i]);
-            }
-            this.obstacles[0].position.set(128, 32, 128);
-            this.obstacles[1].position.set(0, 32, 320);
-            this.obstacles[2].position.set(-128, 32, -320);
-            this.addObjectToWorld(null, 1, 1);
-            this.addObjectToWorld(null, 0, 0);
-            this.addObjectToWorld(null, 2, 2);
+            this.obstacles = []; // here we dump all objects in scene
+
+            this.addObjectToWorld(this.worldObjects.destructible_crate, 12, 17);
+            this.addObjectToWorld(this.worldObjects.indestructible_crate, 0, 0);
+            this.addObjectToWorld(this.worldObjects.destructible_crate, 2, 2);
         },
         addObjectToWorld: function (type, x, z) { // needed to place objects by x,y
             var obj = new THREE.CubeGeometry(64, 64, 64);
 
-            var realObj = new THREE.Mesh(obj, this.defMaterial);
-            this.mesh.add(realObj);
+            var realObj = new THREE.Mesh(obj, type);
             realObj.position.set(-x * 64 + 992, 32, z * 64 - 992);
 
             this.obstacles.push(realObj);

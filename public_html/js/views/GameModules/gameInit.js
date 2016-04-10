@@ -25,7 +25,7 @@ define(function (require) {
             this.container = $('#game-canvas');
 
             gameObjects.firstCharacter = new Character.init({color: 0xff0000});
-            var lol = new  Character.init({color: 0xff0000});
+            var lol = new  Character.init({color: 0x00FF00});
             gameObjects.scene.add(lol.mesh);
             gameObjects.scene.add(gameObjects.firstCharacter.mesh);
 
