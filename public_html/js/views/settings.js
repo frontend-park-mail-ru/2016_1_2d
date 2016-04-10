@@ -3,7 +3,7 @@ define(function (require) {
         var baseView = require('views/baseView');
         var user = require('models/user');
         var camera = require('webcam');
-    
+
         var View = baseView.extend({
             template: tmpl,
             requireAuth: true,
