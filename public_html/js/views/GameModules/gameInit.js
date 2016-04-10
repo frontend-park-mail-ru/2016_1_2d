@@ -11,7 +11,6 @@ define(function (require) {
             gameObjects.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 10000);
             gameObjects.scene.add(gameObjects.camera);
 
-
             gameObjects.light = new THREE.DirectionalLight( 0xffffff, 1 );
             gameObjects.light.position.set(-600, 0, -600);
             gameObjects.scene.add(gameObjects.light);
@@ -113,7 +112,14 @@ define(function (require) {
             gameObjects.camera.updateProjectionMatrix();
         },
         setFocus: function (object) {
-            gameObjects.camera.position.set(object.position.x + gameObjects.firstCharacter.CameraCharaterPosition.x, object.position.y + gameObjects.firstCharacter.CameraCharaterPosition.y, object.position.z + gameObjects.firstCharacter.CameraCharaterPosition.z);
+            //gameObjects.camera.position.set(object.position.x + gameObjects.firstCharacter.CameraCharaterPosition.x, object.position.y + gameObjects.firstCharacter.CameraCharaterPosition.y, object.position.z + gameObjects.firstCharacter.CameraCharaterPosition.z);
+            var relativeCameraOffset = new THREE.Vector3(0, 200, -500);
+            var cameraOffset = relativeCameraOffset.applyMatrix4( gameObjects.firstCharacter.mesh.matrixWorld );
+            gameObjects.camera.position.x = cameraOffset.x;
+            gameObjects.camera.position.y = cameraOffset.y;
+            gameObjects.camera.position.z = cameraOffset.z;
+
+            gameObjects.camera.lookAt(gameObjects.firstCharacter.mesh.position);
             gameObjects.camera.lookAt(object.position);
         },
         frame: function () {
