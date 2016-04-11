@@ -51,16 +51,14 @@ define(function (require) {
 
             this.obstacles = []; // here we dump all objects in scene
 
-            this.addObjectToWorld(this.worldObjects.destructible_crate, 12, 17);
-            this.addObjectToWorld(this.worldObjects.indestructible_crate, 0, 0);
-            this.addObjectToWorld(this.worldObjects.destructible_crate, 2, 2);
+            this.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 12, 17);
+            this.addObjectToWorld(this.worldObjects.indestructible_crate, new THREE.CubeGeometry(64, 64, 64), 0, 0);
+            this.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 2, 2);
         },
-        addObjectToWorld: function (type, x, z) { // needed to place objects by x,y
-            var obj = new THREE.CubeGeometry(64, 64, 64);
-
-            var realObj = new THREE.Mesh(obj, type);
-            realObj.position.set(-x * 64 + 992, 32, z * 64 - 992);
-
+        addObjectToWorld: function (type, obj_geometry, x, z) { // needed to place objects by x,y
+            var realObj = new THREE.Mesh(obj_geometry, type);
+            var coordinates = gameObjects.getRealCoordinates(x, z);
+            realObj.position.set(coordinates.x, 32, coordinates.z);
             this.obstacles.push(realObj);
             gameObjects.scene.add(realObj);
 
@@ -79,7 +77,7 @@ define(function (require) {
             var skyGeometry = new THREE.BoxGeometry( 5000, 5000, 5000 );
             var materialArray = [];
             for (var i = 0; i < 6; i++)
-                materialArray.push( new THREE.MeshBasicMaterial({
+                materialArray.push(new THREE.MeshBasicMaterial({
                     map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] ),
                     side: THREE.BackSide
                 }));

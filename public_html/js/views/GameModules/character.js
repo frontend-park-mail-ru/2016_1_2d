@@ -4,12 +4,12 @@ define(function (require) {
     var world = require('views/GameModules/worldBuilder');
 
     var Character = {
-        init: function (args) {
+        init: function (color, position) {
             var head = new THREE.SphereGeometry(32, 16, 16),
                 hand = new THREE.SphereGeometry(8, 8, 8),
                 foot = new THREE.SphereGeometry(16, 4, 8, 0, Math.PI * 2, 0, Math.PI / 2),
                 nose = new THREE.SphereGeometry(4, 8, 8),
-                material = new THREE.MeshLambertMaterial(args);
+                material = new THREE.MeshLambertMaterial(color);
             //control camera while player walkig
             this.CameraCharaterPosition = 0;
 
@@ -44,6 +44,10 @@ define(function (require) {
             this.nose.position.y = 0;
             this.nose.position.z = 32;
             this.mesh.add(this.nose);
+
+            var playerCoordinates = gameObjects.getRealCoordinates(position.x, position.z);
+            this.mesh.position.set(playerCoordinates.x, 48, playerCoordinates.z);
+
             this.direction = new THREE.Vector3(0, 0, 0);
             this.step = 0;
             this.rays = [
@@ -56,6 +60,7 @@ define(function (require) {
                 new THREE.Vector3(-1, 0, 0),
                 new THREE.Vector3(-1, 0, 1)
             ];
+
             this.caster = new THREE.Raycaster();
             //Change camera angel like COMPAS for follow player
             this.changeCamera = function (position){

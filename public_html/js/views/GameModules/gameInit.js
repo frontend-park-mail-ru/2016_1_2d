@@ -23,13 +23,14 @@ define(function (require) {
             gameObjects.renderer = new THREE.WebGLRenderer();
             this.container = $('#game-canvas');
 
-            gameObjects.firstCharacter = new Character.init({color: 0xff0000});
-            var lol = new  Character.init({color: 0x00FF00});
+            gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 5, z: 7});
+            var lol = new  Character.init({color: 0x00FF00}, {x: 4, z: 9});
             gameObjects.scene.add(lol.mesh);
             gameObjects.scene.add(gameObjects.firstCharacter.mesh);
 
             World.init();
             gameObjects.scene.add(World.mesh);
+            
             
             this.setAspect();
             this.container.prepend(gameObjects.renderer.domElement);
