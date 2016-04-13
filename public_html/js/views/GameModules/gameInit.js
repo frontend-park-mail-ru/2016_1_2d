@@ -24,9 +24,13 @@ define(function (require) {
             this.container = $('#game-canvas');
 
             gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 5, z: 7});
+            
+            
             var lol = new  Character.init({color: 0x00FF00}, {x: 4, z: 9});
+
             gameObjects.scene.add(lol.mesh);
             gameObjects.scene.add(gameObjects.firstCharacter.mesh);
+            // gameObjects.scene.remove(gameObjects.firstCharacter.mesh);
 
             World.init();
             gameObjects.scene.add(World.mesh);
@@ -38,16 +42,15 @@ define(function (require) {
             // Set the camera to look at our user's character
             this.setFocus(gameObjects.firstCharacter.mesh);
             this.setControls();
-            
 
         },
         setControls: function () {
-               var  controls = {
-                    left: false,
-                    up: false,
-                    right: false,
-                    down: false
-                };
+            var  controls = {
+                left: false,
+                up: false,
+                right: false,
+                down: false
+            };
             jQuery(document).keydown(function (e) {
                 var prevent = true;
                 switch (e.keyCode) {
@@ -113,14 +116,7 @@ define(function (require) {
             gameObjects.camera.updateProjectionMatrix();
         },
         setFocus: function (object) {
-            //gameObjects.camera.position.set(object.position.x + gameObjects.firstCharacter.CameraCharaterPosition.x, object.position.y + gameObjects.firstCharacter.CameraCharaterPosition.y, object.position.z + gameObjects.firstCharacter.CameraCharaterPosition.z);
-            var relativeCameraOffset = new THREE.Vector3(0, 200, -500);
-            var cameraOffset = relativeCameraOffset.applyMatrix4( gameObjects.firstCharacter.mesh.matrixWorld );
-            gameObjects.camera.position.x = cameraOffset.x;
-            gameObjects.camera.position.y = cameraOffset.y;
-            gameObjects.camera.position.z = cameraOffset.z;
-
-            gameObjects.camera.lookAt(gameObjects.firstCharacter.mesh.position);
+            gameObjects.camera.position.set(object.position.x, object.position.y + 200, object.position.z - 512);
             gameObjects.camera.lookAt(object.position);
         },
         frame: function () {
@@ -128,7 +124,6 @@ define(function (require) {
             this.setFocus(gameObjects.firstCharacter.mesh);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         }
-
     };
 
     return BasicScene;

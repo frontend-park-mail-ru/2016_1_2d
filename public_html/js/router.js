@@ -21,6 +21,7 @@ define(
             },
             initialize: function () {
                 user.checkAuth();
+                viewManager = new viewManager(views);
                 this.listenTo(user, 'userAuthed', this.displayMainView);
                 this.listenTo(user, 'userRegistered',this.displayMainView);
             },

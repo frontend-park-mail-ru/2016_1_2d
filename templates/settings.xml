@@ -1,5 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
-    <div id="main" class="wrap">
+    <div id="settings" class="wrap">
         <div class="wrap__layout">
                 <div class="score">
                     <div class="score__avatar" id="user_avatar">

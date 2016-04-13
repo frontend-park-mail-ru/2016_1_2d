@@ -10,7 +10,7 @@ define(function (require) {
                 foot = new THREE.SphereGeometry(16, 4, 8, 0, Math.PI * 2, 0, Math.PI / 2),
                 nose = new THREE.SphereGeometry(4, 8, 8),
                 material = new THREE.MeshLambertMaterial(color);
-            //control camera while player walkig
+            //control camera while player walking
             this.CameraCharaterPosition = 0;
 
             this.mesh = new THREE.Object3D();
@@ -45,7 +45,7 @@ define(function (require) {
             this.nose.position.z = 32;
             this.mesh.add(this.nose);
 
-            var playerCoordinates = gameObjects.getRealCoordinates(position.x, position.z);
+            var playerCoordinates = gameObjects.getRealCoordinates(position.x, position.z); // where we need to place our character
             this.mesh.position.set(playerCoordinates.x, 48, playerCoordinates.z);
 
             this.direction = new THREE.Vector3(0, 0, 0);
@@ -60,113 +60,12 @@ define(function (require) {
                 new THREE.Vector3(-1, 0, 0),
                 new THREE.Vector3(-1, 0, 1)
             ];
-
             this.caster = new THREE.Raycaster();
-            //Change camera angel like COMPAS for follow player
-            this.changeCamera = function (position){
-                switch(position){
-                    case 0:
-                        this.CameraCharaterPosition = position;
-                        break;
-                    case 1:
-                        this.CameraCharaterPosition = position;
-                        break;
-                    case 2:
-                        this.CameraCharaterPosition = position;
-                        break;
-                    case 3:
-                        this.CameraCharaterPosition = position;
-                        break;
-                }
-            };
-            // Update the direction of the current motion
-            // ассоциация с шутерами, когда "враг на 12 часов" в данном случае 0:12ч 1:3ч ... и т.д.
-            // для каждого игрока "свои 12 часов"
-            this.setDirection = function (controls) {
-                var x, y, z;
-                switch (this.CameraCharaterPosition) {
-                    case 0:
-                        if (controls.left) {
-                            this.changeCamera(3);
-                            x = 1;
-                        } else if (controls.right) {
-                            this.changeCamera(1);
-                            x = -1;
-                        } else {
-                            x = 0;
-                        }
-                        y = 0;
-                        if (controls.up) {
-                            z = 1;
-                        } else if (controls.down) {
-                            this.changeCamera(2);
-                            z = -1;
-                        } else {
-                            z = 0;
-                        }
-                        break;
 
-                    case 1:
-                        if (controls.down) {
-                            this.changeCamera(3);
-                            x = 1;
-                        } else if (controls.up) {
-                            x = -1;
-                        } else {
-                            x = 0;
-                        }
-                        y = 0;
-                        if (controls.left) {
-                            this.changeCamera(0);
-                            z = 1;
-                        } else if (controls.right) {
-                            this.changeCamera(2);
-                            z = -1;
-                        } else {
-                            z = 0;
-                        }
-                        break;
-                    case 2:
-                        if (controls.right) {
-                            this.changeCamera(3);
-                            x = 1;
-                        } else if (controls.left) {
-                            this.changeCamera(1);
-                            x = -1;
-                        } else {
-                            x = 0;
-                        }
-                        y = 0;
-                        if (controls.down) {
-                            this.changeCamera(0);
-                            z = 1;
-                        } else if (controls.up) {
-                            z = -1;
-                        } else {
-                            z = 0;
-                        }
-                        break;
-                    case 3:
-                        if (controls.up) {
-                            x = 1;
-                        } else if (controls.down) {
-                            this.changeCamera(1);
-                            x = -1;
-                        } else {
-                            x = 0;
-                        }
-                        y = 0;
-                        if (controls.right) {
-                            this.changeCamera(0);
-                            z = 1;
-                        } else if (controls.left) {
-                            this.changeCamera(2);
-                            z = -1;
-                        } else {
-                            z = 0;
-                        }
-                        break;
-                }
+            this.setDirection = function (controls) {
+                var x = controls.left ? 1 : controls.right ? -1 : 0;
+                var y = 0;
+                var z = controls.up ? 1 : controls.down ? -1 : 0;
                 this.direction.set(x, y, z);
             };
 
@@ -214,10 +113,8 @@ define(function (require) {
                     // We proceed to a direct 360° rotation in the opposite way
                     if (difference > 0) {
                         this.mesh.rotation.y += 2 * Math.PI;
-                        //console.log(this.mesh.rotation.y);
                     } else {
                         this.mesh.rotation.y -= 2 * Math.PI;
-                        //console.log(this.mesh.rotation.y);
                     }
                     difference = angle - this.mesh.rotation.y;
                 }

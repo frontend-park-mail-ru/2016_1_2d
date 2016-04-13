@@ -28,7 +28,6 @@ define(function (require) {
                 }
             },
             showErrorMessage: function (msg) {
-              
                 this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
                     $('#sign-in').prop("disabled", false);
                 }).fadeOut(2200);

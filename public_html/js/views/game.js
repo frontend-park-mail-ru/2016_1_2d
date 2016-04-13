@@ -4,31 +4,28 @@ define(function (require) {
     var tmpl = require('tmpl/game');
 
     var View = baseView.extend({
-        endFlag: false,
         template: tmpl,
         requireAuth: false,
         show: function () {
             baseView.prototype.show.call(this);
             this.startGame();
         },
-        hide: function () {
-            this.endGame();
-            $(this.el).remove();
-
-        },
+        // hide: function () {
+        //     this.endGame();
+        //     $(this.el).remove();
+        //
+        // },
         startGame: function () {
             gameInit.init();
             function animate() {
                 requestAnimationFrame(animate);
                 gameInit.frame();
             }
-            if(!this.endFlag) {
-                animate();
-            }
+            animate();
         },
         endGame: function () {
             // gameInit.dealloc();
-            $('canvas').remove();
+            // $('canvas').remove();
         }
         
     });

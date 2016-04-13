@@ -6,22 +6,18 @@ define(function (require) {
             requireAuth: false,
             initialize: function () {
                 this.render();
-                $('#page').append(this.el);
-                this.hide();
             },
             render: function () {
-                this.$el.html(this.template());
+                this.$el.html(this.template);
             },
             show: function () {
-                viewManager.trigger('show', this);
-                this.$el.appendTo("#page");
+                this.trigger('show', this);
                 this.$el.show();
-
             },
             hide: function () {
                 this.$el.hide();
             }
         });
         return View;
-    }
-);
+    });
+
