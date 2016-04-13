@@ -10,8 +10,6 @@ define(function (require) {
                 foot = new THREE.SphereGeometry(16, 4, 8, 0, Math.PI * 2, 0, Math.PI / 2),
                 nose = new THREE.SphereGeometry(4, 8, 8),
                 material = new THREE.MeshLambertMaterial(color);
-            //control camera while player walking
-            this.CameraCharaterPosition = 0;
 
             this.mesh = new THREE.Object3D();
             this.mesh.position.y = 48;
