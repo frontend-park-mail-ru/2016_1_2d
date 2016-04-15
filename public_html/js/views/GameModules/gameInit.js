@@ -34,7 +34,8 @@ define(function (require) {
 
             World.init();
             gameObjects.scene.add(World.mesh);
-            
+            gameObjects.deleteObjectFromWorld(1);
+            console.log(gameObjects.obstacles);
             
             this.setAspect();
             this.container.prepend(gameObjects.renderer.domElement);
