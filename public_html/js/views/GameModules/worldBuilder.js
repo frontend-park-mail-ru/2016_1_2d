@@ -49,22 +49,16 @@ define(function (require) {
 
             this.walls[3].position.z = -1056;
 
-            this.obstacles = []; // here we dump all objects in scene
 
-            this.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 12, 17);
-            this.addObjectToWorld(this.worldObjects.indestructible_crate, new THREE.CubeGeometry(64, 64, 64), 0, 0);
-            this.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 2, 2);
-        },
-        addObjectToWorld: function (type, obj_geometry, x, z) { // needed to place objects by x,y
-            var realObj = new THREE.Mesh(obj_geometry, type);
-            var coordinates = gameObjects.getRealCoordinates(x, z);
-            realObj.position.set(coordinates.x, 32, coordinates.z);
-            this.obstacles.push(realObj);
-            gameObjects.scene.add(realObj);
-
+            gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 1, 12, 17);
+            gameObjects.addObjectToWorld(this.worldObjects.indestructible_crate, new THREE.CubeGeometry(64, 64, 64),2, 0, 0);
+            gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 3, 2, 2);
+            gameObjects.obstacles;
         },
         getObstacles: function () {
-            return this.obstacles.concat(this.walls);
+
+            return gameObjects.obstacles.concat(this.walls);
+
         },
         addSkybox: function () {
             var imagePrefix = "media/game/skybox/panorama/";

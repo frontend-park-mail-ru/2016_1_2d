@@ -10,11 +10,11 @@ define(function (require) {
             baseView.prototype.show.call(this);
             this.startGame();
         },
-        // hide: function () {
-        //     this.endGame();
-        //     $(this.el).remove();
-        //
-        // },
+        hide: function () {
+            baseView.prototype.hide.call(this);
+            this.endGame();
+
+        },
         startGame: function () {
             gameInit.init();
             function animate() {
