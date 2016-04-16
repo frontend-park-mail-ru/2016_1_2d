@@ -6,7 +6,10 @@ define(function (require) {
     var World = {
         init: function () {
             var ground = new THREE.PlaneGeometry(2048, 2048);
-            var groundMaterial = new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grass.jpg')});
+            var grassTexture = new THREE.TextureLoader().load('media/game/textures/grass.jpg');
+            grassTexture.wrapS = grassTexture.wrapT = THREE.RepeatWrapping;
+            grassTexture.repeat.set(2, 2);
+            var groundMaterial = new THREE.MeshPhongMaterial({map: grassTexture});
             var walls = [
                 new THREE.BoxGeometry(2048, 64, 64),
                 new THREE.BoxGeometry(2176, 64, 64),

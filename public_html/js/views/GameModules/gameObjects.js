@@ -29,6 +29,7 @@ define(function (require) {
             if(this.objects[id]) {
                 this.scene.remove(this.obstacles[this.objects[id].index]);
                 this.obstacles.splice( this.objects[id].index, 1 );
+                delete this.objects[id];
             }
         }
         
