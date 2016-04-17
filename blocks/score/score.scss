@@ -1,0 +1,7 @@
+.score {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 0 60px; /* Значения отступов */
+  @import '__avatar/score__avatar';
+  @import '_text/score_text';
+}

@@ -23,7 +23,7 @@ define(function (require) {
             var wallMaterial = new THREE.MeshPhongMaterial({map: texture_wall});
 
 
-             this.worldObjects = {
+             this.worldObjects = { 
                 indestructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg')}),
                 destructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif')})
             };

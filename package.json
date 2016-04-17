@@ -20,6 +20,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-fest": "^0.1.6",
+    "grunt-sass": "^1.1.0",
     "grunt-shell": "^1.1.2",
     "require": "^2.4.20",
     "underscore": "^1.8.3"

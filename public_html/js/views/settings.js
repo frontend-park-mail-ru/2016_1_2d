@@ -9,7 +9,7 @@ define(function (require) {
             requireAuth: true,
             events: {
                 'click .change-avatar': function(e) {
-                    this.$('.snapshot').fadeIn(600);
+                    this.$('.webcam__snapshot').fadeIn(600);
                     this.addCamera();
                 },
                 'click .snapshot__button': function (e) {

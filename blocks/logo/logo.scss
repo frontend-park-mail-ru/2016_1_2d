@@ -1,0 +1,12 @@
+.logo {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  height: 150px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  @import '__header/logo__header';
+}

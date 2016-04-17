@@ -16,16 +16,15 @@
                     </button>
 
                     <div class="webcam">
-
-                    <div id='webcam-monitor' class="webcam_monitor">
+                    <div id='webcam-monitor' class="webcam__monitor">
                     </div>
-                    <div class="snapshot">
+                    <div class="webcam__snapshot">
                         <button class="menu__btn snapshot__button">Take Snapshot</button>
                         <button class="menu__btn snapshot__button_finish">Finish</button>
                     </div>
 
                     </div>
-                    <a href="#main"><button class="menu__btn  menu__btn--back">
+                    <a href="#main"><button class="menu__btn  menu__btn_back">
                         Back
                     </button></a>
             </div>

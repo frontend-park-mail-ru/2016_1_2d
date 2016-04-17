@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="menu">
-                <a href="#room"><button class="menu__btn menu_btn--primary">
+                <a href="#room"><button class="menu__btn menu__btn_primary">
                     Start
                 </button></a>
                 <a href="#scoreboard"><button class="menu__btn">
@@ -20,7 +20,7 @@
                 <a href="#settings"><button class="menu__btn">
                     Settings
                 </button></a>
-                <a href="#logout" id="logout"><button class="menu__btn menu__btn--back">
+                <a href="#logout" id="logout"><button class="menu__btn menu__btn_back">
                     Logout
                 </button></a>
             </div>
