@@ -30,7 +30,6 @@ define(function (require) {
 
             gameObjects.scene.add(lol.mesh);
             gameObjects.scene.add(gameObjects.firstCharacter.mesh);
-            // gameObjects.scene.remove(gameObjects.firstCharacter.mesh);
 
             World.init();
             gameObjects.scene.add(World.mesh);
@@ -44,69 +43,46 @@ define(function (require) {
 
         },
         setControls: function () {
-            var  controls = {
+            var controls = {
                 left: false,
                 up: false,
                 right: false,
                 down: false
             };
-            jQuery(document).keydown(function (e) {
-                var prevent = true;
-                switch (e.keyCode) {
+            function makeControls(status, keyCode) {
+                var pressed = false;
+                if (status === 'pressed') {
+                    pressed = true;
+                }
+                switch (keyCode) {
                     case 37:
-                        controls.left = true;
+                        controls.left = pressed;
                         break;
                     case 38:
-                        controls.up = true;
+                        controls.up = pressed;
                         break;
                     case 39:
-                        controls.right = true;
+                        controls.right = pressed;
                         break;
                     case 40:
-                        controls.down = true;
+                        controls.down = pressed;
                         break;
-                    default:
-                        prevent = false;
                 }
-                if (prevent) {
-                    e.preventDefault();
-                } else {
-                    return;
-                }
-                // Update the character's direction
                 gameObjects.firstCharacter.setDirection(controls);
+            }
+            jQuery(document).keydown(function (e) {
+               makeControls('pressed', e.keyCode);
+                e.preventDefault();
             });
             jQuery(document).keyup(function (e) {
-                var prevent = true;
-                switch (e.keyCode) {
-                    case 37:
-                        controls.left = false;
-                        break;
-                    case 38:
-                        controls.up = false;
-                        break;
-                    case 39:
-                        controls.right = false;
-                        break;
-                    case 40:
-                        controls.down = false;
-                        break;
-                    default:
-                        prevent = false;
-                }
-                if (prevent) {
-                    e.preventDefault();
-                } else {
-                    return;
-                }
-                // Update the character's direction
-                gameObjects.firstCharacter.setDirection(controls);
+                makeControls('none', e.keyCode);
+                e.preventDefault();
             });
-            // On resize
             jQuery(window).resize(function () {
                 BasicScene.setAspect();
             });
         },
+
         setAspect: function () {
             var w = this.container.width();
             var h = jQuery(window).height();
