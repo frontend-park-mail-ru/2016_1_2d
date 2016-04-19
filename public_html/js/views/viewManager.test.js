@@ -1,19 +1,41 @@
 define(function (require) {
-    var viewManager = require('views/viewManager');
-    var mainView = require('views/main');
-    var loginView = require('views/login');
 
-    QUnit.module("views/viewManager");
+    QUnit.module("views/manager");
 
-    QUnit.test("ViewManager works correctly", function () {
-        mainView.initialize();
-        mainView.show();
-        var firstView = viewManager.returnCurrentView();
-        loginView.show();
-        var secondView = viewManager.returnCurrentView();
-        QUnit.ok(firstView != secondView);
+    QUnit.test("ViewManager - экземпляр Backbone.View", function () {
+
+        var ViewManager = require('views/viewManager');
+        var viewManager = new ViewManager();
+
+        QUnit.ok(viewManager instanceof Backbone.View);
+
     });
-    
+
+    QUnit.test("Logic test for ViewManager", function () {
+
+        var ViewManager = require('views/viewManager');
+        var LoginView = require('views/login');
+        var RegView = require('views/register');
+
+        var views = {
+                login: LoginView,
+                reg: RegView
+            },
+            viewManager = new ViewManager(views);
+
+        QUnit.equal(views['login'].$el.css('display') === 'none', true);
+        QUnit.equal(views['reg'].$el.css('display') === 'none', true);
+
+        views['login'].show();
+
+        QUnit.equal(views['login'].$el.css('display') === 'none', false);
+        QUnit.equal(views['reg'].$el.css('display') === 'none', true);
+
+        views['reg'].show();
+
+        QUnit.equal(views['login'].$el.css('display') === 'none', true);
+        QUnit.equal(views['reg'].$el.css('display') === 'none', false);
+
+    });
 
 });
-

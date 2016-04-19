@@ -1,0 +1,20 @@
+.submit-input {
+  width: 50%;
+  height: 60px;
+  margin: 5px 10% 10px 26%;
+  border: 0;
+  border-radius: 5px;
+  line-height: 40px;
+  font-size: 32px;
+  transition: all 0.3s;
+
+  background: #14B9D5;
+  color: #FFFFFF;
+  text-align: center;
+}
+.submit-input:focus {
+  outline: none;
+}
+.submit-input:hover {
+  background: #0E778A;
+}

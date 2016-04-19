@@ -1,32 +1,31 @@
 define(function (require) {
-
+    var gameInit = require('views/GameModules/gameInit');
     var baseView = require('views/baseView');
     var tmpl = require('tmpl/game');
-    var app = require('views/GameModules/app');
 
     var View = baseView.extend({
         template: tmpl,
         requireAuth: false,
         show: function () {
-            this.startGame();
             baseView.prototype.show.call(this);
+            this.startGame();
         },
         hide: function () {
+            baseView.prototype.hide.call(this);
             this.endGame();
-            $(this.el).remove();
 
         },
         startGame: function () {
-            app.init();
+            gameInit.init();
             function animate() {
                 requestAnimationFrame(animate);
-                app.frame();
+                gameInit.frame();
             }
             animate();
         },
         endGame: function () {
-            $('canvas').remove();
-            // WorldBuilder.dealloc()
+            // gameInit.dealloc();
+            // $('canvas').remove();
         }
         
     });

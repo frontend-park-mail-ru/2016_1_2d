@@ -1,5 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="main" class="wrap">
+    <div id="login" class="wrap">
         <div class="wrap__layout">
             <div class="logo">
                 <img src="/media/bomb_logo.png"></img>
@@ -10,12 +10,12 @@
                 </div>
                 <div class="form">
                     <form name="authentication">
-                        <input name="login"  class="text_input" placeholder="Login" id="login-input"></input>
-                        <input name="password" type="password" placeholder="Password" class="text_input" id="password-input"></input>
-                        <input type="submit" class="submit_input" value="Login" id='sign-in'></input>
+                        <input name="login"  class="text-input" placeholder="Login" id="login-input"></input>
+                        <input name="password" type="password" placeholder="Password" class="text-input" id="password-input"></input>
+                        <input type="submit" class="submit-input" value="Login" id='sign-in'></input>
                     </form>
                 </div>
-                <a href="#main"><button class="menu__btn  menu__btn--back">
+                <a href="#main"><button class="menu__btn  menu__btn_back">
                     Back
                 </button></a>
             </div>

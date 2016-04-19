@@ -1,0 +1,10 @@
+.scoreboard {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  @import "__name/scoreboard__name";
+  @import "__pole/scoreboard__pole";
+  @import "__rating/scoreboard__rating";
+  @import "__title/scoreboard__title";
+
+}

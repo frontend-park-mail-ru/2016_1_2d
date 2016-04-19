@@ -7,8 +7,7 @@ html, body {
     margin: 0;
 }
 * {
-    font-family: Bangers;
-    /*box-sizing: border-box;*/
+    font-family: Bangers, serif;
 }
 
 #page {
@@ -48,7 +47,6 @@ html, body {
 .logo_header {
     width : 150px;
     height: auto;
-    /* padding: 5px; */
     margin: 10px 10px 20px 5px; /* Значения отступов */
 }
 .score {
@@ -61,7 +59,6 @@ html, body {
     right: 80px;
     bottom: 70px;
     width: 160px;
-    /*height: 130px;*/
 
 }
 
@@ -121,15 +118,7 @@ html, body {
 .menu_btn--primary:hover{
     background-color: #EF6C00;
 }
-/*Canvas*/
-canvas {
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
+
 .alert-box {
     position: absolute;
     right: 0;
@@ -414,7 +403,7 @@ canvas {
 }
 
 /* webcam */
-.webcam_monitor {
+.webcam{
     margin-left: 110px;
 }
 .snapshot {
