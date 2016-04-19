@@ -54,17 +54,17 @@ define(function (require) {
                 if (status === 'pressed') {
                     pressed = true;
                 }
-                switch (keyCode) {
-                    case 37:
+                switch (String.fromCharCode(keyCode)) {
+                    case 'A':
                         controls.left = pressed;
                         break;
-                    case 38:
+                    case 'W':
                         controls.up = pressed;
                         break;
-                    case 39:
+                    case 'D':
                         controls.right = pressed;
                         break;
-                    case 40:
+                    case 'S':
                         controls.down = pressed;
                         break;
                 }
