@@ -2,6 +2,7 @@ define(function (require) {
     var THREE = require('three');
     var gameObjects = require('views/GameModules/gameObjects');
     var world = require('views/GameModules/worldBuilder');
+    var jQuery = require('jquery');
 
     var Character = {
         init: function (color, position) {
@@ -132,7 +133,62 @@ define(function (require) {
                 this.hands.left.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 8);
                 this.hands.right.position.setZ(Math.sin(this.step) * 8);
             };
-
+            this.setControls = function (position) {
+                
+                var controls = {
+                    left: false,
+                    up: false,
+                    right: false,
+                    down: false
+                };
+                function makeControls(status, keyCode, position) {
+                    var pressed = status;
+                    if (position === 'top') {
+                        switch (String.fromCharCode(keyCode)) {
+                            case 'A':
+                                controls.right = pressed;
+                                break;
+                            case 'W':
+                                controls.down = pressed;
+                                break;
+                            case 'D':
+                                controls.left = pressed;
+                                break;
+                            case 'S':
+                                controls.up = pressed;
+                                break;
+                        }
+                    } else {
+                        switch (String.fromCharCode(keyCode)) {
+                            case 'A':
+                                controls.left = pressed;
+                                break;
+                            case 'W':
+                                controls.up = pressed;
+                                break;
+                            case 'D':
+                                controls.right = pressed;
+                                break;
+                            case 'S':
+                                controls.down = pressed;
+                                break;
+                        }
+                    }
+                    gameObjects.firstCharacter.setDirection(controls);
+                }
+                jQuery(document).keydown(function (e) {
+                    makeControls(true, e.keyCode, position);
+                    e.preventDefault();
+                });
+                jQuery(document).keyup(function (e) {
+                    makeControls(false, e.keyCode, position);
+                    e.preventDefault();
+                });
+            };
+            this.setFocus = function (object, z) {
+                gameObjects.camera.position.set(object.position.x, object.position.y + 700, object.position.z - z);
+                gameObjects.camera.lookAt(object.position);
+            };
         }
     };
     return Character

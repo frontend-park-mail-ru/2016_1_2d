@@ -16,7 +16,7 @@ define(function (require) {
                     this.takeSnapshot();
                 },
                 'click .snapshot__button_finish': function (e) {
-                    this.$('.snapshot').fadeOut(0);
+                    this.$('.webcam__snapshot').fadeOut(0);
                     this.$('#webcam-monitor').height(0);
                     this.removeCamera();
                 }
@@ -29,8 +29,8 @@ define(function (require) {
                 this.$el.html(this.template(user.toJSON()));
             },
             hide: function () {
-                if (this.$('.snapshot').css('display') != 'none') {
-                    this.$('.snapshot').fadeOut(0);
+                if (this.$('.webcam__snapshot').css('display') != 'none') {
+                    this.$('.webcam__snapshot').fadeOut(0);
                     this.$('#webcam-monitor').height(0);
                     this.removeCamera();
                 }
