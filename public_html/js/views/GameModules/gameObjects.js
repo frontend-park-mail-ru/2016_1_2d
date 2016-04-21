@@ -25,6 +25,12 @@ define(function (require) {
             };
             this.scene.add(realObj);
         },
+        addPlayerToWorld: function (id, object ) {
+            this.obstacles.push(object);
+            this.objects[id] = {
+                index: this.obstacles.indexOf(object)
+            };
+        },
         deleteObjectFromWorld: function (id) {
             if(this.objects[id]) {
                 this.scene.remove(this.obstacles[this.objects[id].index]);

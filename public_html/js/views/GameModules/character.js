@@ -46,6 +46,7 @@ define(function (require) {
 
             var playerCoordinates = gameObjects.getRealCoordinates(position.x, position.z); // where we need to place our character
             this.mesh.position.set(playerCoordinates.x, 48, playerCoordinates.z);
+            
 
             this.direction = new THREE.Vector3(0, 0, 0);
             this.step = 0;
@@ -72,6 +73,7 @@ define(function (require) {
                 this.collision();
                 if (this.direction.x !== 0 || this.direction.z !== 0) {
                     this.rotate();
+                    console.log(gameObjects.obstacles[gameObjects.objects[8].index].position);
                     this.move();
                     return true;
                 }
@@ -105,8 +107,8 @@ define(function (require) {
 
             this.rotate = function () {
                 // Set the direction's angle, and the difference between it and our Object3D's current rotation
-                var angle = Math.atan2(this.direction.x, this.direction.z),
-                    difference = angle - this.mesh.rotation.y;
+                var angle = Math.atan2(this.direction.x, this.direction.z);
+                var difference = angle - this.mesh.rotation.y;
                 // If we're doing more than a 180°
                 if (Math.abs(difference) > Math.PI) {
                     // We proceed to a direct 360° rotation in the opposite way
@@ -120,6 +122,7 @@ define(function (require) {
                 if (difference !== 0) {
                     this.mesh.rotation.y += difference / 4;
                 }
+                // this.mesh.rotation.y = angle; // if we dont want to animate rotation
             };
 
             this.move = function () {
@@ -127,7 +130,6 @@ define(function (require) {
                 this.mesh.position.z += this.direction.z * ((this.direction.x === 0) ? 4 : Math.sqrt(8));
                 // using our "step" property ...
                 this.step += 1 / 4;
-                // hands and feet position
                 this.feet.left.position.setZ(Math.sin(this.step) * 16);
                 this.feet.right.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 16);
                 this.hands.left.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 8);
@@ -186,7 +188,7 @@ define(function (require) {
                 });
             };
             this.setFocus = function (object, z) {
-                gameObjects.camera.position.set(object.position.x, object.position.y + 700, object.position.z - z);
+                gameObjects.camera.position.set(object.position.x, object.position.y + 750, object.position.z - z);
                 gameObjects.camera.lookAt(object.position);
             };
         }

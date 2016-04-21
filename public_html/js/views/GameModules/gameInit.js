@@ -8,7 +8,7 @@ define(function (require) {
     var BasicScene = {
         init: function () {
             gameObjects.scene = new THREE.Scene();
-            gameObjects.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 10000);
+            gameObjects.camera = new THREE.PerspectiveCamera(55, 1, 0.1, 10000);
             gameObjects.scene.add(gameObjects.camera);
 
             gameObjects.light = new THREE.DirectionalLight( 0xffffff, 1 );
@@ -30,16 +30,19 @@ define(function (require) {
 
             gameObjects.scene.add(lol.mesh);
             gameObjects.scene.add(gameObjects.firstCharacter.mesh);
+            gameObjects.addPlayerToWorld(8, lol.mesh);
             gameObjects.firstCharacter.setControls('top');
 
             World.init();
             gameObjects.scene.add(World.mesh);
-            gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh, -950);
+            // gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh, -950);
 
             jQuery(window).resize(function () {
                 BasicScene.setAspect();
             });
             this.setAspect();
+            // gameObjects.camera.position.set(0, 800, 1900);
+            // gameObjects.camera.lookAt(World.mesh.position);
             this.container.prepend(gameObjects.renderer.domElement);
         },
 
