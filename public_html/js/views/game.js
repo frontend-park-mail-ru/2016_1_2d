@@ -24,8 +24,8 @@ define(function (require) {
             animate();
         },
         endGame: function () {
-            // gameInit.dealloc();
-            // $('canvas').remove();
+            gameInit.dealloc();
+            $('canvas').remove();
         }
         
     });

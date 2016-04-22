@@ -179,14 +179,17 @@ define(function (require) {
                     }
                     gameObjects.firstCharacter.setDirection(controls);
                 }
-                jQuery(document).keydown(function (e) {
-                    makeControls(true, e.keyCode, position);
-                    e.preventDefault();
-                });
-                jQuery(document).keyup(function (e) {
-                    makeControls(false, e.keyCode, position);
-                    e.preventDefault();
-                });
+                if(!gameObjects.initialized) {
+                    jQuery(document).keydown(function (e) {
+                        makeControls(true, e.keyCode, position);
+                        e.preventDefault();
+                    });
+                    jQuery(document).keyup(function (e) {
+                        makeControls(false, e.keyCode, position);
+                        e.preventDefault();
+                    });
+                    gameObjects.initialized = true;
+                }
             };
             this.setFocus = function (object, z) {
                 gameObjects.camera.position.set(object.position.x, object.position.y + 750, object.position.z - z);

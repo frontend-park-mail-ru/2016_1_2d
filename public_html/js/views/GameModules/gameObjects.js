@@ -2,6 +2,7 @@ define(function (require) {
     var THREE = require('three');
 
     var objects = {
+        initialized: false,
         scene: null,
         camera: null,
         light: null,
