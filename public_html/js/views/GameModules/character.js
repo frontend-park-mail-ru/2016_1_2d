@@ -178,16 +178,17 @@ define(function (require) {
                     }
                     gameObjects.firstCharacter.setDirection(controls);
                 }
-                // $("#game-canvas").attr("contentEditable", "true");
-                // $("#game-canvas")[0].contentEditable = true;
-                jQuery(document).keydown(function (e) {
+                $("#game-canvas").attr("contentEditable", "true");
+                $("#game-canvas")[0].contentEditable = true;
+                jQuery('#game-canvas').keydown(function (e) {
                     makeControls(true, e.keyCode, position);
                     e.preventDefault();
                 });
-                jQuery(document).keyup(function (e) {
+                jQuery('#game-canvas').keyup(function (e) {
                     makeControls(false, e.keyCode, position);
                     e.preventDefault();
                 });
+                jQuery('#game-canvas').focus();
             };
             this.setFocus = function (object, z) {
                 gameObjects.camera.position.set(object.position.x, object.position.y + 750, object.position.z - z);
