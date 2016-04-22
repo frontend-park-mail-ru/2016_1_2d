@@ -62,7 +62,13 @@ define(function (require) {
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },
         dealloc: function () {
-            // console.log('dealloc');
+            gameObjects.scene = undefined;
+            gameObjects.camera = undefined;
+            gameObjects.light = undefined;
+            gameObjects.renderer = undefined;
+            gameObjects.firstCharacter = undefined;
+            gameObjects.obstacles = [];
+            gameObjects.objects = {};
             // jQuery(document).off('keydown');
             // jQuery(document).off('keyup');
         }

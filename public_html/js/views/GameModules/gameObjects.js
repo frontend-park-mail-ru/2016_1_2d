@@ -1,5 +1,6 @@
 define(function (require) {
     var THREE = require('three');
+    var jQuery = require('jquery');
 
     var objects = {
         initialized: false,
@@ -33,14 +34,13 @@ define(function (require) {
             };
         },
         deleteObjectFromWorld: function (id) {
-            if(this.objects[id]) {
+            if (this.objects[id]) {
                 this.scene.remove(this.obstacles[this.objects[id].index]);
-                this.obstacles.splice( this.objects[id].index, 1 );
+                this.obstacles.splice(this.objects[id].index, 1);
                 delete this.objects[id];
             }
-        }
-        
-    };
+        },
+};
     
     return objects;
 

@@ -6,8 +6,10 @@ define(function (require) {
     var View = baseView.extend({
         template: tmpl,
         requireAuth: false,
+        gameStarted: false,
         show: function () {
             baseView.prototype.show.call(this);
+            this.gameStarted = true;
             this.startGame();
         },
         hide: function () {
@@ -16,14 +18,18 @@ define(function (require) {
 
         },
         startGame: function () {
-            gameInit.init();
-            function animate() {
-                requestAnimationFrame(animate);
-                gameInit.frame();
-            }
-            animate();
+                var self = this;
+                gameInit.init();
+                function animate() {
+                    if(self.gameStarted) {
+                        requestAnimationFrame(animate);
+                        gameInit.frame();
+                    }
+                }
+                animate();
         },
         endGame: function () {
+            this.gameStarted = false;
             gameInit.dealloc();
             $('canvas').remove();
         }

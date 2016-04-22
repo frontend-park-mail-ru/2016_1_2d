@@ -137,7 +137,6 @@ define(function (require) {
                 this.hands.right.position.setZ(Math.sin(this.step) * 8);
             };
             this.setControls = function (position) {
-                
                 var controls = {
                     left: false,
                     up: false,
@@ -179,17 +178,16 @@ define(function (require) {
                     }
                     gameObjects.firstCharacter.setDirection(controls);
                 }
-                if(!gameObjects.initialized) {
-                    jQuery(document).keydown(function (e) {
-                        makeControls(true, e.keyCode, position);
-                        e.preventDefault();
-                    });
-                    jQuery(document).keyup(function (e) {
-                        makeControls(false, e.keyCode, position);
-                        e.preventDefault();
-                    });
-                    gameObjects.initialized = true;
-                }
+                // $("#game-canvas").attr("contentEditable", "true");
+                // $("#game-canvas")[0].contentEditable = true;
+                jQuery(document).keydown(function (e) {
+                    makeControls(true, e.keyCode, position);
+                    e.preventDefault();
+                });
+                jQuery(document).keyup(function (e) {
+                    makeControls(false, e.keyCode, position);
+                    e.preventDefault();
+                });
             };
             this.setFocus = function (object, z) {
                 gameObjects.camera.position.set(object.position.x, object.position.y + 750, object.position.z - z);
