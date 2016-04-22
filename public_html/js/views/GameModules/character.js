@@ -73,7 +73,7 @@ define(function (require) {
                 this.collision();
                 if (this.direction.x !== 0 || this.direction.z !== 0) {
                     this.rotate();
-                    console.log(gameObjects.obstacles[gameObjects.objects[8].index].position);
+                    // console.log(gameObjects.obstacles[gameObjects.objects[8].index].position);
                     this.move();
                     return true;
                 }
@@ -89,7 +89,7 @@ define(function (require) {
 
                 for (i = 0; i < this.rays.length; i += 1) {
                     this.caster.set(this.mesh.position, this.rays[i]);
-                    collisions = this.caster.intersectObjects(obstacles);
+                    collisions = this.caster.intersectObjects(obstacles, true);
                     if (collisions.length > 0 && collisions[0].distance <= distance) {
                         if ((i === 0 || i === 1 || i === 7) && this.direction.z === 1) {
                             this.direction.setZ(0);
@@ -103,6 +103,7 @@ define(function (require) {
                         }
                     }
                 }
+
             };
 
             this.rotate = function () {

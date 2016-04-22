@@ -30,7 +30,8 @@ define(function (require) {
 
             gameObjects.scene.add(lol.mesh);
             gameObjects.scene.add(gameObjects.firstCharacter.mesh);
-            gameObjects.addPlayerToWorld(8, lol.mesh);
+            // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
+            gameObjects.addPlayerToWorld(9, lol.mesh);
             gameObjects.firstCharacter.setControls('top');
 
             World.init();
