@@ -3,12 +3,12 @@ define(function (require) {
     var jQuery = require('jquery');
 
     var objects = {
-        initialized: false,
         scene: null,
         camera: null,
         light: null,
         renderer: null,
         firstCharacter: null,
+        secondCharacter: null,
         objects: {}, // here we dump all links to obstacle index by id of object
         obstacles: [], // here we dump all our obstacles for raycaster
         getRealCoordinates: function (x, z) {
@@ -27,7 +27,7 @@ define(function (require) {
             };
             this.scene.add(realObj);
         },
-        addPlayerToWorld: function (id, object) {
+        addPlayerToWorld: function (id, object) { // add all players besides yours to colide
             this.obstacles.push(object);
             this.objects[id] = {
                 index: this.obstacles.indexOf(object)

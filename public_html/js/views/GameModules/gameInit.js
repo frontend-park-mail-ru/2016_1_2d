@@ -23,18 +23,15 @@ define(function (require) {
                 gameObjects.renderer = new THREE.WebGLRenderer();
                 this.container = $('#game-canvas');
 
-                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 31, z: 31});
+                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 4, z: 6});
+                gameObjects.secondCharacter = new Character.init({color: 0x00FF00}, {x: 4, z: 9});
 
 
-                var lol = new Character.init({color: 0x00FF00}, {x: 4, z: 9});
-
-
-                gameObjects.scene.add(lol.mesh);
+                gameObjects.scene.add(gameObjects.secondCharacter.mesh);
                 gameObjects.scene.add(gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
-                gameObjects.addPlayerToWorld(9, lol.mesh);
-                gameObjects.firstCharacter.setControls('top');
-
+                // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
+                gameObjects.firstCharacter.setControls('');
                 World.init();
                 gameObjects.scene.add(World.mesh);
 
@@ -42,8 +39,6 @@ define(function (require) {
                     BasicScene.setAspect();
                 });
                 this.setAspect();
-                // gameObjects.camera.position.set(0, 800, 1900);
-                // gameObjects.camera.lookAt(World.mesh.position);
                 this.container.prepend(gameObjects.renderer.domElement);
             
         },
@@ -58,7 +53,14 @@ define(function (require) {
 
         frame: function () {
             gameObjects.firstCharacter.motion();
-            gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh , -950);
+            gameObjects.secondCharacter.motion();
+            gameObjects.secondCharacter.setDirection({
+                up:true,
+                left: false,
+                down: false,
+                right: false
+            });
+            gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh , 950);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },
         dealloc: function () {
@@ -69,8 +71,6 @@ define(function (require) {
             gameObjects.firstCharacter = undefined;
             gameObjects.obstacles = [];
             gameObjects.objects = {};
-            // jQuery(document).off('keydown');
-            // jQuery(document).off('keyup');
         }
     };
 
