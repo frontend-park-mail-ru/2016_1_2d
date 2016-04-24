@@ -1,5 +1,6 @@
 define(function (require) {
     var THREE = require('three');
+    var jQuery = require('jquery');
 
     var objects = {
         scene: null,
@@ -7,6 +8,7 @@ define(function (require) {
         light: null,
         renderer: null,
         firstCharacter: null,
+        secondCharacter: null,
         objects: {}, // here we dump all links to obstacle index by id of object
         obstacles: [], // here we dump all our obstacles for raycaster
         getRealCoordinates: function (x, z) {
@@ -25,21 +27,20 @@ define(function (require) {
             };
             this.scene.add(realObj);
         },
-        addPlayerToWorld: function (id, object ) {
+        addPlayerToWorld: function (id, object) { // add all players besides yours to colide
             this.obstacles.push(object);
             this.objects[id] = {
                 index: this.obstacles.indexOf(object)
             };
         },
         deleteObjectFromWorld: function (id) {
-            if(this.objects[id]) {
+            if (this.objects[id]) {
                 this.scene.remove(this.obstacles[this.objects[id].index]);
-                this.obstacles.splice( this.objects[id].index, 1 );
+                this.obstacles.splice(this.objects[id].index, 1);
                 delete this.objects[id];
             }
-        }
-        
-    };
+        },
+};
     
     return objects;
 

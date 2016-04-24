@@ -6,6 +6,7 @@ define(function (require) {
     var View = baseView.extend({
         template: tmpl,
         requireAuth: false,
+        gameStartedId: null,
         show: function () {
             baseView.prototype.show.call(this);
             this.startGame();
@@ -16,16 +17,18 @@ define(function (require) {
 
         },
         startGame: function () {
-            gameInit.init();
-            function animate() {
-                requestAnimationFrame(animate);
-                gameInit.frame();
-            }
-            animate();
+            var self = this;
+                gameInit.init();
+                function animate() {
+                   self.gameStartedId = requestAnimationFrame(animate);
+                    gameInit.frame();
+                }
+                animate();
         },
         endGame: function () {
-            // gameInit.dealloc();
-            // $('canvas').remove();
+            cancelAnimationFrame(this.gameStartedId);
+            gameInit.dealloc();
+            $('canvas').remove();
         }
         
     });

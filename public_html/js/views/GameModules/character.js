@@ -6,7 +6,7 @@ define(function (require) {
 
     var Character = {
         init: function (color, position) {
-            var head = new THREE.SphereGeometry(32, 16, 16),
+            var head = new THREE.SphereGeometry(24, 16, 16),
                 hand = new THREE.SphereGeometry(8, 8, 8),
                 foot = new THREE.SphereGeometry(16, 4, 8, 0, Math.PI * 2, 0, Math.PI / 2),
                 nose = new THREE.SphereGeometry(4, 8, 8),
@@ -21,9 +21,9 @@ define(function (require) {
                 left: new THREE.Mesh(hand, material),
                 right: new THREE.Mesh(hand, material)
             };
-            this.hands.left.position.x = -40;
+            this.hands.left.position.x = -32;
             this.hands.left.position.y = -8;
-            this.hands.right.position.x = 40;
+            this.hands.right.position.x = 32;
             this.hands.right.position.y = -8;
             this.mesh.add(this.hands.left);
             this.mesh.add(this.hands.right);
@@ -32,21 +32,21 @@ define(function (require) {
                 right: new THREE.Mesh(foot, material)
             };
             this.feet.left.position.x = -20;
-            this.feet.left.position.y = -48;
+            this.feet.left.position.y = -36;
             this.feet.left.rotation.y = Math.PI / 4;
             this.feet.right.position.x = 20;
-            this.feet.right.position.y = -48;
+            this.feet.right.position.y = -36;
             this.feet.right.rotation.y = Math.PI / 4;
             this.mesh.add(this.feet.left);
             this.mesh.add(this.feet.right);
             this.nose = new THREE.Mesh(nose, material);
             this.nose.position.y = 0;
-            this.nose.position.z = 32;
+            this.nose.position.z = 24;
             this.mesh.add(this.nose);
 
             var playerCoordinates = gameObjects.getRealCoordinates(position.x, position.z); // where we need to place our character
             this.mesh.position.set(playerCoordinates.x, 48, playerCoordinates.z);
-            
+
 
             this.direction = new THREE.Vector3(0, 0, 0);
             this.step = 0;
@@ -73,7 +73,6 @@ define(function (require) {
                 this.collision();
                 if (this.direction.x !== 0 || this.direction.z !== 0) {
                     this.rotate();
-                    console.log(gameObjects.obstacles[gameObjects.objects[8].index].position);
                     this.move();
                     return true;
                 }
@@ -89,7 +88,7 @@ define(function (require) {
 
                 for (i = 0; i < this.rays.length; i += 1) {
                     this.caster.set(this.mesh.position, this.rays[i]);
-                    collisions = this.caster.intersectObjects(obstacles);
+                    collisions = this.caster.intersectObjects(obstacles, true);
                     if (collisions.length > 0 && collisions[0].distance <= distance) {
                         if ((i === 0 || i === 1 || i === 7) && this.direction.z === 1) {
                             this.direction.setZ(0);
@@ -103,6 +102,7 @@ define(function (require) {
                         }
                     }
                 }
+
             };
 
             this.rotate = function () {
@@ -136,7 +136,6 @@ define(function (require) {
                 this.hands.right.position.setZ(Math.sin(this.step) * 8);
             };
             this.setControls = function (position) {
-                
                 var controls = {
                     left: false,
                     up: false,
@@ -178,14 +177,18 @@ define(function (require) {
                     }
                     gameObjects.firstCharacter.setDirection(controls);
                 }
-                jQuery(document).keydown(function (e) {
+                var gameCanvas = jQuery('#game');
+                gameCanvas.attr("contentEditable", "true");
+                gameCanvas[0].contentEditable = true;
+                gameCanvas.keydown(function (e) {
                     makeControls(true, e.keyCode, position);
                     e.preventDefault();
                 });
-                jQuery(document).keyup(function (e) {
+                gameCanvas.keyup(function (e) {
                     makeControls(false, e.keyCode, position);
                     e.preventDefault();
                 });
+                gameCanvas.focus();
             };
             this.setFocus = function (object, z) {
                 gameObjects.camera.position.set(object.position.x, object.position.y + 750, object.position.z - z);
