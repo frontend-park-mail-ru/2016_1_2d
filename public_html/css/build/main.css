@@ -169,3 +169,64 @@ html, body {
 
 .webcam__snapshot {
   display: none; }
+
+.room {
+  float: left;
+  height: 100%;
+  width: 450px;
+  background-color: white; }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box; }
+
+input[type=checkbox] {
+  display: none; }
+
+.check {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-right: 72px;
+  cursor: pointer; }
+
+.check:before,
+.check:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 0 solid;
+  border-color: #d41111;
+  -webkit-transition: border 0.2s, border-radius 0.2s, -webkit-transform 0.2s 0.1s;
+  transition: border 0.2s, border-radius 0.2s, -webkit-transform 0.2s 0.1s;
+  transition: border 0.2s, transform 0.2s 0.1s, border-radius 0.2s;
+  transition: border 0.2s, transform 0.2s 0.1s, border-radius 0.2s, -webkit-transform 0.2s 0.1s; }
+
+.check:before {
+  border-left-width: 10px;
+  -webkit-transform: rotate(45deg) translateX(25.5319148936px);
+  transform: rotate(45deg) translateX(25.5319148936px); }
+
+.check:after {
+  border-right-width: 10px;
+  -webkit-transform: rotate(-45deg) translateX(-25.5319148936px);
+  transform: rotate(-45deg) translateX(-25.5319148936px); }
+
+input[type=checkbox]:checked + .check:before,
+input[type=checkbox]:checked + .check:after {
+  border-color: #11d493;
+  border-top-width: 10px;
+  border-bottom-width: 10px;
+  border-radius: 50%;
+  -webkit-transform: rotate(0) translateX(0);
+  transform: rotate(0) translateX(0);
+  -webkit-transition: border 0.2s 0.1s, border-radius 0.2s 0.05s, -webkit-transform 0.2s;
+  transition: border 0.2s 0.1s, border-radius 0.2s 0.05s, -webkit-transform 0.2s;
+  transition: border 0.2s 0.1s, transform 0.2s, border-radius 0.2s 0.05s;
+  transition: border 0.2s 0.1s, transform 0.2s, border-radius 0.2s 0.05s, -webkit-transform 0.2s; }
+
+.text {
+  font-size: 60px; }
