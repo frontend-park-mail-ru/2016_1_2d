@@ -54,12 +54,12 @@ define(function (require) {
         frame: function () {
             gameObjects.firstCharacter.motion();
             gameObjects.secondCharacter.motion();
-            gameObjects.secondCharacter.setDirection({
-                up:true,
-                left: false,
-                down: false,
-                right: false
-            });
+            // gameObjects.secondCharacter.setDirection({
+            //     up:true,
+            //     left: false,
+            //     down: false,
+            //     right: false
+            // });
             gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh , 950);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },

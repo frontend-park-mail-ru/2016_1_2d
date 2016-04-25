@@ -1,15 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
     <div class="room">
-        <div class="room__profile_status">
+        <div class="room__profile">
+            <label class="text">username</label>
             <input type="checkbox" id="check"/>
             <label class="check" for="check"></label>
-            <label class="text" for="check">{username}</label>
+            <button class="ready-button">Not Ready</button>
         </div>
-    </div>
-    <div class="wrap__layout">
-        <a href="#main"><button class="menu__btn  menu__btn_back">
-            Back
-        </button></a>
     </div>
 
 </fest:template>

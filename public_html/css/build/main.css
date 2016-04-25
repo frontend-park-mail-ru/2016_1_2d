@@ -172,14 +172,11 @@ html, body {
 
 .room {
   float: left;
-  height: 100%;
-  width: 450px;
-  background-color: white; }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box; }
+  background-color: #fdfbff;
+  width: 250px;
+  height: 300px;
+  margin-left: 60px;
+  margin-top: 50px; }
 
 input[type=checkbox] {
   display: none; }
@@ -188,35 +185,39 @@ input[type=checkbox] {
   position: relative;
   width: 60px;
   height: 60px;
-  margin-right: 72px;
+  top: 10px;
+  margin: 80px 100px 80px 60px;
   cursor: pointer; }
 
 .check:before,
 .check:after {
+  box-sizing: border-box;
   content: "";
   display: inline-block;
   position: absolute;
-  width: 60px;
-  height: 60px;
-  border: 0 solid;
-  border-color: #d41111;
+  width: 120px;
+  height: 120px;
+  border: 0 solid #d41111;
   -webkit-transition: border 0.2s, border-radius 0.2s, -webkit-transform 0.2s 0.1s;
   transition: border 0.2s, border-radius 0.2s, -webkit-transform 0.2s 0.1s;
   transition: border 0.2s, transform 0.2s 0.1s, border-radius 0.2s;
   transition: border 0.2s, transform 0.2s 0.1s, border-radius 0.2s, -webkit-transform 0.2s 0.1s; }
 
 .check:before {
+  box-sizing: border-box;
   border-left-width: 10px;
-  -webkit-transform: rotate(45deg) translateX(25.5319148936px);
-  transform: rotate(45deg) translateX(25.5319148936px); }
+  -webkit-transform: rotate(45deg) translateX(50px);
+  transform: rotate(45deg) translateX(50px); }
 
 .check:after {
+  box-sizing: border-box;
   border-right-width: 10px;
-  -webkit-transform: rotate(-45deg) translateX(-25.5319148936px);
-  transform: rotate(-45deg) translateX(-25.5319148936px); }
+  -webkit-transform: rotate(-45deg) translateX(-50px);
+  transform: rotate(-45deg) translateX(-50px); }
 
 input[type=checkbox]:checked + .check:before,
 input[type=checkbox]:checked + .check:after {
+  box-sizing: border-box;
   border-color: #11d493;
   border-top-width: 10px;
   border-bottom-width: 10px;
@@ -229,4 +230,15 @@ input[type=checkbox]:checked + .check:after {
   transition: border 0.2s 0.1s, transform 0.2s, border-radius 0.2s 0.05s, -webkit-transform 0.2s; }
 
 .text {
-  font-size: 60px; }
+  overflow: hidden;
+  display: block;
+  font-size: 60px;
+  margin-right: 20px; }
+
+.ready-button {
+  position: relative;
+  top: 180px;
+  font-size: 25px;
+  width: 100%;
+  height: 40px;
+  background-color: #039BE5; }

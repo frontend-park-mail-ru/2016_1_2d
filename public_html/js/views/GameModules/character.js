@@ -82,7 +82,7 @@ define(function (require) {
                 var collisions;
                 var i;
                 // Maximum distance from the origin before we consider collision
-                var distance = 32;
+                var distance = 42;
                 // Get the obstacles array from our world
                 var obstacles = world.getObstacles();
 
@@ -106,7 +106,6 @@ define(function (require) {
             };
 
             this.rotate = function () {
-                // Set the direction's angle, and the difference between it and our Object3D's current rotation
                 var angle = Math.atan2(this.direction.x, this.direction.z);
                 var difference = angle - this.mesh.rotation.y;
                 // If we're doing more than a 180°
@@ -177,18 +176,18 @@ define(function (require) {
                     }
                     gameObjects.firstCharacter.setDirection(controls);
                 }
-                var gameCanvas = jQuery('#game');
-                gameCanvas.attr("contentEditable", "true");
-                gameCanvas[0].contentEditable = true;
-                gameCanvas.keydown(function (e) {
+                var gameDiv = jQuery('#game');
+                gameDiv.attr("contentEditable", "true");
+                gameDiv[0].contentEditable = true;
+                gameDiv.keydown(function (e) {
                     makeControls(true, e.keyCode, position);
                     e.preventDefault();
                 });
-                gameCanvas.keyup(function (e) {
+                gameDiv.keyup(function (e) {
                     makeControls(false, e.keyCode, position);
                     e.preventDefault();
                 });
-                gameCanvas.focus();
+                gameDiv.focus();
             };
             this.setFocus = function (object, z) {
                 gameObjects.camera.position.set(object.position.x, object.position.y + 750, object.position.z - z);
