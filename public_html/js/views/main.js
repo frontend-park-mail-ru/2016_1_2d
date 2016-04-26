@@ -18,6 +18,8 @@ define(function (require) {
             
             reloadViewWithAuthTemplate: function() {
                 this.template = require('tmpl/main_authed');
+                var ws = require('utils/ws');
+                ws.startConnection();
                 this.render();
             },
             reloadView: function() {

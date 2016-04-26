@@ -2,7 +2,7 @@ define(function(require) {
 
     var wsApi = {
 
-        WS_URL: 'ws://' + 'localhost:8081' + '/game/',
+        WS_URL: 'ws://' + 'localhost:8081' + '/game',
 
         READY_CODE: 3,
         EVENT_CODE: 6,

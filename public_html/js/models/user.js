@@ -7,7 +7,8 @@ define(function(require) {
                 'username' : '',
                 'password': '',
                 'score': '',
-                'authed': false
+                'authed': false,
+                'isReady': false,
             },
             authorize: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
