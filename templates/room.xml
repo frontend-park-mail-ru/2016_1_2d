@@ -2,11 +2,26 @@
     <div class="room">
         <div class="room__profile">
             <label class="text">username</label>
-            <input type="checkbox" id="check"/>
-            <label class="check" for="check"></label>
+            <img class="room__profile__status" src="media/ready.png"></img>
+            <button class="ready-button">Not Ready</button>
+        </div>
+        <div class="room__profile">
+            <label class="text">username</label>
+            <img class="room__profile__status" src="media/not_ready.png"></img>
+            <button class="ready-button">Not Ready</button>
+        </div>
+        <div class="room__profile">
+            <label class="text">username</label>
+            <img class="room__profile__status" src="media/ready.png"></img>
+            <button class="ready-button">Not Ready</button>
+        </div>
+        <div class="room__profile">
+            <label class="text">username</label>
+            <img class="room__profile__status" src="media/not_ready.png"></img>
             <button class="ready-button">Not Ready</button>
         </div>
     </div>
+
 
 </fest:template>
 

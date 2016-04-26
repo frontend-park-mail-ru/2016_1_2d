@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 command: 'node server.js '
             },
             backend : {
-                command : 'java -cp Bomberman-server-1.0.jar main.Main 8081 hash'
+                command : 'java -cp Bomberman-server-1.0.jar main.Main'
             },
             real_backend : {
                 command : 'java -cp Bomberman-server-1.0.jar main.Main 8081'
