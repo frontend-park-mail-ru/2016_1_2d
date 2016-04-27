@@ -2,12 +2,34 @@
     <div class="room">
         <div class="room__profile">
             <label class="text">username</label>
-            <img class="room__profile__status" src="media/ready.png"></img>
-            <button class="ready-button">Not Ready</button>
+            <div class="room__profile-wrapper">
+                <img class="room__profile_status" src="media/ready.png"></img>
+            </div>
+            <button class="room__profile_current-user-ready-button">Not Ready</button>
+        </div>
+
+        <div class="room__profile">
+            <label class="text">username</label>
+            <div class="room__profile-wrapper">
+                <img class="room__profile_status" src="media/ready.png"></img>
+            </div>
+            <button class="room__profile_current-user-ready-button">Not Ready</button>
+        </div>
+        <div class="room__profile">
+            <label class="text">username</label>
+            <div class="room__profile-wrapper">
+                <img class="room__profile_status" src="media/ready.png"></img>
+            </div>
+            <button class="room__profile_current-user-ready-button">Not Ready</button>
+        </div>
+        <div class="room__profile">
+            <label class="text">username</label>
+            <div class="room__profile-wrapper">
+                <img class="room__profile_status" src="media/ready.png"></img>
+            </div>
+            <button class="room__profile_current-user-ready-button">Not Ready</button>
         </div>
     </div>
-
-
 </fest:template>
 
 

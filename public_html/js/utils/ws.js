@@ -1,8 +1,8 @@
 define(function(require) {
-
+    var user = require('models/user');
     var wsApi = {
 
-        WS_URL: 'ws://' + 'localhost:8081' + '/game',
+        WS_URL: 'ws://' + 'localhost' + '/game',
 
         READY_CODE: 3,
         EVENT_CODE: 6,
@@ -38,8 +38,10 @@ define(function(require) {
         },
         sendReady: function(readyStatus) {
             var data = {
-                "code": this.READY_CODE,
-                "ready": readyStatus
+                "type": "user_state_changed",
+                "isReady": readyStatus,
+                "contentLoaded" : true,
+                "id" : user.get('id')
             };
             console.log(data);
             this.socket.send(JSON.stringify(data));

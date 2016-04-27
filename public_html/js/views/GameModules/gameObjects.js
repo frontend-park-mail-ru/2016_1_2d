@@ -1,7 +1,8 @@
 define(function (require) {
     var THREE = require('three');
     var jQuery = require('jquery');
-
+    
+    
     var objects = {
         scene: null,
         camera: null,
@@ -13,7 +14,7 @@ define(function (require) {
         obstacles: [], // here we dump all our obstacles for raycaster
         getRealCoordinates: function (x, z) {
             return {
-                x: -x * 64 + 992,
+                x: x * 64 - 992,
                 z: z * 64 - 992
             }
         },

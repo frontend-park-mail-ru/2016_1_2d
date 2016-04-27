@@ -180,7 +180,7 @@ html, body {
   margin-left: 190px;
   margin-top: 50px; }
 
-.room__profile__status {
+.room__profile_status {
   width: 200px;
   margin: 20px 30px 20px 30px; }
 
@@ -188,9 +188,13 @@ html, body {
   font-size: 50px;
   margin-right: 20px; }
 
-.ready-button {
+.room__profile_current-user-ready-button,
+.room__profile_users-ready-button {
   position: relative;
   font-size: 25px;
   width: 100%;
   height: 40px;
   background-color: #039BE5; }
+
+.room__profile-wrapper {
+  height: 240px; }

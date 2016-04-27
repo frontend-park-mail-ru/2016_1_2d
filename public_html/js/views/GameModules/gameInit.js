@@ -23,7 +23,7 @@ define(function (require) {
                 gameObjects.renderer = new THREE.WebGLRenderer();
                 this.container = $('#game-canvas');
 
-                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 4, z: 6});
+                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
                 gameObjects.secondCharacter = new Character.init({color: 0x00FF00}, {x: 4, z: 9});
 
 

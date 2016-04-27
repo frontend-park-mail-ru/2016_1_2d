@@ -15,11 +15,8 @@ define(function (require) {
                 this.listenTo(user, "userAuthed", this.reloadViewWithAuthTemplate);
                 this.listenTo(user, "userLogout",this.reloadView);
             },
-            
             reloadViewWithAuthTemplate: function() {
                 this.template = require('tmpl/main_authed');
-                var ws = require('utils/ws');
-                ws.startConnection();
                 this.render();
             },
             reloadView: function() {

@@ -8,8 +8,9 @@ define(function(require) {
                 'password': '',
                 'score': '',
                 'authed': false,
-                'isReady': false,
+                'isReady': false
             },
+            url: '/api/user/',
             authorize: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
                     this.trigger('invalidLoginPassword', 'Please enter valid data');
@@ -46,7 +47,9 @@ define(function(require) {
                 $.ajax({
                     method: 'PUT',
                     url: url,
-                    data: {'login': this.get('username'), 'password': this.get('password')},
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({'login': this.get('username'), 'password': this.get('password')}),
                     success: function (msg) {
                         self.set('id', msg.id);
                         self.getUserInfo();
@@ -62,7 +65,9 @@ define(function(require) {
                 $.ajax({
                     method: 'PUT',
                     url: url,
-                    data: {'login': this.get('username'), 'password': this.get('password')},
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({'login': this.get('username'), 'password': this.get('password')}),
                     success: function (msg) {
                         self.set('id', msg.id);
                         self.getUserInfo();
@@ -92,6 +97,7 @@ define(function(require) {
                 $.ajax({
                     method: 'GET',
                     url: '/api/user/' + self.get('id'),
+
                     success: function (msg) {
                         self.set('authed', true);
                         self.set('score', msg.score);
