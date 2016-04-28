@@ -130,6 +130,7 @@ define(function (require) {
                 var z = this.mesh.position.z;
                 this.mesh.position.x += this.direction.x * ((this.direction.z === 0) ? 4 : Math.sqrt(8));
                 this.mesh.position.z += this.direction.z * ((this.direction.x === 0) ? 4 : Math.sqrt(8));
+                console.log(gameObjects.getGameCoordinates(this.mesh.position.x, this.mesh.position.z));
                 this.step += 1 / 4;
                 this.feet.left.position.setZ(Math.sin(this.step) * 16);
                 this.feet.right.position.setZ(Math.cos(this.step + (Math.PI / 2)) * 16);

@@ -1,7 +1,7 @@
 define(function (require) {
         var tmpl = require('tmpl/login');
         var baseView = require('views/baseView');
-        var user = require('models/user');
+        var app = require('app');
         var View = baseView.extend({
             template: tmpl,
             events: {
@@ -11,14 +11,14 @@ define(function (require) {
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
                     this.$('#sign-in').prop("disabled", true);
-                    user.authorize(login, password);
+                    app.user.authorize(login, password);
                 }
             },
             initialize: function () {
                 this.render();
                 this.on('error', this.showErrorMessage);
-                this.listenTo(user, "invalidLoginPassword", this.showErrorMessage);
-                this.listenTo(user, 'userAuthed', this.reloadAll);
+                this.listenTo(app.user, "invalidLoginPassword", this.showErrorMessage);
+                this.listenTo(app.user, 'userAuthed', this.reloadAll);
             },
             reloadAll: function() {
                 this.$('#sign-in').prop("disabled", false);
@@ -26,6 +26,7 @@ define(function (require) {
                     document.getElementById('login-input').value = "";
                     document.getElementById('password-input').value = "";
                 }
+                window.location.href = '#main'
             },
             showErrorMessage: function (msg) {
                 this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){

@@ -3,12 +3,12 @@ define(function (require) {
     var user = require('models/user');
     var tmpl = require('tmpl/room');
     var ws = require('utils/ws');
+   
     var View = baseView.extend({
         template: tmpl,
         requireAuth: true,
         events: {
             'click .room__profile_current-user-ready-button': function(e) {
-                // console.dir(e.target.parentElement);
                 ws.sendReady(true);
                 $(".room__profile_status",e.target.parentElement).fadeOut('slow', function () {
                     $(this).load(function () {

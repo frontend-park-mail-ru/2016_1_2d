@@ -1,8 +1,8 @@
 define(function (require) {
         var tmpl = require('tmpl/settings');
         var baseView = require('views/baseView');
-        var user = require('models/user');
         var camera = require('webcam');
+        var app = require('app');
 
         var View = baseView.extend({
             template: tmpl,
@@ -22,11 +22,11 @@ define(function (require) {
                 }
             },
             initialize: function () {
-                this.listenTo(user, "userAuthed", this.render);
+                this.listenTo(app.user, "userAuthed", this.render);
                 this.render();
             },
             render: function () {
-                this.$el.html(this.template(user.toJSON()));
+                this.$el.html(this.template(app.user.toJSON()));
             },
             hide: function () {
                 if (this.$('.webcam__snapshot').css('display') != 'none') {

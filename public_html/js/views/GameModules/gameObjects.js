@@ -18,6 +18,12 @@ define(function (require) {
                 z: z * 64 - 992
             }
         },
+        getGameCoordinates: function (x, z) {
+            return {
+                x: (x + 992) / 64 ,
+                z: (z + 992) / 64
+            }
+        },
         addObjectToWorld: function (type, obj_geometry, id, x, z) { // needed to place objects by x, y and its id
             var realObj = new THREE.Mesh(obj_geometry, type);
             var coordinates = this.getRealCoordinates(x, z);

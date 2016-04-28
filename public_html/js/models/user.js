@@ -11,6 +11,15 @@ define(function(require) {
                 'isReady': false
             },
             url: '/api/user/',
+            validate: function(attrs) {
+                if(attrs.login.length === 0 || attrs.password.length === 0) {
+                    this.trigger('invalidLoginPassword', 'Please enter valid data');
+                }
+                if(attrs.login.length === 0 || attrs.password.length === 0) {
+                    this.trigger('invalidForm', 'Please enter valid data');
+                }
+            },
+
             authorize: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
                     this.trigger('invalidLoginPassword', 'Please enter valid data');
@@ -21,6 +30,7 @@ define(function(require) {
                     this.set('password','');
                 }
             },
+
             registerNew: function(login, password) {
                 if(login.length === 0 || password.length === 0) {
                     this.trigger('invalidForm','Please enter valid data');
@@ -65,7 +75,7 @@ define(function(require) {
                 $.ajax({
                     method: 'PUT',
                     url: url,
-                    contentType: 'application/json',
+
                     dataType: 'json',
                     data: JSON.stringify({'login': this.get('username'), 'password': this.get('password')}),
                     success: function (msg) {
@@ -110,6 +120,6 @@ define(function(require) {
             }
         });
 
-        return new User();
+        return User;
     }
 );
