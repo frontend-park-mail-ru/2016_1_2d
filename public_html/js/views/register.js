@@ -7,23 +7,30 @@ define(function (require) {
             events: {
                 'click #sign-up': function(e) {
                     e.preventDefault();
+                    var self = this;
                     this.$('.alert-box.error').finish();
                     var login = document.getElementById('reg-login-input').value;
                     var password = document.getElementById('reg-password-input').value;
                     this.$('#sign-in').prop("disabled", true);
-                    app.user.registerNew(login, password);
+                    app.user.save({login: login, password: password}, {
+                        success: function(response) {
+                            app.user.fetch({success: function () {
+                                app.Events.trigger('userAuthed');
+                                self.reloadAll();
+                                window.location.href = '#main'
+                            }});
+                        }
+                    });
                 }
             },
             initialize: function () {
                 this.render();
                 this.listenTo(app.user, "invalidForm", this.showErrorMessage);
-                this.listenTo(app.user, 'userRegistered', this.reloadAll);
             },
             reloadAll: function() {
                 this.$('#sign-in').prop("disabled", false);
                 document.getElementById('reg-login-input').value = "";
                 document.getElementById('reg-password-input').value = "";
-                window.location.href = '#main'
             },
             showErrorMessage: function (msg) {
                 this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){

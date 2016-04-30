@@ -6,7 +6,7 @@
                     <img src="https://api.adorable.io/avatars/130/test" class="logo--avatar"></img>
                 </div>
                 <div class="score_text">
-                    <p>Username : <fest:space/><fest:value>user.username</fest:value></p>
+                    <p>Username : <fest:space/><fest:value>user.login</fest:value></p>
                     <p>Score : <fest:space/><fest:value> user.score</fest:value></p>
                 </div>
             </div>

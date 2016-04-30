@@ -10,13 +10,16 @@ define(
             host: 'localhost'
         };
         app.session.fetch({
-            success: function(){
-            },
-            error: function () {
+            success: function() {
+                app.user.set('id', app.session.get('id'));
+                app.user.fetch({success: function () {
+                    app.Events.trigger('userAuthed');
+                }});
             }
         });
-        
 
+        
+        app.Events = new _.extend({}, Backbone.Events);
         app.wsEvents = new _.extend({}, Backbone.Events);
 
         return app

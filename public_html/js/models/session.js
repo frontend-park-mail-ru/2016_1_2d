@@ -4,10 +4,7 @@ define(function(require) {
     var Session = Backbone.Model.extend({
         url: '/api/session/',
         sync: sessionSync,
-        defaults: {
-            login: '',
-            password: '',
-        },
+        
 
     });
     return Session

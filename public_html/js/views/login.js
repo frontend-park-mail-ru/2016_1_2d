@@ -11,7 +11,6 @@ define(function (require) {
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
                     this.$('#sign-in').prop("disabled", true);
-                    app.user.authorize(login, password);
                 }
             },
             initialize: function () {
@@ -26,7 +25,7 @@ define(function (require) {
                     document.getElementById('login-input').value = "";
                     document.getElementById('password-input').value = "";
                 }
-                window.location.href = '#main'
+                
             },
             showErrorMessage: function (msg) {
                 this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){

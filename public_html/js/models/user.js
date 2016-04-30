@@ -4,11 +4,12 @@ define(function(require) {
         var User = Backbone.Model.extend({
             sync: userSync,
             url: '/api/user/',
-            defaults: {
-                id: -1,
-                login: '',
-
-            },
+            validate: function(attrs, options) {
+                if (attrs.login.length === 0 || attrs.password.length === 0) {
+                    this.trigger('invalidForm', 'Please enter valid data');
+                    return "Validation error";
+                }
+            }
 
         });
 

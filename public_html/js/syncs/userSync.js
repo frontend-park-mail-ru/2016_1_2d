@@ -1,43 +1,23 @@
 define(function(require) {
+    var Backbone = require('backbone');
     return function(method, model, options) {
-
         var methods = {
-
             'create': {
                 send: function() {
-                    this.register();
-                },
-
-                register: function() {
-
-
+                    Backbone.sync('update', model, options);
                 }
             },
-
             'read': {
-
                 send: function() {
-                    
+                    model.url +=  model.get('id');
+                    Backbone.sync(method, model, options);
                 },
 
-
-                check: function() {
-
-                }
             },
-
+            
             'update': {
-
-                send: function() {
-
-                },
-
-                login: function() {
-
-                },
-
-                logout: function() {
-
+                send: function () {
+                    // Backbone.sync('update', model, options);
                 }
             }
         };

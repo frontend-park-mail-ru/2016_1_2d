@@ -7,20 +7,24 @@ define(function (require) {
             template: tmpl,
             events: {
                 'click #logout': function(e) {
+                    var self = this;
                     e.preventDefault();
-                    // app.user.userLogout();
+                    app.session.destroy({
+                        success: function () {
+                            self.reloadView();
+                        }
+                    });
                 }
             },
             initialize: function () {
                 this.render();
-                // this.listenTo(app.user, "userAuthed", this.reloadViewWithAuthTemplate);
-                // this.listenTo(app.user, "userLogout",this.reloadView);
+                this.listenTo(app.Events, "userAuthed", this.reloadViewWithAuthTemplate);
 
-                
             },
             reloadViewWithAuthTemplate: function() {
                 this.template = require('tmpl/main_authed');
                 this.render();
+
             },
             reloadView: function() {
                 this.template = tmpl;
