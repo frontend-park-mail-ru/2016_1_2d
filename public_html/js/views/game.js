@@ -14,7 +14,6 @@ define(function (require) {
         hide: function () {
             baseView.prototype.hide.call(this);
             this.endGame();
-
         },
         startGame: function () {
             var self = this;

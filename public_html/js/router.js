@@ -20,8 +20,8 @@ define(
                 '*default': 'displayMainView'
             },
             initialize: function () {
-                app.user.checkAuth();
                 viewManager = new viewManager(views);
+                
             },
             displayMainView: function () {
                 views.main.show();

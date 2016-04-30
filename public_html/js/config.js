@@ -7,7 +7,7 @@ var require = {
         backbone: 'lib/backbone',
         three : 'lib/three.min',
         OBJLoader: 'lib/OBJLoader',
-        webcam : 'lib/webcam.min',
+        webcam : 'lib/webcam.min'
     },
     shim: {
         'backbone': {

@@ -8,12 +8,14 @@ define(function (require) {
             events: {
                 'click #logout': function(e) {
                     e.preventDefault();
-                    app.user.userLogout();
+                    // app.user.userLogout();
                 }
             },
             initialize: function () {
-                this.listenTo(app.user, "userAuthed", this.reloadViewWithAuthTemplate);
-                this.listenTo(app.user, "userLogout",this.reloadView);
+                this.render();
+                // this.listenTo(app.user, "userAuthed", this.reloadViewWithAuthTemplate);
+                // this.listenTo(app.user, "userLogout",this.reloadView);
+
                 
             },
             reloadViewWithAuthTemplate: function() {
