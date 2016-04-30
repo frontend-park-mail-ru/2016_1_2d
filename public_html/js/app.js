@@ -7,7 +7,11 @@ define(
         var app = {
             session: new session(),
             user: new user(),
-            host: 'localhost'
+            host: 'localhost',
+            createNewSession : function () {
+                app.session = new session();
+                app.user = new user();
+            }
         };
         app.session.fetch({
             success: function() {
@@ -17,7 +21,8 @@ define(
                 }});
             }
         });
-
+            
+        
         
         app.Events = new _.extend({}, Backbone.Events);
         app.wsEvents = new _.extend({}, Backbone.Events);

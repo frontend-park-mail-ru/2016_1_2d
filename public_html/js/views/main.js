@@ -11,6 +11,7 @@ define(function (require) {
                     e.preventDefault();
                     app.session.destroy({
                         success: function () {
+                            app.createNewSession();
                             self.reloadView();
                         }
                     });

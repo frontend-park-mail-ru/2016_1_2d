@@ -13,12 +13,15 @@ define(function (require) {
                     var password = document.getElementById('reg-password-input').value;
                     this.$('#sign-in').prop("disabled", true);
                     app.user.save({login: login, password: password}, {
-                        success: function(response) {
+                        success: function() {
                             app.user.fetch({success: function () {
                                 app.Events.trigger('userAuthed');
                                 self.reloadAll();
                                 window.location.href = '#main'
                             }});
+                        },
+                        error : function (err, text) {
+                            self.showErrorMessage(text.responseJSON.message);
                         }
                     });
                 }
