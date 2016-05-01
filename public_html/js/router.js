@@ -29,7 +29,7 @@ define(
             },
             displayView: function () {
                 var view = views[Backbone.history.getFragment()];
-                if (view.requireAuth && !app.user.get('authed') ) {
+                if (view.requireAuth && !app.session.get('authed') ) {
                     this.navigate('#login', {trigger: true});
                     views.login.trigger('error','Need login to perform this action');
                 } else {

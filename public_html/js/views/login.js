@@ -6,11 +6,25 @@ define(function (require) {
             template: tmpl,
             events: {
                 'click #sign-in': function(e) {
+                    var self = this;
                     e.preventDefault();
                     this.$('.alert-box.error').finish();
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
                     this.$('#sign-in').prop("disabled", true);
+                    app.session.save({login: login, password: password}, {
+                        success: function() {
+                            app.user.set('id', app.session.get('id'));
+                            app.user.fetch({success: function () {
+                                app.Events.trigger('userAuthed');
+                                self.reloadAll();
+                                window.location.href = '#main'
+                            }});
+                        },
+                        error : function (err, text) {
+                            self.showErrorMessage(text.responseJSON.message);
+                        }
+                    });
                 }
             },
             initialize: function () {
@@ -25,7 +39,7 @@ define(function (require) {
                     document.getElementById('login-input').value = "";
                     document.getElementById('password-input').value = "";
                 }
-                
+
             },
             showErrorMessage: function (msg) {
                 this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){

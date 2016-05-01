@@ -22,7 +22,7 @@ define(function (require) {
                 }
             },
             initialize: function () {
-                this.listenTo(app.user, "userAuthed", this.render);
+                this.listenTo(app.Events, "userAuthed", this.render);
                 this.render();
             },
             render: function () {

@@ -11,14 +11,20 @@ define(
             createNewSession : function () {
                 app.session = new session();
                 app.user = new user();
+                app.session.set('id', -1);
             }
         };
         app.session.fetch({
             success: function() {
+                app.session.set('authed', true);
                 app.user.set('id', app.session.get('id'));
-                app.user.fetch({success: function () {
+                app.user.fetch({
+                    success: function () {
                     app.Events.trigger('userAuthed');
                 }});
+            },
+            error: function () {
+                app.session.set('id', -1);
             }
         });
             

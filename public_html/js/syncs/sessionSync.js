@@ -19,6 +19,7 @@ define(function(require) {
             'update': {
 
                 send: function() {
+                    Backbone.sync(method,model,options);
 
                 }
             },
