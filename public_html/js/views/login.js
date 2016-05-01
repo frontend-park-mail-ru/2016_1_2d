@@ -16,6 +16,7 @@ define(function (require) {
                         success: function() {
                             app.session.set('authed', true);
                             app.user.set('id', app.session.get('id'));
+                            app.user.set('isReady', false);
                             app.user.fetch({success: function () {
                                 app.Events.trigger('userAuthed');
                                 self.reloadAll();

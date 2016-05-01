@@ -18,6 +18,7 @@ define(
             success: function() {
                 app.session.set('authed', true);
                 app.user.set('id', app.session.get('id'));
+                app.user.set('isReady', false);
                 app.user.fetch({
                     success: function () {
                     app.Events.trigger('userAuthed');
@@ -27,8 +28,6 @@ define(
                 app.session.set('id', -1);
             }
         });
-            
-        
         
         app.Events = new _.extend({}, Backbone.Events);
         app.wsEvents = new _.extend({}, Backbone.Events);

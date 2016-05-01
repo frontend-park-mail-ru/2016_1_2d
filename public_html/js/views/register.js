@@ -14,7 +14,9 @@ define(function (require) {
                     this.$('#sign-in').prop("disabled", true);
                     app.user.save({login: login, password: password}, {
                         success: function() {
+                            app.session.set('authed', true);
                             app.user.fetch({success: function () {
+                                app.user.set('isReady', false);
                                 app.Events.trigger('userAuthed');
                                 self.reloadAll();
                                 window.location.href = '#main'

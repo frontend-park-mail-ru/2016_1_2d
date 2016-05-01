@@ -1,21 +1,21 @@
 .room__profile{
   float: left;
-  width: 250px;
-  height: 300px;
+  width: 200px;
   margin-left: 190px;
   margin-top: 50px;
 }
 .room__profile_status {
-  width: 200px;
+  width: 130px;
   margin: 20px 30px 20px 30px;
 
 }
 .text {
-  font-size: 50px;
-  margin-right: 20px;
+  font-size: 30px;
+  margin-right: 40px;
 }
 .room__profile_current-user-ready-button,
 .room__profile_users-ready-button {
+  top: 20px;
   position: relative;
   font-size: 25px;
   width: 100%;
@@ -23,5 +23,5 @@
   background-color: #039BE5;
 }
 .room__profile-wrapper{
-  height: 240px;
+  height: 140px;
 }

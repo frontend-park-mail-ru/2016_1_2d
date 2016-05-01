@@ -29,6 +29,9 @@
             </div>
             <button class="room__profile_current-user-ready-button">Not Ready</button>
         </div>
+        <a href="#main"><button class="room__btn-back">
+            Back
+        </button></a>
     </div>
 </fest:template>
 
