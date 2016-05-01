@@ -21,7 +21,6 @@ define(
             },
             initialize: function () {
                 viewManager = new viewManager(views);
-                
             },
             displayMainView: function () {
                 views.main.show();
