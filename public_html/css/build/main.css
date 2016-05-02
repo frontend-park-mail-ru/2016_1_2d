@@ -186,7 +186,8 @@ html, body {
 
 .text {
   font-size: 30px;
-  margin-right: 40px; }
+  position: relative;
+  left: 30%; }
 
 .room__profile_current-user-ready-button,
 .room__profile_users-ready-button {
@@ -195,18 +196,19 @@ html, body {
   font-size: 25px;
   width: 100%;
   height: 40px;
-  background-color: #039BE5; }
+  color: #ffffff;
+  background-color: #B71C1C; }
 
 .room__profile-wrapper {
   height: 140px; }
 
 .room__btn-back {
   background: #D32F2F;
-  top: 40px;
-  left: 90px;
+  top: 85%;
+  left: 180px;
   height: 60px;
-  width: 25%;
-  position: relative;
+  width: 20%;
+  position: absolute;
   border: 0;
   margin: 10px 10% 10px 26%;
   border-radius: 5px;

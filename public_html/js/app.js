@@ -28,7 +28,7 @@ define(
                 app.session.set('id', -1);
             }
         });
-        
+
         app.Events = new _.extend({}, Backbone.Events);
         app.wsEvents = new _.extend({}, Backbone.Events);
 

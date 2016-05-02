@@ -8,7 +8,7 @@ define(function (require) {
         template: tmpl,
         requireAuth: true,
         events: {
-            'click .room__profile_current-user-ready-button': function(e) {
+            'click #user-ready-button': function(e) {
                 if (app.user.get('isReady') == false && ws.socket.readyState != 3) {
                     ws.sendReady(true);
                     app.user.set('isReady', true);
@@ -19,7 +19,7 @@ define(function (require) {
                     });
                     $(".room__profile_current-user-ready-button", e.target.parentElement)
                         .html('Ready')
-                        .css('background-color', '#FF9800');
+                        .css('background-color', '#039BE5');
                 } else {
                     if (app.user.get('isReady') == true && ws.socket.readyState != 3) {
                         app.user.set('isReady', false);
@@ -31,20 +31,37 @@ define(function (require) {
                         });
                         $(".room__profile_current-user-ready-button", e.target.parentElement)
                             .html('Not Ready')
-                            .css('background-color', '#039BE5');
+                            .css('background-color', '#B71C1C');
+                    } else {
+                        this.$('.alert-box.error').finish();
+                        this.showErrorMessage('Connection error, reenter room');
                     }
                 }
             }
         },
+        initialize: function () {
+            this.render();
+            this.listenTo(app.Events, "userAuthed", this.render);
+        },
         show: function () {
             baseView.prototype.show.call(this);
             ws.startConnection();
+        },
+        render: function () {
+            console.log(app.user.toJSON());
+            this.$el.html(this.template(app.user.toJSON()));
         },
         hide: function () {
             if(ws.socket) {
                 ws.closeConnection();
             }
             baseView.prototype.hide.call(this);
+        },
+        showErrorMessage: function (msg) {
+            this.$('.alert-box.error').html('Error: ' + msg).fadeIn(400,function(){
+                $('#sign-in').prop("disabled", false);
+            }).fadeOut(2200);
+
         }
 
     });
