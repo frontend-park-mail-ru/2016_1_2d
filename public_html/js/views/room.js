@@ -3,6 +3,7 @@ define(function (require) {
     var app = require('app');
     var tmpl = require('tmpl/room');
     var ws = require('utils/ws');
+    var gameInit = require('views/GameModules/gameInit');
    
     var View = baseView.extend({
         template: tmpl,
@@ -42,13 +43,13 @@ define(function (require) {
         initialize: function () {
             this.render();
             this.listenTo(app.Events, "userAuthed", this.render);
+            gameInit.init();
         },
         show: function () {
             baseView.prototype.show.call(this);
             ws.startConnection();
         },
         render: function () {
-            console.log(app.user.toJSON());
             this.$el.html(this.template(app.user.toJSON()));
         },
         hide: function () {

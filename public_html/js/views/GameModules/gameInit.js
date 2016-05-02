@@ -22,12 +22,12 @@ define(function (require) {
 
                 gameObjects.renderer = new THREE.WebGLRenderer();
 
-                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
-                gameObjects.secondCharacter = new Character.init({color: 0x00FF00}, {x: 4, z: 9});
+                // gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
+                // gameObjects.secondCharacter = new Character.init({color: 0x00FF00}, {x: 4, z: 9});
 
 
-                gameObjects.scene.add(gameObjects.secondCharacter.mesh);
-                gameObjects.scene.add(gameObjects.firstCharacter.mesh);
+                // gameObjects.scene.add(gameObjects.secondCharacter.mesh);
+                // gameObjects.scene.add(gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
                 gameObjects.firstCharacter.setControls('');
@@ -37,7 +37,6 @@ define(function (require) {
                 jQuery(window).resize(function () {
                     BasicScene.setAspect();
                 });
-                this.addToDOM();
                 this.setAspect();
             
         },
@@ -45,8 +44,9 @@ define(function (require) {
             this.container = $('#game-canvas');
             this.container.prepend(gameObjects.renderer.domElement);
         },
-        addPlayer: function (color,x ,z) {
+        addPlayer: function (color, x, z) {
             gameObjects.firstCharacter = new Character.init({color: color}, {x: x, z: z});
+            gameObjects.scene.add(gameObjects.secondCharacter.mesh);
         },
         setAspect: function () {
             var w = this.container.width();

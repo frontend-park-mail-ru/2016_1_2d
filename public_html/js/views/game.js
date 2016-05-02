@@ -17,12 +17,12 @@ define(function (require) {
         },
         startGame: function () {
             var self = this;
-                gameInit.init();
-                function animate() {
-                   self.gameStartedId = requestAnimationFrame(animate);
-                    gameInit.frame();
-                }
-                animate();
+            gameInit.addToDOM();
+            function animate() {
+               self.gameStartedId = requestAnimationFrame(animate);
+                gameInit.frame();
+            }
+            animate();
         },
         endGame: function () {
             cancelAnimationFrame(this.gameStartedId);
