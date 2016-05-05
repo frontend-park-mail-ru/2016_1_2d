@@ -1,14 +1,6 @@
-<fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
+<fest:template xmlns:fest="http://fest.mail.ru">
     <div class="room">
         <div class="alert-box error" style="display: none"></div>
-        <div class="room__profile">
-            <label class="text"><fest:value>user.login</fest:value></label>
-            <div class="room__profile-wrapper">
-                <img class="room__profile_status" src="media/not_ready.png"></img>
-            </div>
-            <button id="user-ready-button" class="room__profile_current-user-ready-button">Not Ready</button>
-        </div>
-
         <a href="#main"><button class="room__btn-back">
             Back
         </button></a>

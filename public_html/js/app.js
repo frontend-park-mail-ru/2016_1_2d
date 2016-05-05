@@ -8,11 +8,12 @@ define(
             session: new session(),
             user: new user(),
             host: 'localhost',
+            contentLoaded: false,
             createNewSession : function () {
                 app.session = new session();
                 app.user = new user();
                 app.session.set('id', -1);
-            }
+            },
         };
         app.session.fetch({
             success: function() {

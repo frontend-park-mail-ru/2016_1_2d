@@ -1,17 +1,15 @@
 define(function(require) {
     var app = require('app');
+
     var wsApi = {
         WS_URL: 'ws://' + app.host + '/game',
-
-        currentApi: null,
         socket: null,
         startConnection: function() {
             this.socket = new WebSocket(this.WS_URL);
             this.socket.onopen = this.onOpen;
             this.socket.onclose = this.onClose;
             this.socket.onerror = this.onError;
-            this.currentApi = this;
-            this.socket.onmessage = this.currentApi.onMessage;
+            this.socket.onmessage = this.onMessage;
             this.socket.onmessage = this.onMessage;
         },
         closeConnection: function() {
@@ -27,20 +25,26 @@ define(function(require) {
             console.log(code);
         },
         onMessage: function (event) {
-            console.log(JSON.parse(event.data))
+            var dataObj = JSON.parse(event.data);
+            if (dataObj.type === 'object_spawned') {
+                app.wsEvents.trigger('object_spawned', dataObj);
+            }
+            if (dataObj.type === 'user_joined') {
+                app.wsEvents.trigger('user_joined', dataObj);
+            }
         },
         onError: function(error) {
             console.log("SOCKET ERROR: " + JSON.stringify(error));
         },
-        sendReady: function(readyStatus) {
+        sendReady: function(readyStatus, contentStatus) {
             var data = {
                 "type": "user_state_changed",
                 "isReady": readyStatus,
-                "contentLoaded" : true,
+                "contentLoaded": contentStatus
             };
-            console.log(data);
-            // this.socket.send(JSON.stringify(data));
-        }
+            this.socket.send(JSON.stringify(data));
+        },
+
     };
 
     return wsApi;

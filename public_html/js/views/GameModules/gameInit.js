@@ -30,19 +30,18 @@ define(function (require) {
                 // gameObjects.scene.add(gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
-                gameObjects.firstCharacter.setControls('');
+                // gameObjects.firstCharacter.setControls('');
                 World.init();
                 gameObjects.scene.add(World.mesh);
 
                 jQuery(window).resize(function () {
                     BasicScene.setAspect();
                 });
-                this.setAspect();
-            
         },
         addToDOM: function () {
             this.container = $('#game-canvas');
             this.container.prepend(gameObjects.renderer.domElement);
+            this.setAspect();
         },
         addPlayer: function (color, x, z) {
             gameObjects.firstCharacter = new Character.init({color: color}, {x: x, z: z});
