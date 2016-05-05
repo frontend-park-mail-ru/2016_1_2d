@@ -54,7 +54,8 @@ define(function (require) {
         },
         addUser: function(userModel) {
             var playerView = new roomPlayer({'model': userModel});
-            console.log(this.collection);
+            this.$('.room').append(playerView.el);
+            console.log(playerView.el);
             // this.playersContainer.append(playerView.el);
 
             // if(userModel.get('user_id') == app.session.user.get('user_id')) {

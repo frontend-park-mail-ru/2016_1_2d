@@ -31,6 +31,7 @@ define(function (require) {
                 // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
                 // gameObjects.firstCharacter.setControls('');
+                this.container = $('#game-canvas');
                 World.init();
                 gameObjects.scene.add(World.mesh);
 
@@ -39,7 +40,6 @@ define(function (require) {
                 });
         },
         addToDOM: function () {
-            this.container = $('#game-canvas');
             this.container.prepend(gameObjects.renderer.domElement);
             this.setAspect();
         },

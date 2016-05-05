@@ -4,8 +4,6 @@ define(function (require) {
 
     var View = Backbone.View.extend({
         template: tmpl,
-        readyBlock: null,
-
         initialize: function () {
             this.render();
             this.listenTo(this.model, "remove", this.removeMe);
@@ -18,7 +16,6 @@ define(function (require) {
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-
             this.setReady();
         },
 
