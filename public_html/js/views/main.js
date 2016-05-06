@@ -25,7 +25,6 @@ define(function (require) {
             reloadViewWithAuthTemplate: function() {
                 this.template = require('tmpl/main_authed');
                 this.render();
-
             },
             reloadView: function() {
                 this.template = tmpl;
