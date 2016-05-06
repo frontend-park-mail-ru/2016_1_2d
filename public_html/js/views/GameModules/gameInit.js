@@ -4,6 +4,7 @@ define(function (require) {
     var gameObjects = require('views/GameModules/gameObjects');
     var Character = require('views/GameModules/character');
     var World = require('views/GameModules/worldBuilder');
+    var OBJLoader = require('OBJLoader');
 
     var BasicScene = {
         init: function () {
@@ -21,23 +22,38 @@ define(function (require) {
 
 
                 gameObjects.renderer = new THREE.WebGLRenderer();
+                this.container = $('#game-canvas');
 
-                // gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
-                // gameObjects.secondCharacter = new Character.init({color: 0x00FF00}, {x: 4, z: 9});
+                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
 
 
-                // gameObjects.scene.add(gameObjects.secondCharacter.mesh);
-                // gameObjects.scene.add(gameObjects.firstCharacter.mesh);
+                gameObjects.scene.add(gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
-                // gameObjects.firstCharacter.setControls('');
-                this.container = $('#game-canvas');
+                gameObjects.firstCharacter.setControls('');
+
                 World.init();
                 gameObjects.scene.add(World.mesh);
 
                 jQuery(window).resize(function () {
                     BasicScene.setAspect();
                 });
+
+
+            var loader = new THREE.OBJLoader();
+            loader.load('../media/game/models/bomb/Bomb.obj', function (object) {
+                var texture = THREE.ImageUtils.loadTexture('../media/game/models/bomb/texture.png', {}, function () {
+                    gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
+                });
+                var materialObj = new THREE.MeshBasicMaterial({map: texture});
+                object.traverse(function (child) {
+                    if (child instanceof THREE.Mesh) {
+                        child.material = materialObj;
+                        child.scale.set(6, 6, 6)
+                    }});
+                gameObjects.scene.add(object);
+            });
+            
         },
         addToDOM: function () {
             this.container.prepend(gameObjects.renderer.domElement);
@@ -57,14 +73,6 @@ define(function (require) {
 
         frame: function () {
             gameObjects.firstCharacter.motion();
-            gameObjects.secondCharacter.motion();
-            // gameObjects.secondCharacter.setDirection({
-            //     up:true,
-            //     left: false,
-            //     down: false,
-            //     right: false
-            // });
-            
             gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh , 950);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },

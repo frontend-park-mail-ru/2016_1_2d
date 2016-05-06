@@ -1,7 +1,7 @@
 define(function (require) {
     var gameInit = require('views/GameModules/gameInit');
     var baseView = require('views/baseView');
-    var tmpl = require('tmpl/game');
+    var tmpl = require('tmpl/singleplay');
 
     var View = baseView.extend({
         template: tmpl,
@@ -18,9 +18,9 @@ define(function (require) {
         startGame: function () {
             var self = this;
             gameInit.init();
-            gameInit.addToDOM();
+            // gameInit.addToDOM();
             function animate() {
-               self.gameStartedId = requestAnimationFrame(animate);
+                self.gameStartedId = requestAnimationFrame(animate);
                 gameInit.frame();
             }
             animate();
@@ -30,7 +30,7 @@ define(function (require) {
             gameInit.dealloc();
             $('canvas').remove();
         }
-        
+
     });
     return new View();
 

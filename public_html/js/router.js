@@ -11,7 +11,8 @@ define(
             scoreboard: require('views/scoreboard'),
             room: require('views/room'),
             main: require('views/main'),
-            settings: require('views/settings')
+            settings: require('views/settings'),
+            singleplay: require('views/singleplay')
         };
 
         var Router = Backbone.Router.extend({

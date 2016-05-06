@@ -37,7 +37,7 @@ define(function (require) {
                     }).attr("src", "media/not_ready.png");
                 });
                 $(".room__profile_current-user-ready-button", this.$el)
-                    .html('Ready')
+                    .html('Not Ready')
                     .css('background-color', '#B71C1C');
             }
         }

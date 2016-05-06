@@ -53,11 +53,11 @@ define(function (require) {
             this.walls[3].position.z = -1056;
 
 
-            // gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 1, 12, 17);
-            // gameObjects.addObjectToWorld(this.worldObjects.indestructible_crate, new THREE.CubeGeometry(64, 64, 64),2, 2, 1);
-            // gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 3, 2, 2);
-            // gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 4, 29, 31);
-            // gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 5, 0, 2);
+            gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 1, 12, 17);
+            gameObjects.addObjectToWorld(this.worldObjects.indestructible_crate, new THREE.CubeGeometry(64, 64, 64),2, 2, 1);
+            gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 3, 2, 2);
+            gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 4, 29, 31);
+            gameObjects.addObjectToWorld(this.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), 5, 0, 2);
             
         },
         getObstacles: function () {
