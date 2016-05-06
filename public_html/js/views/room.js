@@ -48,7 +48,6 @@ define(function (require) {
             this.$('.room').append(playerView.el);
             this.listenToOnce(playerView, "removeMe", this.removeUser);
         },
-
         removeUser: function(user) {
             user.remove();
         },

@@ -12,7 +12,7 @@ define(function(require) {
 
         initialize: function () {
             this.listenTo(app.wsEvents, "user_joined", this.onNewUserJoined);
-            this.listenTo(app.wsEvents, "player_disconnected", this.onUserDisconnected);
+            this.listenTo(app.wsEvents, "user_left", this.onUserLeft);
             this.listenTo(app.wsEvents, "user_state_changed", this.onUserStateChanged);
             this.listenTo(app.wsEvents, "connected", this.onConnectToRoom);
             this.listenTo(app.wsEvents, "start_game_event", this.onStartGame);
@@ -20,11 +20,6 @@ define(function(require) {
 
         onStartGame: function() {
         },
-        disconnectFromRoom: function() {
-            // Api.closeConnection();
-            _.invoke(this.toArray(), 'destroy');
-        },
-
         onConnectToRoom: function(usersData) {
             _.invoke(this.toArray(), 'destroy');
             this.reset();
@@ -32,13 +27,11 @@ define(function(require) {
                 this.add(new Player(usersData[i]));
             }
         },
-
         onNewUserJoined: function(userData) {
             this.add(new Player(userData));
         },
-
-        onUserDisconnected: function(userData) {
-            this.remove(this.where({id: userData.player_id}));
+        onUserLeft: function(data) {
+            this.remove(this.where({id: data.id}));
         },
         onUserStateChanged: function(data) {
             var player = this.where({id: data.id});
