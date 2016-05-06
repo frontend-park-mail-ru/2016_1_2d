@@ -7,7 +7,7 @@ define(function (require) {
         initialize: function () {
             this.render();
             this.listenTo(this.model, "remove", this.removeMe);
-            this.listenTo(this.model, "isReady", this.setReady);
+            this.listenTo(this.model, "change:isReady", this.setReadyStatus);
         },
 
         removeMe: function() {
@@ -16,12 +16,30 @@ define(function (require) {
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-            this.setReady();
+            this.setReadyStatus();
         },
 
-        setReady: function() {
+        setReadyStatus: function() {
             var readyValue = this.model.get('isReady');
-            
+            if (readyValue === true) {
+                $(".room__profile_status", this.$el).fadeOut('slow', function () {
+                    $(this).load(function () {
+                            $(this).fadeIn(400);
+                        }).attr("src", "media/ready.png");
+                });
+                $(".room__profile_current-user-ready-button", this.$el)
+                    .html('Ready')
+                    .css('background-color', '#039BE5');
+            } else {
+                $(".room__profile_status", this.$el).fadeOut('slow', function () {
+                    $(this).load(function () {
+                        $(this).fadeIn(400);
+                    }).attr("src", "media/not_ready.png");
+                });
+                $(".room__profile_current-user-ready-button", this.$el)
+                    .html('Ready')
+                    .css('background-color', '#B71C1C');
+            }
         }
     });
 

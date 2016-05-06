@@ -4,6 +4,7 @@ define(function(require) {
         defaults: {
             id: "",
             avatar: "",
+            name: '',
             rating: 0,
             isReady: false
         }

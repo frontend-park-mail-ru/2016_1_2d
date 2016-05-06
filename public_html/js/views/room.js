@@ -15,14 +15,6 @@ define(function (require) {
                 if (app.user.get('isReady') == false && ws.socket.readyState != 3) {
                     ws.sendReady(true, app.contentLoaded);
                     app.user.set('isReady', true);
-                    $(".room__profile_status", e.target.parentElement).fadeOut('slow', function () {
-                        $(this).load(function () {
-                            $(this).fadeIn(400);
-                        }).attr("src", "media/ready.png");
-                    });
-                    $(".room__profile_current-user-ready-button", e.target.parentElement)
-                        .html('Ready')
-                        .css('background-color', '#039BE5');
                     $('.room__wrapper__user-ready-btn')
                         .html('Not Ready?')
                         .css('background-color', '#FF9800');
@@ -30,14 +22,7 @@ define(function (require) {
                     if (app.user.get('isReady') == true && ws.socket.readyState != 3) {
                         app.user.set('isReady', false);
                         ws.sendReady(false, app.contentLoaded);
-                        $(".room__profile_status", e.target.parentElement).fadeOut('slow', function () {
-                            $(this).load(function () {
-                                $(this).fadeIn(400);
-                            }).attr("src", "media/not_ready.png");
-                        });
-                        $(".room__profile_current-user-ready-button", e.target.parentElement)
-                            .html('Not Ready')
-                            .css('background-color', '#B71C1C');
+                        
                         $('.room__wrapper__user-ready-btn')
                             .html('Set Ready')
                             .css('background-color', '#039BE5');

@@ -1,6 +1,6 @@
 define(function(require) {
     var app = require('app');
-
+    
     var wsApi = {
         WS_URL: 'ws://' + app.host + '/game',
         socket: null,
@@ -26,13 +26,8 @@ define(function(require) {
         },
         onMessage: function (event) {
             var dataObj = JSON.parse(event.data);
-            if (dataObj.type === 'object_spawned') {
-                app.wsEvents.trigger('object_spawned', dataObj);
-            }
-            if (dataObj.type === 'user_joined') {
-                app.wsEvents.trigger('user_joined', dataObj);
-            }
-            console.log(event);
+            app.wsEvents.trigger(dataObj.type, dataObj);
+            console.log(dataObj);
         },
         onError: function(error) {
             console.log("SOCKET ERROR: " + JSON.stringify(error));
@@ -44,7 +39,7 @@ define(function(require) {
                 "contentLoaded": contentStatus
             };
             this.socket.send(JSON.stringify(data));
-        },
+        }
 
     };
 
