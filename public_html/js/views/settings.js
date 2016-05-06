@@ -44,8 +44,8 @@ define(function (require) {
                     dest_height: 140,
                     image_format: 'jpeg',
                     jpeg_quality: 100,
-                    force_flash: false,
                     flip_horiz: true,
+                    force_flash: false,
                     fps: 50
                 });
                 camera.attach( this.$('#webcam-monitor')[0]);

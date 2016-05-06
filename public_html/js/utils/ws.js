@@ -32,6 +32,7 @@ define(function(require) {
             if (dataObj.type === 'user_joined') {
                 app.wsEvents.trigger('user_joined', dataObj);
             }
+            console.log(event);
         },
         onError: function(error) {
             console.log("SOCKET ERROR: " + JSON.stringify(error));

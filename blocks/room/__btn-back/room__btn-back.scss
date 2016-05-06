@@ -1,10 +1,8 @@
-.room__btn-back {
+.room__wrapper__btn-back {
   background: #D32F2F;
-  top: 85%;
-  left: 180px;
   height: 60px;
-  width: 20%;
-  position: absolute;
+  width: 100%;
+  position: relative;
   border: 0;
   margin: 10px 10% 10px 26%;
   border-radius: 5px;
@@ -20,6 +18,6 @@
   -ms-user-select: none;
   user-select: none;
 }
-.room__btn-back:hover {
+.room__wrapper__btn-back:hover {
   background-color: #B71C1C;
 }

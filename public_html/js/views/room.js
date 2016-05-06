@@ -11,7 +11,7 @@ define(function (require) {
         template: tmpl,
         requireAuth: true,
         events: {
-            'click #user-ready-button': function(e) {
+            'click .room__wrapper__user-ready-btn': function(e) {
                 if (app.user.get('isReady') == false && ws.socket.readyState != 3) {
                     ws.sendReady(true, app.contentLoaded);
                     app.user.set('isReady', true);
@@ -23,6 +23,9 @@ define(function (require) {
                     $(".room__profile_current-user-ready-button", e.target.parentElement)
                         .html('Ready')
                         .css('background-color', '#039BE5');
+                    $('.room__wrapper__user-ready-btn')
+                        .html('Not Ready?')
+                        .css('background-color', '#FF9800');
                 } else {
                     if (app.user.get('isReady') == true && ws.socket.readyState != 3) {
                         app.user.set('isReady', false);
@@ -35,6 +38,9 @@ define(function (require) {
                         $(".room__profile_current-user-ready-button", e.target.parentElement)
                             .html('Not Ready')
                             .css('background-color', '#B71C1C');
+                        $('.room__wrapper__user-ready-btn')
+                            .html('Set Ready')
+                            .css('background-color', '#039BE5');
                     } else {
                         this.$('.alert-box.error').finish();
                         this.showErrorMessage('Connection error, reenter room');
@@ -55,12 +61,6 @@ define(function (require) {
         addUser: function(userModel) {
             var playerView = new roomPlayer({'model': userModel});
             this.$('.room').append(playerView.el);
-            console.log(playerView.el);
-            // this.playersContainer.append(playerView.el);
-
-            // if(userModel.get('user_id') == app.session.user.get('user_id')) {
-            //     this.currentPlayer = userModel;
-            // }
             this.listenToOnce(playerView, "removeMe", this.removeUser);
         },
 

@@ -64,6 +64,7 @@ define(function (require) {
             //     down: false,
             //     right: false
             // });
+            
             gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh , 950);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },

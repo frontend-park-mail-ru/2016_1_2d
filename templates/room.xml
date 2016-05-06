@@ -1,9 +1,15 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
     <div class="room">
         <div class="alert-box error" style="display: none"></div>
-        <a href="#main"><button class="room__btn-back">
-            Back
-        </button></a>
+
+        <div class="room__wrapper">
+            <button class="room__wrapper__user-ready-btn">
+                Set Ready
+            </button>
+            <a href="#main"><button class="room__wrapper__btn-back">
+                Back
+            </button></a>
+        </div>
     </div>
 </fest:template>
 
