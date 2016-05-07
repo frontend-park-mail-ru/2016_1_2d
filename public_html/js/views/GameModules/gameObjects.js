@@ -58,15 +58,17 @@ define(function (require) {
             }
         },
         setBomb: function (id) {
+            var self = this;
             var bomb = this.bombObj.clone();
             bomb.position.set(this.firstCharacter.mesh.position.x, 2, this.firstCharacter.mesh.position.z);
             var timerId = setInterval(function () {
-                bomb.scale.y *= 1.2;
-                bomb.scale.x *= 1.2;
-                bomb.scale.z *= 1.2;
+                bomb.scale.y *= 1.25;
+                bomb.scale.x *= 1.25;
+                bomb.scale.z *= 1.25;
             }, 1000);
             setTimeout(function () {
                 clearInterval(timerId);
+                self.scene.remove(bomb);
             }, 3000);
             this.scene.add(bomb);
         }

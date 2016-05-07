@@ -125,8 +125,6 @@ define(function (require) {
             };
 
             this.move = function () {
-                var x = this.mesh.position.x;
-                var z = this.mesh.position.z;
                 this.mesh.position.x += this.direction.x * ((this.direction.z === 0) ? 4 : Math.sqrt(8));
                 this.mesh.position.z += this.direction.z * ((this.direction.x === 0) ? 4 : Math.sqrt(8));
                 this.step += 1 / 4;

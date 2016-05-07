@@ -14,7 +14,7 @@ define(function (require) {
                 object.traverse(function (child) {
                     if (child instanceof THREE.Mesh) {
                         child.material = materialObj;
-                        child.scale.set(4, 4, 4)
+                        child.scale.set(5, 5, 5)
                     }
                 });
                 gameObjects.bombObj = object;
