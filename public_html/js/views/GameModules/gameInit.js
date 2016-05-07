@@ -49,11 +49,18 @@ define(function (require) {
                 object.traverse(function (child) {
                     if (child instanceof THREE.Mesh) {
                         child.material = materialObj;
-                        child.scale.set(6, 6, 6)
+                        child.scale.set(5, 5, 5)
                     }});
-                gameObjects.scene.add(object);
+                gameObjects.addBombToWorld(object,10,6,6);
             });
-            
+            var timerId = setInterval(function() {
+                gameObjects.obstacles[gameObjects.objects[10].index].scale.y *= 1.2;
+                gameObjects.obstacles[gameObjects.objects[10].index].scale.x *= 1.2;
+                gameObjects.obstacles[gameObjects.objects[10].index].scale.z *= 1.2;
+            }, 1000);
+            setTimeout(function() {
+                clearInterval(timerId);
+            }, 3000);
         },
         addToDOM: function () {
             this.container.prepend(gameObjects.renderer.domElement);

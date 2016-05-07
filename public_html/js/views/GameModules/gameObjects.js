@@ -34,6 +34,15 @@ define(function (require) {
             };
             this.scene.add(realObj);
         },
+        addBombToWorld: function (object, id, x, z) {
+            var coordinates = this.getRealCoordinates(x, z);
+            object.position.set(coordinates.x, 2, coordinates.z);
+            this.obstacles.push(object);
+            this.objects[id] = {
+                index: this.obstacles.indexOf(object)
+            };
+            this.scene.add(object);
+        },
         addPlayerToWorld: function (id, object) { // add all players besides yours to colide
             this.obstacles.push(object);
             this.objects[id] = {

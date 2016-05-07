@@ -23,7 +23,7 @@ define(function (require) {
                self.gameStartedId = requestAnimationFrame(animate);
                 gameInit.frame();
             }
-            animate();
+            animate();  
         },
         endGame: function () {
             cancelAnimationFrame(this.gameStartedId);
