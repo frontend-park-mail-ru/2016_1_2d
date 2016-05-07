@@ -173,6 +173,8 @@ define(function (require) {
                             case 'S':
                                 controls.down = pressed;
                                 break;
+                            case ' ':
+                                gameObjects.setBomb(123);
                         }
                     }
                     gameObjects.firstCharacter.setDirection(controls);

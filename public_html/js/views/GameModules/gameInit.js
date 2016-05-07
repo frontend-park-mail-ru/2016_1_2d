@@ -4,7 +4,7 @@ define(function (require) {
     var gameObjects = require('views/GameModules/gameObjects');
     var Character = require('views/GameModules/character');
     var World = require('views/GameModules/worldBuilder');
-    var OBJLoader = require('OBJLoader');
+    var Bomb = require('views/GameModules/bomb');
 
     var BasicScene = {
         init: function () {
@@ -31,7 +31,7 @@ define(function (require) {
                 // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
                 // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
                 gameObjects.firstCharacter.setControls('');
-
+                Bomb.init();
                 World.init();
                 gameObjects.scene.add(World.mesh);
 
@@ -39,28 +39,7 @@ define(function (require) {
                     BasicScene.setAspect();
                 });
 
-
-            var loader = new THREE.OBJLoader();
-            loader.load('../media/game/models/bomb/Bomb.obj', function (object) {
-                var texture = THREE.ImageUtils.loadTexture('../media/game/models/bomb/texture.png', {}, function () {
-                    gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
-                });
-                var materialObj = new THREE.MeshBasicMaterial({map: texture});
-                object.traverse(function (child) {
-                    if (child instanceof THREE.Mesh) {
-                        child.material = materialObj;
-                        child.scale.set(5, 5, 5)
-                    }});
-                gameObjects.addBombToWorld(object,10,6,6);
-            });
-            var timerId = setInterval(function() {
-                gameObjects.obstacles[gameObjects.objects[10].index].scale.y *= 1.2;
-                gameObjects.obstacles[gameObjects.objects[10].index].scale.x *= 1.2;
-                gameObjects.obstacles[gameObjects.objects[10].index].scale.z *= 1.2;
-            }, 1000);
-            setTimeout(function() {
-                clearInterval(timerId);
-            }, 3000);
+            
         },
         addToDOM: function () {
             this.container.prepend(gameObjects.renderer.domElement);

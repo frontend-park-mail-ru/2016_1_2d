@@ -16,7 +16,6 @@ define(function(require) {
             this.listenTo(app.wsEvents, "user_state_changed", this.onUserStateChanged);
             this.listenTo(app.wsEvents, "start_game_event", this.onStartGame);
         },
-
         onStartGame: function() {
         },
         onNewUserJoined: function(userData) {
