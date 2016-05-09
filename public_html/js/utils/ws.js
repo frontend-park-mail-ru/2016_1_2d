@@ -19,7 +19,6 @@ define(function(require) {
         onOpen: function() {
 
         },
-
         onClose: function(code) {
             console.log("CLOSE SOCKET:");
             console.log(code);
@@ -37,6 +36,12 @@ define(function(require) {
                 "type": "user_state_changed",
                 "isReady": readyStatus,
                 "contentLoaded": contentStatus
+            };
+            this.socket.send(JSON.stringify(data));
+        },
+        sendPing: function () {
+            var data = {
+                "type": "ping"
             };
             this.socket.send(JSON.stringify(data));
         }

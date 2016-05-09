@@ -10,17 +10,19 @@ define(function (require) {
     var View = baseView.extend({
         template: tmpl,
         requireAuth: true,
+        pingTimer: null,
+        currentPlayer: null,
         events: {
             'click .room__wrapper__user-ready-btn': function(e) {
-                if (app.user.get('isReady') == false && ws.socket.readyState != 3) {
+                if (this.currentPlayer.get('isReady') == false && ws.socket.readyState != 3) {
                     ws.sendReady(true, app.contentLoaded);
-                    app.user.set('isReady', true);
+                    this.currentPlayer.set('isReady', true);
                     $('.room__wrapper__user-ready-btn')
                         .html('Not Ready?')
                         .css('background-color', '#FF9800');
                 } else {
-                    if (app.user.get('isReady') == true && ws.socket.readyState != 3) {
-                        app.user.set('isReady', false);
+                    if (this.currentPlayer.get('isReady') == true && ws.socket.readyState != 3) {
+                        this.currentPlayer.set('isReady', false);
                         ws.sendReady(false, app.contentLoaded);
                         
                         $('.room__wrapper__user-ready-btn')
@@ -41,11 +43,18 @@ define(function (require) {
         show: function () {
             baseView.prototype.show.call(this);
             ws.startConnection();
+            this.pingTimer = setInterval(function () {
+                ws.sendPing();
+            }, 5000);
             gameInit.init();
         },
         addUser: function(userModel) {
             var playerView = new roomPlayer({'model': userModel});
             this.$('.room').append(playerView.el);
+
+            if(userModel.get('id') == app.user.get('id')) {
+                this.currentPlayer = userModel;
+            }
             this.listenToOnce(playerView, "removeMe", this.removeUser);
         },
         removeUser: function(user) {
@@ -54,7 +63,12 @@ define(function (require) {
         hide: function () {
             if(ws.socket) {
                 ws.closeConnection();
+                clearInterval(this.pingTimer);
+                this.collection.destroyAllModels();
             }
+            $('.room__wrapper__user-ready-btn')
+                .html('Set Ready')
+                .css('background-color', '#039BE5');
             gameInit.dealloc();
             baseView.prototype.hide.call(this);
         },
@@ -64,7 +78,6 @@ define(function (require) {
             }).fadeOut(2200);
 
         },
-
     });
     return new View();
 

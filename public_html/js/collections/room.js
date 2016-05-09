@@ -9,12 +9,14 @@ define(function(require) {
         comparator: function(score) {
             return -score.get('rating');
         },
-
         initialize: function () {
             this.listenTo(app.wsEvents, "user_joined", this.onNewUserJoined);
             this.listenTo(app.wsEvents, "user_left", this.onUserLeft);
             this.listenTo(app.wsEvents, "user_state_changed", this.onUserStateChanged);
             this.listenTo(app.wsEvents, "start_game_event", this.onStartGame);
+        },
+        destroyAllModels: function () {
+            this.remove(this.toArray());
         },
         onStartGame: function() {
         },
