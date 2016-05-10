@@ -5,43 +5,42 @@ define(function (require) {
     var Character = require('views/GameModules/character');
     var World = require('views/GameModules/worldBuilder');
     var Bomb = require('views/GameModules/bomb');
-
+    var app = require('app');
+    
     var BasicScene = {
         init: function () {
-                gameObjects.scene = new THREE.Scene();
-                gameObjects.camera = new THREE.PerspectiveCamera(55, 1, 0.1, 10000);
-                gameObjects.scene.add(gameObjects.camera);
+            gameObjects.scene = new THREE.Scene();
+            gameObjects.camera = new THREE.PerspectiveCamera(55, 1, 0.1, 10000);
+            gameObjects.scene.add(gameObjects.camera);
+            gameObjects.light = new THREE.DirectionalLight(0xffffff, 1);
+            gameObjects.light.position.set(-600, 0, -600);
+            gameObjects.scene.add(gameObjects.light);
+            gameObjects.light1 = new THREE.DirectionalLight(0xffffff, 1);
+            gameObjects.light1.position.set(600, 1800, 600);
+            gameObjects.scene.add(gameObjects.light1);
+            gameObjects.light2 = new THREE.DirectionalLight(0xffffff, 1);
+        
+            gameObjects.renderer = new THREE.WebGLRenderer();
 
-                gameObjects.light = new THREE.DirectionalLight(0xffffff, 1);
-                gameObjects.light.position.set(-600, 0, -600);
-                gameObjects.scene.add(gameObjects.light);
-                gameObjects.light1 = new THREE.DirectionalLight(0xffffff, 1);
-                gameObjects.light1.position.set(600, 1800, 600);
-                gameObjects.scene.add(gameObjects.light1);
-                gameObjects.light2 = new THREE.DirectionalLight(0xffffff, 1);
+            // gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
+            // gameObjects.scene.add(gameObjects.firstCharacter.mesh);
+            // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
+            // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
 
+            Bomb.init();
+            World.init();
+            gameObjects.scene.add(World.mesh);
 
-                gameObjects.renderer = new THREE.WebGLRenderer();
-                this.container = $('#game-canvas');
-
-                gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
-
-
-                gameObjects.scene.add(gameObjects.firstCharacter.mesh);
-                // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
-                // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
-                gameObjects.firstCharacter.setControls('');
-                Bomb.init();
-                World.init();
-                gameObjects.scene.add(World.mesh);
-
-                jQuery(window).resize(function () {
-                    BasicScene.setAspect();
-                });
-
-            
+            jQuery(window).resize(function () {
+                BasicScene.setAspect();
+            });
+            app.user.set('contentLoaded', true);
         },
         addToDOM: function () {
+            gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0, z: 0});
+            gameObjects.scene.add(gameObjects.firstCharacter.mesh);
+            gameObjects.firstCharacter.setControls('');
+            this.container = $('#game-canvas');
             this.container.prepend(gameObjects.renderer.domElement);
             this.setAspect();
         },
@@ -50,6 +49,7 @@ define(function (require) {
             gameObjects.scene.add(gameObjects.secondCharacter.mesh);
         },
         setAspect: function () {
+            this.container = $('#game-canvas');
             var w = this.container.width();
             var h = jQuery(window).height();
             gameObjects.renderer.setSize(w, h);
@@ -63,13 +63,13 @@ define(function (require) {
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },
         dealloc: function () {
-            gameObjects.scene = undefined;
-            gameObjects.camera = undefined;
-            gameObjects.light = undefined;
-            gameObjects.renderer = undefined;
-            gameObjects.firstCharacter = undefined;
-            gameObjects.obstacles = [];
-            gameObjects.objects = {};
+            // gameObjects.scene = undefined;
+            // gameObjects.camera = undefined;
+            // gameObjects.light = undefined;
+            // gameObjects.renderer = undefined;
+            // gameObjects.firstCharacter = undefined;
+            // gameObjects.obstacles = [];
+            // gameObjects.objects = {};
         }
     };
 

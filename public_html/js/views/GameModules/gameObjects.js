@@ -13,6 +13,10 @@ define(function (require) {
         objects: {}, // here we dump all links to obstacle index by id of object
         obstacles: [], // here we dump all our obstacles for raycaster
         bombObj: null,
+        worldObjects: {
+            indestructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg')}),
+            destructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif')})
+        },
         getRealCoordinates: function (x, z) {
             return {
                 x: x * 64 - 992,

@@ -8,7 +8,6 @@ define(
             session: new session(),
             user: new user(),
             host: 'localhost',
-            contentLoaded: false,
             createNewSession : function () {
                 app.session = new session();
                 app.user = new user();
@@ -22,7 +21,8 @@ define(
                 app.user.set('isReady', false);
                 app.user.fetch({
                     success: function () {
-                    app.Events.trigger('userAuthed');
+                        app.user.set('contentLoaded', false);
+                        app.Events.trigger('userAuthed');
                 }});
             },
             error: function () {
