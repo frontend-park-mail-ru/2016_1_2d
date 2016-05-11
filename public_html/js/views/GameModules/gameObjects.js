@@ -15,12 +15,19 @@ define(function (require) {
         bombObj: null,
         worldObjects: {
             indestructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg')}),
-            destructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif')})
+            destructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif')}),
+            bomb_bonus_range: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/bonus_bomb.gif')})
         },
         getRealCoordinates: function (x, z) {
             return {
                 x: x * 64 - 992,
                 z: z * 64 - 992
+            }
+        },
+        getBomberManRealCoordinates: function (x, z) {
+            return {
+                x: x * 64 - 1024,
+                z: z * 64 - 1024
             }
         },
         getGameCoordinates: function (x, z) {
@@ -40,7 +47,7 @@ define(function (require) {
             this.scene.add(realObj);
         },
         addBombToWorld: function (object, id, x, z) {
-            var coordinates = this.getRealCoordinates(x, z);
+            var coordinates = this.getBomberManRealCoordinates(x, z);
             object.position.set(coordinates.x, 2, coordinates.z);
             this.obstacles.push(object);
             this.objects[id] = {

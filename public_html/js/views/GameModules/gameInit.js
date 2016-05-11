@@ -21,12 +21,7 @@ define(function (require) {
             gameObjects.light2 = new THREE.DirectionalLight(0xffffff, 1);
         
             gameObjects.renderer = new THREE.WebGLRenderer();
-
-            // gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0.5, z: 0.5});
-            // gameObjects.scene.add(gameObjects.firstCharacter.mesh);
-            // gameObjects.addPlayerToWorld(8, gameObjects.firstCharacter.mesh);
-            // gameObjects.addPlayerToWorld(9, gameObjects.secondCharacter.mesh);
-
+            
             Bomb.init();
             World.init();
             gameObjects.scene.add(World.mesh);
@@ -63,13 +58,13 @@ define(function (require) {
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },
         dealloc: function () {
-            // gameObjects.scene = undefined;
-            // gameObjects.camera = undefined;
-            // gameObjects.light = undefined;
-            // gameObjects.renderer = undefined;
-            // gameObjects.firstCharacter = undefined;
-            // gameObjects.obstacles = [];
-            // gameObjects.objects = {};
+            gameObjects.scene = undefined;
+            gameObjects.camera = undefined;
+            gameObjects.light = undefined;
+            gameObjects.renderer = undefined;
+            gameObjects.firstCharacter = undefined;
+            gameObjects.obstacles = [];
+            gameObjects.objects = {};
         }
     };
 

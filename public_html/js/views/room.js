@@ -53,7 +53,7 @@ define(function (require) {
             ws.startConnection();
             this.pingTimer = setInterval(function () {
                 ws.sendPing();
-            }, 5000);
+            }, 10000);
         },
         hide: function () {
             $('.room__wrapper__user-ready-btn')

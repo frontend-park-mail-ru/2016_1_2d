@@ -33,17 +33,33 @@ define(function (require) {
             animate();  
         },
         endGame: function () {
-            cancelAnimationFrame(this.gameStartedId);
-            // gameInit.dealloc();
-            $('canvas').remove();
+            if (this.gameStartedId != null) {
+                cancelAnimationFrame(this.gameStartedId);
+                gameInit.dealloc();
+                $('canvas').remove();
+                gameInit.init();
+            }
         },
         addObject: function (data) {
             if (data.object_type === 'destructible_wall') {
                 gameObjects.addObjectToWorld(gameObjects.worldObjects.destructible_crate, new THREE.CubeGeometry(64, 64, 64), data.id, data.x, data.y);
+                return
             }
             if (data.object_type === 'undestructible_wall') {
                 gameObjects.addObjectToWorld(gameObjects.worldObjects.indestructible_crate, new THREE.CubeGeometry(64, 64, 64), data.id, data.x, data.y);
+                return
             }
+            if (data.object_type === 'bonus_increase_bomb_range') {
+                // gameObjects.addObjectToWorld(gameObjects.worldObjects.bomb_bonus_range, new THREE.CubeGeometry(64, 64, 64), data.id, data.x, data.y);
+                return
+            }
+            if (data.obect_type === 'bonus_decrease_bomb_spawn_delay') {
+
+            }
+            if (data.obect_type === 'bonus_decrease_bomb_explosion_delay') {
+
+            }
+
         }
         
     });

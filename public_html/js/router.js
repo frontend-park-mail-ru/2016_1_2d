@@ -12,7 +12,6 @@ define(
             room: require('views/room'),
             main: require('views/main'),
             settings: require('views/settings'),
-            singleplay: require('views/singleplay')
         };
 
         var Router = Backbone.Router.extend({

@@ -83,7 +83,7 @@ define(function (require) {
                 var collisions;
                 var i;
                 // Maximum distance from the origin before we consider collision
-                var distance = 42;
+                var distance = 32;
                 // Get the obstacles array from our world
                 var obstacles = world.getObstacles();
 
@@ -171,8 +171,6 @@ define(function (require) {
                             case 'S':
                                 controls.down = pressed;
                                 break;
-                            case ' ':
-                                gameObjects.setBomb(123);
                         }
                     }
                     gameObjects.firstCharacter.setDirection(controls);
@@ -181,6 +179,9 @@ define(function (require) {
                 gameDiv.attr("contentEditable", "true");
                 gameDiv[0].contentEditable = true;
                 gameDiv.keydown(function (e) {
+                    if (String.fromCharCode(e.keyCode ) == ' '){
+                        gameObjects.setBomb(123);
+                    }
                     makeControls(true, e.keyCode, position);
                     e.preventDefault();
                 });
