@@ -80,7 +80,7 @@ module.exports = function (grunt) {
             options: {
             timeout: 15000
         },
-            all: ['./public_html/tests/index.html']
+            all: ['public_html/tests/index.html']
         }
     });
 
