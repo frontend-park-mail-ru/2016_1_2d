@@ -2,7 +2,6 @@ define(function (require) {
     var jQuery = require('jquery');
     var THREE = require('three');
     var gameObjects = require('views/GameModules/gameObjects');
-    var Character = require('views/GameModules/character');
     var World = require('views/GameModules/worldBuilder');
     var Bomb = require('views/GameModules/bomb');
     var app = require('app');
@@ -19,7 +18,6 @@ define(function (require) {
             gameObjects.light1.position.set(600, 1800, 600);
             gameObjects.scene.add(gameObjects.light1);
             gameObjects.light2 = new THREE.DirectionalLight(0xffffff, 1);
-        
             gameObjects.renderer = new THREE.WebGLRenderer();
             
             Bomb.init();
@@ -32,16 +30,9 @@ define(function (require) {
             app.user.set('contentLoaded', true);
         },
         addToDOM: function () {
-            gameObjects.firstCharacter = new Character.init({color: 0xff0000}, {x: 0, z: 0});
-            gameObjects.scene.add(gameObjects.firstCharacter.mesh);
-            gameObjects.firstCharacter.setControls('');
             this.container = $('#game-canvas');
             this.container.prepend(gameObjects.renderer.domElement);
             this.setAspect();
-        },
-        addPlayer: function (color, x, z) {
-            gameObjects.firstCharacter = new Character.init({color: color}, {x: x, z: z});
-            gameObjects.scene.add(gameObjects.secondCharacter.mesh);
         },
         setAspect: function () {
             this.container = $('#game-canvas');
@@ -53,8 +44,8 @@ define(function (require) {
         },
 
         frame: function () {
-            gameObjects.firstCharacter.motion();
-            gameObjects.firstCharacter.setFocus(gameObjects.firstCharacter.mesh , 950);
+            gameObjects.playersCharacter.motion();
+            gameObjects.playersCharacter.setFocus(gameObjects.playersCharacter.mesh , 950);
             gameObjects.renderer.render(gameObjects.scene, gameObjects.camera);
         },
         dealloc: function () {
@@ -62,7 +53,7 @@ define(function (require) {
             gameObjects.camera = undefined;
             gameObjects.light = undefined;
             gameObjects.renderer = undefined;
-            gameObjects.firstCharacter = undefined;
+            gameObjects.playersCharacter = undefined;
             gameObjects.obstacles = [];
             gameObjects.objects = {};
         }

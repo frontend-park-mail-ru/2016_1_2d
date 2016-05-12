@@ -8,8 +8,8 @@ define(function (require) {
         camera: null,
         light: null,
         renderer: null,
-        firstCharacter: null,
-        secondCharacter: null,
+        playersCharacter: null,
+        allCharacters: {},
         objects: {}, // here we dump all links to obstacle index by id of object
         obstacles: [], // here we dump all our obstacles for raycaster
         bombObj: null,
@@ -17,6 +17,10 @@ define(function (require) {
             indestructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/grey_bricks2.jpg')}),
             destructible_crate: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/destruct_crate.gif')}),
             bomb_bonus_range: new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('media/game/textures/bonus_bomb.gif')})
+        },
+        getRandomColor: function () {
+            return Math.random() * 255;
+
         },
         getRealCoordinates: function (x, z) {
             return {
@@ -32,7 +36,7 @@ define(function (require) {
         },
         getGameCoordinates: function (x, z) {
             return {
-                x: (x + 992) / 64 ,
+                x: (x + 992) / 64,
                 z: (z + 992) / 64
             }
         },
@@ -77,10 +81,11 @@ define(function (require) {
                 delete this.objects[id];
             }
         },
-        setBomb: function (id) {
+        setBomb: function (id, x, z) {
             var self = this;
             var bomb = this.bombObj.clone();
-            bomb.position.set(this.firstCharacter.mesh.position.x, 2, this.firstCharacter.mesh.position.z);
+            var coordinates = this.getRealCoordinates(x,z);
+            bomb.position.set(coordinates.x, 2, coordinates.z);
             var timerId = setInterval(function () {
                 bomb.scale.y *= 1.25;
                 bomb.scale.x *= 1.25;

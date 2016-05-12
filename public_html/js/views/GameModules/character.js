@@ -45,7 +45,7 @@ define(function (require) {
             this.nose.position.z = 24;
             this.mesh.add(this.nose);
 
-            var playerCoordinates = gameObjects.getRealCoordinates(position.x, position.z); // where we need to place our character
+            var playerCoordinates = gameObjects.getBomberManRealCoordinates(position.x, position.z); // where we need to place our character
             this.mesh.position.set(playerCoordinates.x, 48, playerCoordinates.z);
 
 
@@ -82,9 +82,7 @@ define(function (require) {
             this.collision = function () {
                 var collisions;
                 var i;
-                // Maximum distance from the origin before we consider collision
-                var distance = 28;
-                // Get the obstacles array from our world
+                var distance = 28; // Maximum distance from the origin before we consider collision
                 var obstacles = world.getObstacles();
 
                 for (i = 0; i < this.rays.length; i += 1) {
@@ -173,14 +171,14 @@ define(function (require) {
                                 break;
                         }
                     }
-                    gameObjects.firstCharacter.setDirection(controls);
+                    gameObjects.playersCharacter.setDirection(controls);
                 }
                 var gameDiv = jQuery('#game');
                 gameDiv.attr("contentEditable", "true");
                 gameDiv[0].contentEditable = true;
                 gameDiv.keydown(function (e) {
                     if (String.fromCharCode(e.keyCode ) == ' '){
-                        gameObjects.setBomb(123);
+                       ws.sendMessage({"type":"bomb_spawned"})
                     }
                     makeControls(true, e.keyCode, position);
                     e.preventDefault();
