@@ -77,8 +77,11 @@ module.exports = function (grunt) {
             }
         },
         qunit: {
-            all: ['./public_html/tests/index.html']
+            options: {
+            timeout: 15000
         },
+            all: ['./public_html/tests/index.html']
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
