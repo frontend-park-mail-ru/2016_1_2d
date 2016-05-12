@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>QUnit</title>
+    <title>QUnit Example</title>
     <link rel="stylesheet" href="qunit.css">
 </head>
 <body>
@@ -10,8 +10,10 @@
 <div id="qunit-fixture"></div>
 <script src="qunit.js"></script>
 <script>
-    QUnit.config.autostart = false;
+    QUnit.config.autostart = false; //для асинхронного запуска тестов
 </script>
-<script src="../js/lib/require.js" data-main="main"></script>
+<script src="../js/lib/require.js" data-main="main" ></script>
+
+
 </body>
 </html>
