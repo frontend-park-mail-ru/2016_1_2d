@@ -4,7 +4,7 @@ require.config({
     paths: {
         jquery: "lib/jquery",
         underscore: "lib/underscore",
-        backbone: "lib/backbone",
+        backbone: "lib/backbone"
     },
     shim: {
         'backbone': {
@@ -13,13 +13,10 @@ require.config({
         },
         'underscore': {
             exports: '_'
-        },
-        'backbone_validation' : {
-            deps: ['backbone'],
-            exports: 'backbone_validation'
         }
     }
 });
+
 var tests = [
     'collections/scoreboard.test',
     'views/viewManager.test'
