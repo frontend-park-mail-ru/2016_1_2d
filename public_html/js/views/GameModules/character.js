@@ -83,7 +83,7 @@ define(function (require) {
                 var collisions;
                 var i;
                 // Maximum distance from the origin before we consider collision
-                var distance = 20;
+                var distance = 28;
                 // Get the obstacles array from our world
                 var obstacles = world.getObstacles();
 

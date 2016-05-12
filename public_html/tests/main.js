@@ -19,7 +19,6 @@ require.config({
 
 var tests = [
     'collections/scoreboard.test',
-    'views/viewManager.test'
 ];
 
 require(tests, function () {
