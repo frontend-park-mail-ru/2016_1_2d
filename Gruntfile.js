@@ -26,9 +26,7 @@ module.exports = function (grunt) {
             backend : {
                 command : 'java -cp Bomberman-server-1.0.jar main.Main'
             },
-            real_backend : {
-                command : 'java -cp Bomberman-server-1.0.jar main.Main 8081'
-            }
+            
 
         },
         fest: {
