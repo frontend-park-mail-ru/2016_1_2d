@@ -77,13 +77,9 @@ module.exports = function (grunt) {
             }
         },
         qunit: {
-            options: {
-            timeout: 15000
-        },
-            all: ['public_html/tests/index.html']
+            all: ['./public_html/tests/index.html']
         }
     });
-
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');
@@ -95,5 +91,6 @@ module.exports = function (grunt) {
     grunt.registerTask('test', ['qunit:all']);
     grunt.registerTask('default', ['concurrent']);
     grunt.registerTask('compile', ['sass']);
+
 
 };

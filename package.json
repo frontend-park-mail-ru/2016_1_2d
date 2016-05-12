@@ -29,9 +29,6 @@
     "start": "node server",
     "test": "grunt test"
   },
-  "dependencies": {
-    "request": "^2.69.0"
-  },
   "bugs": {
     "url": "https://github.com/VitalyNikolaev/2016_1_2d/issues"
   },
