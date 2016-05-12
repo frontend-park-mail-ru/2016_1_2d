@@ -50,7 +50,7 @@ define(function (require) {
                 return
             }
             if (data.object_type === 'bonus_increase_bomb_range') {
-                // gameObjects.addObjectToWorld(gameObjects.worldObjects.bomb_bonus_range, new THREE.CubeGeometry(64, 64, 64), data.id, data.x, data.y);
+                gameObjects.addObjectToWorldWithNoCollisions(gameObjects.worldObjects.bomb_bonus_range, new THREE.CubeGeometry(64, 64, 64), data.id, data.x, data.y);
                 return
             }
             if (data.obect_type === 'bonus_decrease_bomb_spawn_delay') {

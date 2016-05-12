@@ -24,11 +24,9 @@ module.exports = function (grunt) {
                 command: 'node server.js '
             },
             backend : {
-                command : 'java -cp Bomberman-server-1.0.jar main.Main 8081 hash'
+                command : 'java -cp Bomberman-server-1.0.jar main.Main'
             },
-            real_backend : {
-                command : 'java -cp Bomberman-server-1.0.jar main.Main 8081'
-            }
+            
 
         },
         fest: {
@@ -73,26 +71,31 @@ module.exports = function (grunt) {
             }
         },
         concurrent: {
-            target: ['watch', 'shell','shell:backend'],
+            target: ['watch','shell:backend'],
             options: {
                 logConcurrentOutput: true
             }
         },
         qunit: {
+            options: {
+                timeout: 50000,
+            },
             all: ['./public_html/tests/index.html']
         }
     });
-
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-sass');
+    
+    
 
 
     grunt.registerTask('test', ['qunit:all']);
     grunt.registerTask('default', ['concurrent']);
     grunt.registerTask('compile', ['sass']);
+
 
 };

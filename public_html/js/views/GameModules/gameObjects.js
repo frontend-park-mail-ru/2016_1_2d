@@ -46,6 +46,15 @@ define(function (require) {
             };
             this.scene.add(realObj);
         },
+        addObjectToWorldWithNoCollisions: function (type, obj_geometry, id, x, z) { // needed to place objects by x, y and its id
+            var realObj = new THREE.Mesh(obj_geometry, type);
+            var coordinates = this.getRealCoordinates(x, z);
+            realObj.position.set(coordinates.x, 32, coordinates.z);
+            this.objects[id] = {
+                index: id
+            };
+            this.scene.add(realObj);
+        },
         addBombToWorld: function (object, id, x, z) {
             var coordinates = this.getBomberManRealCoordinates(x, z);
             object.position.set(coordinates.x, 2, coordinates.z);
