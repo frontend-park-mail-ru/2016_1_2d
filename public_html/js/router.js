@@ -2,8 +2,8 @@ define(
     function (require) {
         var Backbone = require('backbone');
         var viewManager = require('views/viewManager');
-        var user = require('models/user');
-
+        var app = require('app');
+        
         var views = {
             login: require('views/login'),
             register:  require('views/register'),
@@ -11,7 +11,7 @@ define(
             scoreboard: require('views/scoreboard'),
             room: require('views/room'),
             main: require('views/main'),
-            settings: require('views/settings')
+            settings: require('views/settings'),
         };
 
         var Router = Backbone.Router.extend({
@@ -20,20 +20,22 @@ define(
                 '*default': 'displayMainView'
             },
             initialize: function () {
-                user.checkAuth();
                 viewManager = new viewManager(views);
-                this.listenTo(user, 'userAuthed', this.displayMainView);
-                this.listenTo(user, 'userRegistered',this.displayMainView);
             },
-            displayMainView: function() {
+            displayMainView: function () {
                 views.main.show();
                 this.navigate("#main", {trigger: true});
             },
             displayView: function () {
                 var view = views[Backbone.history.getFragment()];
-                if (view.requireAuth && !user.get('authed') ) {
+                if (view.requireAuth && !app.session.get('authed') ) {
                     this.navigate('#login', {trigger: true});
                     views.login.trigger('error','Need login to perform this action');
+                }
+                if (Backbone.history.getFragment() === 'game') {
+                    if (app.gameReady) {
+                        view.show();
+                    }
                 } else {
                     view.show();
                 }

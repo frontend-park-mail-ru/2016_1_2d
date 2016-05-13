@@ -210,7 +210,7 @@ html, body {
     position: absolute;
     height: 100%;
     width: 450px;
-    background-color: #ecfff8;
+    background-color: red;
     right:0;
 }
 .chat__form {
@@ -408,16 +408,4 @@ html, body {
 }
 .snapshot {
     display: none;
-    /*margin-left: 150px;*/
-}
-.snapshot__button {
-    /*display: block;*/
-    /*font-size: 26px;*/
-    /*background: #009688;*/
-}
-.snapshot__button_finish {
-    /*display: block;*/
-    /*margin:5px 0 0 45px;*/
-    /*font-size: 26px;*/
-    /*background: #59ff48;*/
 }

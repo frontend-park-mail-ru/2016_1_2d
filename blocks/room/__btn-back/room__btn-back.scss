@@ -1,0 +1,23 @@
+.room__wrapper__btn-back {
+  background: #D32F2F;
+  height: 60px;
+  width: 100%;
+  position: relative;
+  border: 0;
+  margin: 10px 10% 10px 26%;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 40px;
+  transition: all 0.3s;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.9);
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.room__wrapper__btn-back:hover {
+  background-color: #B71C1C;
+}

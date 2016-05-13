@@ -169,3 +169,80 @@ html, body {
 
 .webcam__snapshot {
   display: none; }
+
+.room {
+  width: 1000px;
+  margin-left: 15%; }
+
+.room__profile {
+  float: left;
+  width: 200px;
+  margin-left: 190px;
+  margin-top: 50px; }
+
+.room__profile_status {
+  width: 130px;
+  margin: 20px 30px 20px 30px; }
+
+.text {
+  font-size: 30px;
+  position: relative;
+  left: 30%; }
+
+.room__wrapper {
+  width: 20%;
+  position: absolute;
+  margin: 10px 10% 10px 22%;
+  top: 75%; }
+
+.room__wrapper__user-ready-btn {
+  width: 100%;
+  height: 60px;
+  background-color: #039BE5;
+  position: relative;
+  border: 0;
+  margin: 10px 10% 10px 26%;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 40px;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.room__profile_current-user-ready-button,
+.room__profile_users-ready-button {
+  top: 20px;
+  position: relative;
+  font-size: 25px;
+  width: 100%;
+  height: 40px;
+  color: #ffffff;
+  background-color: #D32F2F; }
+
+.room__profile-wrapper {
+  height: 140px; }
+
+.room__wrapper__btn-back {
+  background: #D32F2F;
+  height: 60px;
+  width: 100%;
+  position: relative;
+  border: 0;
+  margin: 10px 10% 10px 26%;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 40px;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.room__wrapper__btn-back:hover {
+  background-color: #B71C1C; }

@@ -1,21 +1,27 @@
 define(function (require) {
         var baseView = require('views/baseView');
         var tmpl = require('tmpl/main');
-        var user = require('models/user');
+        var app = require('app');
 
         var View = baseView.extend({
             template: tmpl,
             events: {
                 'click #logout': function(e) {
+                    var self = this;
                     e.preventDefault();
-                    user.userLogout();
+                    app.session.destroy({
+                        success: function () {
+                            app.createNewSession();
+                            self.reloadView();
+                        }
+                    });
                 }
             },
             initialize: function () {
-                this.listenTo(user, "userAuthed", this.reloadViewWithAuthTemplate);
-                this.listenTo(user, "userLogout",this.reloadView);
+                this.render();
+                this.listenTo(app.Events, "userAuthed", this.reloadViewWithAuthTemplate);
+
             },
-            
             reloadViewWithAuthTemplate: function() {
                 this.template = require('tmpl/main_authed');
                 this.render();
@@ -25,7 +31,7 @@ define(function (require) {
                 this.render();
             },
             render: function () {
-                this.$el.html(this.template(user.toJSON()));
+                this.$el.html(this.template(app.user.toJSON()));
             }
         });
 

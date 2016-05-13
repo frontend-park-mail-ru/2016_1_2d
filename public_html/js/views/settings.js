@@ -1,8 +1,8 @@
 define(function (require) {
         var tmpl = require('tmpl/settings');
         var baseView = require('views/baseView');
-        var user = require('models/user');
         var camera = require('webcam');
+        var app = require('app');
 
         var View = baseView.extend({
             template: tmpl,
@@ -16,21 +16,21 @@ define(function (require) {
                     this.takeSnapshot();
                 },
                 'click .snapshot__button_finish': function (e) {
-                    this.$('.snapshot').fadeOut(0);
+                    this.$('.webcam__snapshot').fadeOut(0);
                     this.$('#webcam-monitor').height(0);
                     this.removeCamera();
                 }
             },
             initialize: function () {
-                this.listenTo(user, "userAuthed", this.render);
+                this.listenTo(app.Events, "userAuthed", this.render);
                 this.render();
             },
             render: function () {
-                this.$el.html(this.template(user.toJSON()));
+                this.$el.html(this.template(app.user.toJSON()));
             },
             hide: function () {
-                if (this.$('.snapshot').css('display') != 'none') {
-                    this.$('.snapshot').fadeOut(0);
+                if (this.$('.webcam__snapshot').css('display') != 'none') {
+                    this.$('.webcam__snapshot').fadeOut(0);
                     this.$('#webcam-monitor').height(0);
                     this.removeCamera();
                 }
@@ -44,8 +44,8 @@ define(function (require) {
                     dest_height: 140,
                     image_format: 'jpeg',
                     jpeg_quality: 100,
-                    force_flash: false,
                     flip_horiz: true,
+                    force_flash: false,
                     fps: 50
                 });
                 camera.attach( this.$('#webcam-monitor')[0]);
