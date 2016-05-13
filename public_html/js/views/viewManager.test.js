@@ -1,9 +1,4 @@
 define(function (require) {
-    var ViewManager = require('views/viewManager');
-    var LoginView = require('views/login');
-    var RegView = require('views/register');
-
-
     QUnit.module("views/manager");
 
     QUnit.test("ViewManager - экземпляр Backbone.View", function () {
@@ -16,6 +11,9 @@ define(function (require) {
     });
 
     QUnit.test("Logic test for ViewManager", function () {
+        var ViewManager = require('views/viewManager');
+        var LoginView = require('views/login');
+        var RegView = require('views/register');
 
         var views = {
                 login: LoginView,
