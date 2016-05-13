@@ -12,9 +12,17 @@ define(function (require) {
 
     QUnit.test("Logic test for ViewManager", function () {
         var ViewManager = require('views/viewManager');
-        var viewManager = new ViewManager();
+        
+        var views = {
+                login: require('views/login'),
+                reg: require('views/register')
+            };
+        var viewManager = new ViewManager(views);
 
-        QUnit.ok(viewManager instanceof Backbone.View);
+        QUnit.equal(views['login'].$el.css('display') === 'none', true);
+        QUnit.equal(views['reg'].$el.css('display') === 'none', true);
+        
+
     });
 
 });
