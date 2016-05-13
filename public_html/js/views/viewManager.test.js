@@ -10,19 +10,28 @@ define(function (require) {
 
     });
 
-    QUnit.test("Logic test for ViewManager", function () {
-        var ViewManager = require('views/viewManager');
-        
-        var views = {
-                login: require('views/login'),
-                reg: require('views/register')
-            };
-        var viewManager = new ViewManager(views);
+    // QUnit.test("Logic test for ViewManager", function () {
+    //     var ViewManager = require('views/viewManager');
+    //    
+    //     var views = {
+    //             login: require('views/login'),
+    //             reg: require('views/register')
+    //         };
+    //     var viewManager = new ViewManager(views);
 
-        QUnit.equal(views['login'].$el.css('display') === 'none', true);
-        QUnit.equal(views['reg'].$el.css('display') === 'none', true);
-        
+        // QUnit.equal(views['login'].$el.css('display') === 'none', true);
+        // QUnit.equal(views['reg'].$el.css('display') === 'none', true);
+        //
+        // views['login'].show();
+        //
+        // QUnit.equal(views['login'].$el.css('display') === 'none', false);
+        // QUnit.equal(views['reg'].$el.css('display') === 'none', true);
+        //
+        // views['reg'].show();
+        //
+        // QUnit.equal(views['login'].$el.css('display') === 'none', true);
+        // QUnit.equal(views['reg'].$el.css('display') === 'none', false);
 
-    });
+    // });
 
 });
