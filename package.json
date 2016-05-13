@@ -31,7 +31,8 @@
   },
   "scripts": {
     "start": "node server",
-    "test": "grunt test --verbose"
+
+    "test": "grunt fest && grunt test --verbose"
   },
   "dependencies": {
     "request": "^2.69.0"
