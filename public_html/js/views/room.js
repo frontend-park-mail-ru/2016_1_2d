@@ -33,7 +33,7 @@ define(function (require) {
                 }
             },
             'click .room__wrapper__btn-back': function (e) {
-                if(ws.socket) {
+                if(ws.socket.readyState != 3) {
                     ws.closeConnection();
                     clearInterval(this.pingTimer);
                     this.collection.destroyAllModels();
@@ -51,14 +51,13 @@ define(function (require) {
             baseView.prototype.show.call(this);
             ws.startConnection();
             this.pingTimer = setInterval(function () {
-                if (ws.socket.readyState != 3) {
-                    ws.sendPing();
-                } else {
-                    clearInterval(this);
-                }
+                ws.sendPing()
             }, 10000);
         },
         hide: function () {
+            if(this.pingTimer != null){
+                clearInterval(this.pingTimer)
+            }
             $('.room__wrapper__user-ready-btn')
                 .html('Set Ready')
                 .css('background-color', '#039BE5');

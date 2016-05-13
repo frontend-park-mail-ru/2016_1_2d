@@ -6,9 +6,11 @@ define(function (require) {
     var gameObjects = require('views/GameModules/gameObjects');
     var THREE = require('three');
     var Character = require('views/GameModules/character');
+    var ws = require('utils/ws');
 
     var View = baseView.extend({
         template: tmpl,
+        pingTimer: null,
         requireAuth: true,
         gameStartedId: null,
         initialize: function () {
@@ -21,6 +23,9 @@ define(function (require) {
         show: function () {
             baseView.prototype.show.call(this);
             this.startGame();
+            this.pingTimer = setInterval(function () {
+                ws.sendPing()
+            }, 10000);
         },
         hide: function () {
             baseView.prototype.hide.call(this);
@@ -37,6 +42,10 @@ define(function (require) {
         },
         endGame: function () {
             if (this.gameStartedId != null) {
+                if(ws.socket.readyState != 3) {
+                    ws.closeConnection();
+                    clearInterval(this.pingTimer);
+                }
                 cancelAnimationFrame(this.gameStartedId);
                 this.gameStartedId = null;
                 gameInit.dealloc();
