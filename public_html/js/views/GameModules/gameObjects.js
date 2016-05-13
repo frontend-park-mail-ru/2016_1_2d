@@ -1,15 +1,13 @@
 define(function (require) {
     var THREE = require('three');
     var jQuery = require('jquery');
-    
-    
+
     var objects = {
         scene: null,
         camera: null,
         light: null,
         renderer: null,
         playersCharacter: null,
-        allCharacters: {},
         objects: {}, // here we dump all links to obstacle index by id of object
         obstacles: [], // here we dump all our obstacles for raycaster
         bombObj: null,
@@ -76,10 +74,15 @@ define(function (require) {
         },
         deleteObjectFromWorld: function (id) {
             if (this.objects[id]) {
-                this.scene.remove(this.obstacles[this.objects[id].index]);
-                this.obstacles.splice(this.objects[id].index, 1);
-                delete this.objects[id];
-            }
+                if(this.obstacles[this.objects[id].index]) {
+                    this.scene.remove(this.obstacles[this.objects[id].index]);
+                    this.obstacles.splice(this.objects[id].index, 1);
+                    delete this.objects[id];
+                } else {
+                    this.scene.remove(this.objects[id].index);
+                    delete this.objects[id];
+                }
+            } 
         },
         setBomb: function (id, x, z) {
             var self = this;

@@ -8,6 +8,7 @@ define(
             session: new session(),
             user: new user(),
             host: 'localhost',
+            gameReady: false,
             createNewSession : function () {
                 app.session = new session();
                 app.user = new user();

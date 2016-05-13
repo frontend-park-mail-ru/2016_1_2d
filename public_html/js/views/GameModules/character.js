@@ -178,7 +178,7 @@ define(function (require) {
                 gameDiv[0].contentEditable = true;
                 gameDiv.keydown(function (e) {
                     if (String.fromCharCode(e.keyCode ) == ' '){
-                       ws.sendMessage({"type":"bomb_spawned"})
+                       ws.sendMessage({"type": "bomb_spawned"})
                     }
                     makeControls(true, e.keyCode, position);
                     e.preventDefault();

@@ -9,7 +9,7 @@ define(function (require) {
 
     var View = baseView.extend({
         template: tmpl,
-        requireAuth: false,
+        requireAuth: true,
         gameStartedId: null,
         initialize: function () {
             this.render();
@@ -46,10 +46,9 @@ define(function (require) {
         },
         spawnBomberman: function (data) {
             if (data.user_id === app.user.get('id')) {
-                gameObjects.playersCharacter = new Character.init({color: "rgb(" + Math.random() * 255 + ", " +
-                Math.random() * 255 + ", " + Math.random() * 255 + ")"},
-                    {x: data.x, z: data.y});
-                gameObjects.allCharacters[data.id] = gameObjects.playersCharacter;
+                gameObjects.playersCharacter = new Character.init({
+                        color: Math.random() * 0xffffff}, {x: data.x, z: data.y});
+                gameObjects.objects[data.id] = gameObjects.playersCharacter;
                 gameObjects.scene.add(gameObjects.playersCharacter.mesh);
                 if ( data.y > 15 ) {
                     gameObjects.playersCharacter.setControls('top');
@@ -57,10 +56,9 @@ define(function (require) {
                     gameObjects.playersCharacter.setControls('bot');
                 }
             } else {
-                gameObjects.allCharacters[data.id] = new Character.init({color: "rgb(" + Math.random() * 255 + ", " +
-                    Math.random() * 255 + ", " + Math.random() * 255 + ")"},
-                    {x: data.x, z: data.y});
-                gameObjects.scene.add(gameObjects.allCharacters[data.id].mesh);
+                gameObjects.objects[data.id] = new Character.init({
+                        color: Math.random() * 0xffffff}, {x: data.x, z: data.y});
+                gameObjects.scene.add(gameObjects.objects[data.id].mesh);
             }
 
         },
@@ -90,7 +88,7 @@ define(function (require) {
 
         },
         destroyObject: function (data) {
-            console.log(data);
+            gameObjects.deleteObjectFromWorld(data.id);
         }
         
     });

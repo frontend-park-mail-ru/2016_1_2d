@@ -43,7 +43,9 @@ define(function(require) {
             var data = {
                 "type": "ping"
             };
-            this.socket.send(JSON.stringify(data));
+            if(this.socket.readyState != 3) {
+                this.socket.send(JSON.stringify(data));
+            }
         },
         sendMessage: function (data) {
             this.socket.send(JSON.stringify(data));

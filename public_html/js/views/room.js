@@ -3,7 +3,6 @@ define(function (require) {
     var app = require('app');
     var tmpl = require('tmpl/room');
     var ws = require('utils/ws');
-    var gameInit = require('views/GameModules/gameInit');
     var roomCollection = require('collections/room');
     var roomPlayer = require('views/room-player');
    
@@ -46,13 +45,17 @@ define(function (require) {
             this.collection = new roomCollection();
             this.listenTo(this.collection, "add", this.addUser);
             this.listenTo(app.wsEvents, "world_created" , this.startGame)
+            
         },
         show: function () {
             baseView.prototype.show.call(this);
-            gameInit.init();
             ws.startConnection();
             this.pingTimer = setInterval(function () {
-                ws.sendPing();
+                if (ws.socket.readyState != 3) {
+                    ws.sendPing();
+                } else {
+                    clearInterval(this);
+                }
             }, 10000);
         },
         hide: function () {
@@ -86,6 +89,7 @@ define(function (require) {
           }
         },
         startGame: function (data) {
+            app.gameReady = true;
             this.collection.destroyAllModels();
             window.location.href = '#game';
         }

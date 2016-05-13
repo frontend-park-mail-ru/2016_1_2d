@@ -31,6 +31,11 @@ define(
                 if (view.requireAuth && !app.session.get('authed') ) {
                     this.navigate('#login', {trigger: true});
                     views.login.trigger('error','Need login to perform this action');
+                }
+                if (Backbone.history.getFragment() === 'game') {
+                    if (app.gameReady) {
+                        view.show();
+                    }
                 } else {
                     view.show();
                 }
